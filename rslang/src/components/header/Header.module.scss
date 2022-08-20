@@ -1,0 +1,30 @@
+@import "../../style/fonts.css";
+@import "../../style/variables.scss";
+@import '../../style/App.scss';
+
+.header {
+  position: sticky;
+  top: 0;
+
+  display: flex;
+  justify-content: space-between;
+
+  &__wrapper {
+    margin-left: 50px;
+    display: flex;
+    gap: 5px;
+
+    &__logo {
+      height: 60px;
+      width: 60px;
+      background: url(../../assets/icon/logo-header.png) center (center/auto) no-repeat; 
+    }
+    &__text {
+      font-family: $fontFamilyOne;
+      font-weight: normal;
+      font-size: 52px;
+
+      color: #FFFFFF;
+    }
+  }
+}

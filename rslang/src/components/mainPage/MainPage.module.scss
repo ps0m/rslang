@@ -1,0 +1,63 @@
+@import "../../style/fonts.css";
+@import "../../style/variables.scss";
+@import "../../style/App.scss";
+
+h1 {
+  font-size: 48px;
+  line-height: 72px;
+
+  color: #FFFFFF;
+  margin: 0;
+  padding: 0;
+}
+
+.mainSection {
+  margin-top: -68px;
+  height: 771px;  
+  background: url(../../assets/img/background_mainPage.png) center (center/auto) no-repeat;
+  
+  &__hero {
+    display: flex;
+    align-items: center;
+  
+    &__heading {
+      width: 628px;
+      height: 216px;
+  
+      font-family: $fontFamilyOne;
+      font-size: 48px;
+      line-height: 72px;
+    
+      color: #FFC656;  
+    }
+  
+    &__img {      
+      width: 614px;
+      height: 771px;
+      background: url(../../assets/img/hero_mainPage.png) center (center/auto) no-repeat;
+    }
+  }
+}
+
+.featuresSection {
+  height: 786px; 
+  background-color: #FFFFFF;
+
+  &__title {
+    font-family: $fontFamilyOne;
+    font-size: 32px;
+    line-height: 42px;
+    text-align: center;
+
+    color: #000000;  
+  }
+  &__wrapper {
+    margin: 0 auto;
+    width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+  }
+}
+
