@@ -1,0 +1,16 @@
+@import "../../../style/fonts.scss";
+@import "../../../style/variables.scss";
+
+.button {
+  font-family: $fontFamilyOne;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 47px;
+
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  text-transform: capitalize;
+}
+
+@import "../../../style/Buttons.scss";
