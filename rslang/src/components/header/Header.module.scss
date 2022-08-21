@@ -1,10 +1,11 @@
-@import "../../style/fonts.css";
+@import "../../style/fonts.scss";
 @import "../../style/variables.scss";
-@import '../../style/App.scss';
+@import '../../style/СommonStyles.scss';
 
 .header {
   position: sticky;
   top: 0;
+  margin-top: 10px;
 
   display: flex;
   justify-content: space-between;
@@ -12,12 +13,14 @@
   &__wrapper {
     margin-left: 50px;
     display: flex;
-    gap: 5px;
+    gap: 10px;
 
     &__logo {
       height: 60px;
       width: 60px;
-      background: url(../../assets/icon/logo-header.png) center (center/auto) no-repeat; 
+      background: url(../../assets/icon/logo-menu.png) center (center/auto) no-repeat; 
+
+      cursor: pointer;
     }
     &__text {
       font-family: $fontFamilyOne;

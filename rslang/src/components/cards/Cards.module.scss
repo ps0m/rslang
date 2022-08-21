@@ -1,9 +1,9 @@
-@import "../../style/fonts.css";
+@import "../../style/fonts.scss";
 @import "../../style/variables.scss";
 
-.cars__wrapper {
+.cards__wrapper {
   width: 378px;
-  height: 352px;
+  height: 332px;
   background-color: #FFFFFF;
   
   &_img {

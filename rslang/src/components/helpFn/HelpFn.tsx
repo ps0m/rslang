@@ -4,12 +4,8 @@ interface IStyles {
 }
 
 export const definingСlassBtn = (classBtn: string, styles:IStyles) => {
-  console.log( styles);
-  for (let key in styles) {    
-    console.log( classBtn );
+  for (const key in styles) {    
     if (key.indexOf(classBtn) !== -1) {
-      console.log( styles[key] );
-      console.log(1)
       return styles[key]
     }
   }
