@@ -1,26 +1,22 @@
+import { URL_SINGIN, URL_USERS, URL_WORDS } from "../../constants/constatnts";
 import { IEmailPassword, IPropertyWord, ISettings, IStatistic, IUser, IWords } from "../../types/types";
 
-const urlBase = 'https://rs-rslang.herokuapp.com';
-const urlWords = `${urlBase}/words`;
-const urlUsers = `${urlBase}/users`;
-const urlSignin = `${urlBase}/signin`;
-
 export const getWords = async (page = 0, group = 0) => {
-  const response = await fetch(`${urlWords}?page=${page}&group=${group}`);
+  const response = await fetch(`${URL_WORDS}?page=${page}&group=${group}`);
   const data: IWords = await response.json();
 
   return data;
 }
 
 export const getWord = async (id: string) => {
-  const response = await fetch(`${urlWords}/${id}`);
+  const response = await fetch(`${URL_WORDS}/${id}`);
   const data: IWords = await response.json();
 
   return data;
 }
 
 export const createUser = async (user: IUser) => {
-  const response = await fetch(urlUsers, {
+  const response = await fetch(URL_USERS, {
     method: 'POST',
     body: JSON.stringify(user),
     headers: {
@@ -33,7 +29,7 @@ export const createUser = async (user: IUser) => {
 };
 
 export const getUser = async (id: string, token: string) => {
-  const response = await fetch(`${urlUsers}/${id}`, {
+  const response = await fetch(`${URL_USERS}/${id}`, {
     headers: {
       'Authorization': `Bearer ${token}`,
     }
@@ -44,7 +40,7 @@ export const getUser = async (id: string, token: string) => {
 }
 
 export const updateUser = async (id: string, token: string, user: IEmailPassword) => {
-  const response = await fetch(`${urlUsers}/${id}`, {
+  const response = await fetch(`${URL_USERS}/${id}`, {
     method: 'PUT',
     body: JSON.stringify(user),
     headers: {
@@ -59,7 +55,7 @@ export const updateUser = async (id: string, token: string, user: IEmailPassword
 }
 
 export const deleteUser = async (id: string, token: string) => {
-  const response = await fetch(`${urlUsers}/${id}`, {
+  const response = await fetch(`${URL_USERS}/${id}`, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -71,7 +67,7 @@ export const deleteUser = async (id: string, token: string) => {
 }
 
 export const getNewUserTokens = async (id: string, token: string) => {
-  const response = await fetch(`${urlUsers}/${id}/tokens`, {
+  const response = await fetch(`${URL_USERS}/${id}/tokens`, {
     headers: {
       'Authorization': `Bearer ${token}`,
     }
@@ -82,7 +78,7 @@ export const getNewUserTokens = async (id: string, token: string) => {
 }
 
 export const getAllUserWords = async (id: string, token: string) => {
-  const response = await fetch(`${urlUsers}/${id}/words`, {
+  const response = await fetch(`${URL_USERS}/${id}/words`, {
     headers: {
       'Authorization': `Bearer ${token}`,
     }
@@ -93,7 +89,7 @@ export const getAllUserWords = async (id: string, token: string) => {
 }
 
 export const createUserWord = async (id: string, wordId: string, property: IPropertyWord, token: string) => {
-  const response = await fetch(`${urlUsers}/${id}/words/${wordId}`, {
+  const response = await fetch(`${URL_USERS}/${id}/words/${wordId}`, {
     method: 'POST',
     body: JSON.stringify(property),
     headers: {
@@ -108,7 +104,7 @@ export const createUserWord = async (id: string, wordId: string, property: IProp
 }
 
 export const getUserWord = async (id: string, wordId: string, token: string) => {
-  const response = await fetch(`${urlUsers}/${id}/words/${wordId}`, {
+  const response = await fetch(`${URL_USERS}/${id}/words/${wordId}`, {
     headers: {
       'Authorization': `Bearer ${token}`,
     }
@@ -119,7 +115,7 @@ export const getUserWord = async (id: string, wordId: string, token: string) => 
 }
 
 export const updateUserWord = async (id: string, wordId: string, property: IPropertyWord, token: string) => {
-  const response = await fetch(`${urlUsers}/${id}/words/${wordId}`, {
+  const response = await fetch(`${URL_USERS}/${id}/words/${wordId}`, {
     method: 'PUT',
     body: JSON.stringify(property),
     headers: {
@@ -134,7 +130,7 @@ export const updateUserWord = async (id: string, wordId: string, property: IProp
 }
 
 export const deleteUserWord = async (id: string, wordId: string, token: string) => {
-  fetch(`${urlUsers}/${id}/words/${wordId}`, {
+  fetch(`${URL_USERS}/${id}/words/${wordId}`, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -145,7 +141,7 @@ export const deleteUserWord = async (id: string, wordId: string, token: string) 
 
 export const getAllUserAggregatedWords = async (id: string, perPage: number, filter: object, token: string) => {
   const filterToString = JSON.stringify(filter)
-  const response = await fetch(`${urlUsers}/${id}/aggregatedWords?wordsPerPage=${perPage}&filter=${filterToString}`, {
+  const response = await fetch(`${URL_USERS}/${id}/aggregatedWords?wordsPerPage=${perPage}&filter=${filterToString}`, {
     headers: {
       'Authorization': `Bearer ${token}`,
     }
@@ -156,7 +152,7 @@ export const getAllUserAggregatedWords = async (id: string, perPage: number, fil
 }
 
 export const getUserAggregatedWord = async (id: string, wordId: string, token: string) => {
-  const response = await fetch(`${urlUsers}/${id}/aggregatedWords/${wordId}`, {
+  const response = await fetch(`${URL_USERS}/${id}/aggregatedWords/${wordId}`, {
     headers: {
       'Authorization': `Bearer ${token}`,
     }
@@ -167,7 +163,7 @@ export const getUserAggregatedWord = async (id: string, wordId: string, token: s
 }
 
 export const getUserStatistics = async (id: string, token: string) => {
-  const response = await fetch(`${urlUsers}/${id}/statistics`, {
+  const response = await fetch(`${URL_USERS}/${id}/statistics`, {
     headers: {
       'Authorization': `Bearer ${token}`,
     }
@@ -178,7 +174,7 @@ export const getUserStatistics = async (id: string, token: string) => {
 }
 
 export const updateUserStatistics = async (id: string, statistics: IStatistic, token: string) => {
-  const response = await fetch(`${urlUsers}/${id}/statistics`, {
+  const response = await fetch(`${URL_USERS}/${id}/statistics`, {
     method: 'PUT',
     body: JSON.stringify(statistics),
     headers: {
@@ -193,7 +189,7 @@ export const updateUserStatistics = async (id: string, statistics: IStatistic, t
 }
 
 export const getUserSettings = async (id: string, token: string) => {
-  const response = await fetch(`${urlUsers}/${id}/settings`, {
+  const response = await fetch(`${URL_USERS}/${id}/settings`, {
     headers: {
       'Authorization': `Bearer ${token}`,
     }
@@ -204,7 +200,7 @@ export const getUserSettings = async (id: string, token: string) => {
 }
 
 export const updateUserSettings = async (id: string, statistics: ISettings, token: string) => {
-  const response = await fetch(`${urlUsers}/${id}/settings`, {
+  const response = await fetch(`${URL_USERS}/${id}/settings`, {
     method: 'PUT',
     body: JSON.stringify(statistics),
     headers: {
@@ -219,7 +215,7 @@ export const updateUserSettings = async (id: string, statistics: ISettings, toke
 }
 
 export const loginUser = async (user: IEmailPassword) => {
-  const response = await fetch(urlSignin, {
+  const response = await fetch(URL_SINGIN, {
     method: 'POST',
     body: JSON.stringify(user),
     headers: {
