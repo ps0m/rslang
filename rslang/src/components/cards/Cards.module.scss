@@ -1,0 +1,33 @@
+@import "../../style/fonts.scss";
+@import "../../style/variables.scss";
+
+.cards__wrapper {
+  width: 378px;
+  height: 332px;
+  background-color: #FFFFFF;
+  
+  &_img {
+    display: flex;
+    height: 278px;
+  }
+
+  &_title {
+    height: 30px;
+    font-family: $fontFamilyOne;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+    color: #000000;
+  }
+
+  &_description {
+    width: 378px;
+    font-family: $fontFamilyOne;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    text-align: center;
+    color: #6D66FF;
+  }
+}
+
