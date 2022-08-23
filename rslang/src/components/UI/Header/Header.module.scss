@@ -1,4 +1,5 @@
 @import "../../../styles/variables.scss";
+@import "../../../styles/App.scss";
 
 .header {
   position: sticky;
@@ -10,13 +11,6 @@
     margin-left: 50px;
     display: flex;
     gap: 10px;
-
-    &__logo {
-      height: 60px;
-      width: 60px;
-      background: url(../../../assets/icon/logo-menu.png) center (center/auto) no-repeat; 
-      cursor: pointer;
-    }
 
     &__text {
       font-family: $fontFamilyOne;
@@ -38,5 +32,15 @@
   
   &:hover {
     background-color: #DBD9FF;    
+  }
+}
+
+.button__BurgerMenu {
+  width: 60px;
+  height: 60px;
+  fill: #FFFFFF;
+
+  &:hover {
+    fill: #DBD9FF;
   }
 }

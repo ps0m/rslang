@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { MyContext } from './context/context';
 import MainPage from './pages/MainPage';
-import './styles/App.css';
+import './styles/App.scss';
 
 function App() {
   const [isAuth, setIsAuth] = useState<boolean>(true)
