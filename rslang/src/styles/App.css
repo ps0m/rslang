@@ -1,0 +1,17 @@
+@import-normalize;
+@import url(https://fonts.googleapis.com/css?family=Poppins:regular,italic,700,700italic);
+@import "./variables.scss";
+
+body {
+  margin: 0;
+  background-color: $bgColor;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.overflow {
+  overflow: hidden;
+}

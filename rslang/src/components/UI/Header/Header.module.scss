@@ -1,0 +1,42 @@
+@import "../../../styles/variables.scss";
+
+.header {
+  position: sticky;
+  top: 10px;
+  display: flex;
+  justify-content: space-between;
+
+  &__wrapper {
+    margin-left: 50px;
+    display: flex;
+    gap: 10px;
+
+    &__logo {
+      height: 60px;
+      width: 60px;
+      background: url(../../../assets/icon/logo-menu.png) center (center/auto) no-repeat; 
+      cursor: pointer;
+    }
+
+    &__text {
+      font-family: $fontFamilyOne;
+      font-weight: normal;
+      font-size: 52px;
+      color: #FFFFFF;
+    }
+  }
+}
+
+.button__login {
+  width: 60px;
+  height: 60px;
+  margin-right: 50px;
+  background-color: #FFFFFF;  
+  color: $baseColor;
+  border-radius: 50%;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: #DBD9FF;    
+  }
+}
