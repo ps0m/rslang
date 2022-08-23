@@ -1,0 +1,41 @@
+@import "../../../styles/variables.scss";
+
+h1 {
+  font-size: 48px;
+  line-height: 72px;
+  text-align: start;
+
+  color: #FFFFFF;
+  margin: 0;
+  padding: 0;
+}
+
+.mainSection {
+  margin-top: -68px;
+  height: 780px;  
+  background: url(../../../assets/img/background_mainPage.png) center (center/auto) no-repeat;
+  
+  &__hero {
+    display: flex;
+    align-items: center;
+    margin-left: 50px;
+  
+    &__heading {
+      width: 628px;
+      height: 216px;
+      text-align: start;
+  
+      font-family: $fontFamilyOne;
+      font-size: 48px;
+      line-height: 72px;
+    
+      color: $subBaseColor;  
+    }
+  
+    &__img {      
+      width: 614px;
+      height: 790px;
+      background: url(../../../assets/img/hero_mainPage.png) center (center/auto) no-repeat;
+    }
+  }
+}

@@ -1,14 +1,14 @@
 import { FC } from "react";
 import classes from "./Button.module.css";
 
-interface MyButtonProps {
+interface ButtonProps {
   className?: string
   onClick(e: React.MouseEvent<HTMLButtonElement>): void;
   children?: React.ReactNode
   disabled?: boolean
 }
 
-const MyButton: FC<MyButtonProps> = ({ className, onClick, children, disabled }) => {
+const Button: FC<ButtonProps> = ({ className, onClick, children, disabled }) => {
 
   const cardClasses = [classes.button, className];
 
@@ -19,4 +19,4 @@ const MyButton: FC<MyButtonProps> = ({ className, onClick, children, disabled })
   );
 };
 
-export default MyButton;
+export default Button;
