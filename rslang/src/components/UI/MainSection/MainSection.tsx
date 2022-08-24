@@ -6,10 +6,10 @@ const MainSection = () => {
       <section className={`${styles.mainSection} ${styles.container}`}>
         <div className={styles.mainSection__hero}>
           <div className={styles.mainSection__hero__heading}>
-            Rolling School
-            <h1>Курс разговорного английского языка</h1>
+          <div className={styles.mainSection__hero__heading_color}>Rolling School</div>
+          Курс разговорного английского языка
           </div>
-          <div className={styles.mainSection__hero__img}></div>
+          <img className={styles.mainSection__hero__img} src={require("../../../assets/img/hero_mainPage.png")} alt="heroLang" />          
         </div>
       </section>
     </>
@@ -17,3 +17,4 @@ const MainSection = () => {
 }
 
 export default MainSection
+

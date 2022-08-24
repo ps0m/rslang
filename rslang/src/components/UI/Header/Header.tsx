@@ -14,7 +14,7 @@ const Header = ({ setActive }: Props) => {
           onClick={() => setActive((prevState) => !prevState)}>
             <IconBurgerMenu className={styles.button__BurgerMenu} />
         </Button>
-        <div className={styles.header__wrapper__text}>RS-Lang</div>
+        <div className={styles.header__wrapper__text}><h1>RS-Lang</h1></div>
       </div>
 
       <div className={styles.header__login}>

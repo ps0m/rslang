@@ -23,9 +23,11 @@
   }
 
   .footer__team {
-    display: flex;
-    justify-content: center;
+    display: flex;   
     gap: 20px;
+    align-items: center;
+
+    padding: 0 10px;
 
     &_link {
       font-family: $fontFamilyOne;

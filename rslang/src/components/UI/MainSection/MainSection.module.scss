@@ -1,42 +1,70 @@
 @import "../../../styles/variables.scss";
 @import "../../../styles/App.scss";
 
-h1 {
-  font-size: 48px;
-  line-height: 72px;
-  text-align: start;
 
-  color: #FFFFFF;
-  margin: 0;
-  padding: 0;
-}
 
-.mainSection {
-  margin-top: -68px;
-  height: 780px;  
+.mainSection {  
+  margin-top: -68px; 
   background: url(../../../assets/img/background_mainPage.png) center (center/auto) no-repeat;
+  font-weight:bold;
   
   &__hero {
-    display: flex;
+    display: grid;    
+    grid-template-columns: 50% 50%;
+
     align-items: center;
     margin-left: 50px;
-  
+
+    text-align: start;  
+    font-family: $fontFamilyOne;
+    font-size: 48px;
+    line-height: 72px;    
+
     &__heading {
-      width: 628px;
-      height: 216px;
-      text-align: start;
-  
-      font-family: $fontFamilyOne;
-      font-size: 48px;
-      line-height: 72px;
-    
-      color: $subBaseColor;  
+      max-width: 628px;    
+      color: #FFFFFF;
+
+      &_color {
+        color: $subBaseColor;
+      }
     }
   
     &__img {      
-      width: 614px;
-      height: 790px;
-      background: url(../../../assets/img/hero_mainPage.png) center (center/auto) no-repeat;
+      max-width: 100%; 
+      height: auto; 
     }
+  }
+}
+
+@media (max-width: 970px) {
+  .mainSection__hero__heading {
+    font-size: 42px;
+    line-height: 60px;
+  }
+}
+
+@media (max-width: 853px) {
+  .mainSection__hero__heading {    
+    font-size: 36px;
+    line-height: 48px;
+  }
+}
+
+@media (max-width: 740px) {
+  .mainSection__hero {
+    grid-template-columns: 100%;
+    grid-template-rows: 50% 50%;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .mainSection__hero__heading {
+
+  }
+
+  .mainSection__hero__img {
+    overflow:hidden;
+    max-width: 340px;
+    height: auto;
   }
 }
