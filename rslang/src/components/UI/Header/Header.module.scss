@@ -1,28 +1,31 @@
 @import "../../../styles/variables.scss";
+@import "../../../styles/App.scss";
 
 .header {
   position: sticky;
   top: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   &__wrapper {
+    display: flex;
+    align-items: center;
+
     margin-left: 50px;
     display: flex;
     gap: 10px;
 
-    &__logo {
-      height: 60px;
-      width: 60px;
-      background: url(../../../assets/icon/logo-menu.png) center (center/auto) no-repeat; 
-      cursor: pointer;
-    }
-
     &__text {
-      font-family: $fontFamilyOne;
-      font-weight: normal;
-      font-size: 52px;
-      color: #FFFFFF;
+      h1{
+        margin: 0;
+        padding: 0;
+
+        font-family: $fontFamilyOne;
+        font-weight: bold;
+        font-size: 42px;
+        color: #99b98a;
+      }
     }
   }
 }
@@ -34,9 +37,28 @@
   background-color: #FFFFFF;  
   color: $baseColor;
   border-radius: 50%;
+
+  font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
   
   &:hover {
     background-color: #DBD9FF;    
+  }
+}
+
+.button__BurgerMenu {
+  width: 60px;
+  height: 60px;
+  fill: #99b98a;
+
+  &:hover {
+    fill: #65a149;
+  }
+}
+
+@media (max-width: 450px) {
+  h1 {
+    display: none;
   }
 }
