@@ -1,9 +1,6 @@
 @import "../../../styles/variables.scss";
 
 .cards__wrapper {
-  width: 378px;
-  height: 332px;
-  background-color: #FFFFFF;
   
   &_img {
     display: flex;
@@ -21,7 +18,7 @@
   }
 
   &_description {
-    width: 378px;
+    max-width: 378px;
     font-family: $fontFamilyOne;
     font-weight: 400;
     font-size: 16px;

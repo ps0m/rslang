@@ -50,3 +50,9 @@
     margin-right: 50px;
   }
 }
+
+@media (max-width: 650px) {
+  .footer {
+    flex-direction: column;
+  }
+}

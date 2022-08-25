@@ -56,3 +56,9 @@
     fill: #65a149;
   }
 }
+
+@media (max-width: 450px) {
+  h1 {
+    display: none;
+  }
+}
