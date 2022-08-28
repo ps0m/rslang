@@ -48,3 +48,22 @@ export interface ISettings {
   "wordsPerDay": number
   // "optional": { }
 }
+
+export interface ICustomStat {
+  word: IWords,
+  isRight: boolean,
+  index: number
+}
+
+export interface IContentForCard {
+  word: IWords,
+  translate: string,
+  isEqual: boolean,
+  currentIndex: number
+}
+
+export interface IScore {
+  amount: number,
+  rightAnswer: number,
+  coefficient: number
+}

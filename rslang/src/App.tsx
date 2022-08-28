@@ -3,8 +3,9 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { MyContext } from './context/context';
 import MainPage from './pages/MainPage';
 import AuthPage from './pages/AuthPage';
-import FormLogin from '../src/components/UI/Auth/FormLogin'
-import FormRegister from '../src/components/UI/Auth/FormRegister'
+import FormLogin from '../src/components/UI/Auth/FormLogin';
+import FormRegister from '../src/components/UI/Auth/FormRegister;
+import SprintGame from './pages/SprintGame';
 import './styles/App.scss';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/home" element={<MainPage />} />
+          <Route path="/sprint_game" element={<SprintGame />} />
           <Route
             path="*"
             element={<Navigate to="/home" replace />} />

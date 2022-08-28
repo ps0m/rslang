@@ -1,9 +1,9 @@
 import { URL_SINGIN, URL_USERS, URL_WORDS } from "../../constants/constatnts";
 import { IEmailPassword, IPropertyWord, ISettings, IStatistic, IUser, IWords } from "../../types/types";
 
-export const getWords = async (page = 0, group = 0) => {
-  const response = await fetch(`${URL_WORDS}?page=${page}&group=${group}`);
-  const data: IWords = await response.json();
+export const getWords = async (group = 0, page = 0) => {
+  const response = await fetch(`${URL_WORDS}?group=${group}&page=${page}`);
+  const data: IWords[] = await response.json();
 
   return data;
 }
