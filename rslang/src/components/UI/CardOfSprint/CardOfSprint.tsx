@@ -52,8 +52,10 @@ const CardOfSprint: FC<IPropsCardOfSprint> = ({ content, score, setIsFinishGame,
   }
 
   useEffect(() => {
-    document.removeEventListener('keyup', keyListener)
     document.addEventListener('keyup', keyListener, { once: true })
+    return () => {
+      document.removeEventListener('keyup', keyListener);
+    }
   }, [content])
 
 
@@ -131,20 +133,12 @@ const CardOfSprint: FC<IPropsCardOfSprint> = ({ content, score, setIsFinishGame,
       <div className={styles.card__container_buttons}>
         <Button
           className={[styles.card__buttons, styles.card__buttons_lose].join(' ')}
-          onClick={() => {
-            document.removeEventListener('keyup', keyListener)
-            checkAnswer(false)
-          }
-          }
+          onClick={() => checkAnswer(false)}
         > Неверно
         </Button>
         <Button
           className={[styles.card__buttons, styles.card__buttons_right].join(' ')}
-          onClick={() => {
-            document.removeEventListener('keyup', keyListener);
-            checkAnswer(true);
-          }
-          }
+          onClick={() => checkAnswer(true)}
         >Верно
         </Button>
       </div>
