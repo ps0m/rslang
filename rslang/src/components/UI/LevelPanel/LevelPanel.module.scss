@@ -1,0 +1,136 @@
+@import "../../../styles/variables.scss";
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  margin: 30px;
+  padding: 30px;
+  font-family: $fontFamilyOne;
+  background-color: $subBaseColor;
+  border-radius: 40px;
+  box-shadow: 0px 0px 10px #000;
+  @media (max-width: 500px) {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  &__text {
+    min-height: 50px;
+    font-size: 1rem;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.5;
+    @media (max-width: 500px) {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__radios {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    @media (max-width: 500px) {
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      width: 50%;
+    }
+    @media (max-width: 420px) {
+      width: 65%;
+    }
+    @media (max-width: 350px) {
+      width: 80%;
+    }
+  }
+
+  &__button {
+    width: 150px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: $fontFamilyOne;
+    font-size: 1.8rem;
+    background-color: $trueColor;
+    transition: 0.3s;
+    &:hover {
+      background-color: #a3e246;
+    }
+    &:disabled {
+      background-color: #b3bead;
+    }
+  }
+
+  //some code from https://codepen.io/bbodine1/pen/DqdMRy
+  &__radio {
+    width: 42px;
+    height: 42px;
+    position: relative;
+    margin: 20px auto;
+    background: #fcfff4;
+    background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+    border-radius: 50px;
+    box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+    @media (max-width: 500px) {
+      margin: 0 0 20px;
+    }
+
+    &_point {
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      position: absolute;
+      left: 5px;
+      top: 5px;
+      background: linear-gradient(0, #222 0%, #45484d 100%);
+      border-radius: 50px;
+      box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, 1);
+      transition: 0.3s;
+      &:after {
+        content: "";
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        background: $trueColor;
+        background: linear-gradient(top, $trueColor 0%, #b8bdb2 100%);
+        opacity: 0;
+        border-radius: 50px;
+        box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0, 0, 0, 0.5);
+      }
+      &:hover::after {
+        opacity: 0.3;
+      }
+    }
+
+    &_label {
+      display: none;
+      position: absolute;
+      width: 100%;
+      top: -20px;
+      left: -5px;
+      font-family: $fontFamilyOne;
+      white-space: nowrap;
+    }
+
+    input[type="radio"] {
+      visibility: hidden;
+      &:checked ~ .panel__radio_point:after {
+        opacity: 1;
+      }
+      &:checked ~ .panel__radio_label {
+        display: block;
+      }
+    }
+  }
+}

@@ -17,7 +17,7 @@
     gap: 10px;
 
     &__text {
-      h1{
+      h1 {
         margin: 0;
         padding: 0;
 
@@ -30,20 +30,20 @@
   }
 }
 
-.button__login {
+.button__login button {
   width: 60px;
   height: 60px;
   margin-right: 50px;
-  background-color: #FFFFFF;  
+  background-color: #FFFFFF;
   color: $baseColor;
   border-radius: 50%;
 
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  
-  &:hover {
-    background-color: #DBD9FF;    
+
+  & button:hover {
+    background-color: $bgColorHover;
   }
 }
 
