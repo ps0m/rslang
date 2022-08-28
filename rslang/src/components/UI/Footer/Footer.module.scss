@@ -1,4 +1,5 @@
 @import "../../../styles/variables.scss";
+@import "../../../styles/App.scss";
 
 .footer {
   display: flex;
@@ -22,9 +23,11 @@
   }
 
   .footer__team {
-    display: flex;
-    justify-content: center;
+    display: flex;   
     gap: 20px;
+    align-items: center;
+
+    padding: 0 10px;
 
     &_link {
       font-family: $fontFamilyOne;
@@ -45,5 +48,11 @@
     color: #FFFFFF;
 
     margin-right: 50px;
+  }
+}
+
+@media (max-width: 650px) {
+  .footer {
+    flex-direction: column;
   }
 }
