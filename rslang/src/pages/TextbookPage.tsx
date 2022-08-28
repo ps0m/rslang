@@ -1,25 +1,24 @@
-import FeaturesSection from '../components/UI/FeaturesSection/FeaturesSection';
 import Footer from '../components/UI/Footer/Footer';
 import Header from '../components/UI/Header/Header';
-import MainSection from '../components/UI/MainSection/MainSection';
 import PopUpMenu from '../components/UI/PopUpMenu/PopUpMenu';
-import MainTeam from '../components/UI/MainTeam/MainTeam';
+import MenuTextbook from '../components/UI/MenuTextbook/MenuTextbook';
+import MainTexbook from '../components/UI/MainTexbook/MainTexbook';
+
 
 import { useState } from 'react';
 
-function PageСollector() {
+function PageСollectorTextbook() {
   const [menuActive, setMenuActive] = useState(false);
 
   return (
     <>
       {menuActive && <PopUpMenu setActive={setMenuActive} />}
       <Header setActive={setMenuActive} />
-      <MainSection />
-      <MainTeam />
-      <FeaturesSection />
+      <MenuTextbook />
+      <MainTexbook />
       <Footer />
     </>
   );
 }
 
-export default PageСollector;
+export default PageСollectorTextbook;
