@@ -1,100 +1,97 @@
 @import "../../../styles/variables.scss";
 
-.card{
-  width:600px;
-  display:flex;
-  justify-content:space-between;
-  align-items:stretch;
+.card {
+  width: 600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
   font-family: $fontFamilyOne;
   background-color: $subBaseColor;
   border-radius: 40px;
   box-shadow: 0px 0px 3px #000;
-  overflow:hidden;
+  overflow: hidden;
 
-  &__block_image{
+  &__block_image {
     width: 50%;
     min-height: 100%;
-    object-fit:cover;
+    object-fit: cover;
     border-radius: inherit;
     box-shadow: 0px 0px 3px #000;
   }
 
-    &__image{
-      width: 100%;
-      min-height: 100%;
-      object-fit:cover;
-      border-radius: inherit;
-    }
+  &__image {
+    width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+  }
 
-  &__block_text{
+  &__block_text {
     padding: 10px 10px 10px 10px;
   }
 
-  &__block_title{
+  &__block_title {
     display: flex;
     justify-content: center;
     align-items: stretch;
     padding: 10px 0;
-    gap:10px;  
+    gap: 10px;
   }
 
-  &__container_buttons{
+  &__container_buttons {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
   }
 
-  &__buttons{
+  &__buttons {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
   }
 
-
-  &__title{
+  &__title {
     font-size: 2rem;
     font-weight: 700;
     text-align: center;
   }
 
-    &__subtitle{
+  &__subtitle {
     font-size: 1.5rem;
     text-align: center;
   }
 
-  &__subblock{
+  &__subblock {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: 10px 0;
-    gap:10px;  
+    gap: 10px;
   }
-  
-  &__audioPlayer{
+
+  &__audioPlayer {
     height: 25px;
-    &_big{
+    &_big {
       height: 50px;
     }
   }
 
   &__icon,
-  &__icon_active  {
-    width:25px;
+  &__icon_active {
+    width: 25px;
     height: 25px;
     fill: #c7c7c7;
     transition: 0.3s;
-          &:hover{
-        fill: #ded9d9;
-      }
-    &_active{
-      fill: #91cb39;
-      &:hover{
-        fill: #a3e246 ;
+    &:hover {
+      fill: #ded9d9;
+    }
+    &_active {
+      fill: $trueColor;
+      &:hover {
+        fill: $trueColorHover;
       }
     }
   }
-
 }
-
