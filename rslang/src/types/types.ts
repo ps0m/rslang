@@ -67,3 +67,9 @@ export interface IScore {
   rightAnswer: number,
   coefficient: number
 }
+
+export interface IContentForAudio {
+  wordStudy: IWords,
+  extraWords: IWords[],
+  currentIndex: number
+}

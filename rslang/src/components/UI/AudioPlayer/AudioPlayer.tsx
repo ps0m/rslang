@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, ReactNode, useState } from "react";
 import Button from "../Button/Button";
 import { ReactComponent as IconPause } from "./assets/pauseCircle.svg";
 import { ReactComponent as IconPlay } from "./assets/playCircle.svg";
@@ -7,9 +7,10 @@ import styles from "./AudioPlayer.module.scss";
 interface IAudioPlayer {
   path: string
   className?: string
+  children?: ReactNode
 }
 
-const AudioPlayer: FC<IAudioPlayer> = ({ path, className }) => {
+const AudioPlayer: FC<IAudioPlayer> = ({ path, className, children }) => {
   const [isPlay, setIsPlay] = useState<boolean>(false)
 
   const playAudio = () => {
@@ -37,6 +38,7 @@ const AudioPlayer: FC<IAudioPlayer> = ({ path, className }) => {
         ? <IconPause className={styles.audioPlayer} />
         : <IconPlay className={styles.audioPlayer} />
       }
+      {children}
     </Button>
   );
 };
