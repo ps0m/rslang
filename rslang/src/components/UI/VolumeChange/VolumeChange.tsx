@@ -9,11 +9,13 @@ interface IPropsVolumeChange {
   active: boolean
   action: () => void
   className?: string
+  disabled?: boolean
 }
 
-const VolumeChange: FC<IPropsVolumeChange> = ({ active, action, className }) => {
+const VolumeChange: FC<IPropsVolumeChange> = ({ active, action, className, disabled }) => {
   return (
     <Button
+      disabled={disabled}
       className={[styles.volume, className ? className : ''].join(' ')}
       onClick={() => action()}>
       {active
