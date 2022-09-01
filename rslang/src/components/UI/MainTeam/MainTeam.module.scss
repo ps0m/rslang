@@ -1,0 +1,91 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/App.scss";
+
+.MainTeam {
+  display: flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #DBD9FF;
+
+  &__header {
+    padding-top: 15px;
+    font-family: $fontFamilyOne;
+    font-weight: bold; 
+    text-align: center;
+    font-size: 32px;
+    line-height: 42px;
+
+
+    color: #4640BE;
+  }
+}
+
+.teamWr {
+  display: flex;
+  gap: 20px;
+  padding: 15px 0 30px 0;
+}
+
+.teamCard {
+
+  &__wrHeader {
+    max-width: 380px;
+    padding: 15px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 40px;
+
+    display: grid;
+    justify-items: center; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 1fr 1fr; 
+    grid-template-areas: 
+      "img name ."
+      "img role ."
+      "discr discr .";
+
+    background-color: #ffffff;
+
+    font-family: $fontFamilyOne;
+    font-weight: 600;
+
+    gap: 10px;
+    &_img {
+      grid-area: img;
+
+      justify-self: end;
+      width: 72px;
+      height: 72px;
+      border: 2px solid #000000;
+      border-radius: 50%;
+    }
+
+    &_name {
+      grid-area: name;
+
+      display: flex;
+      align-items: center;
+
+      justify-self: start;
+      font-size: 25px;
+      line-height: 14px;
+      color: #4640BE;
+    }
+
+    &_role {
+      grid-area: role;
+
+      justify-self: start;
+      font-size: 14px;
+      color: #666666;
+    }
+    &_discr {
+      text-align: justify;
+      grid-area: discr;
+      font-size: 14px;
+      color: #666666;
+    }
+  }
+
+}

@@ -1,0 +1,125 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/App.scss";
+
+.menuTextbook {
+  margin-top: -68px;
+
+  &__wrNav {
+    padding: 0 0 0 50px;
+    background: url(../../../assets/img/background_mainPage.png) center (center/auto) no-repeat;
+
+    &__header {
+      margin: 0;
+      padding-top: 74px;
+
+      font-family: $fontFamilyOne;
+      font-weight: bold;
+      font-size: 48px;
+      color: $subBaseColor;
+    }
+
+    &__nav {
+      display: flex;
+      flex-wrap:wrap;
+      gap: 10px;
+      padding: 15px 0 15px 0;
+    }
+
+  }
+}
+
+.ulScroll {
+  overflow-y:scroll;
+  
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
+}
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #99b98a;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: transparent;
+  }
+}
+
+.sectionWr {
+  position: relative;
+}
+
+.sectionWr__button {
+  display: flex;
+  align-items:center; 
+  justify-content: center;
+
+  border: 2px solid #ffffff;
+  border-radius: 15px;
+  padding: 10px 15px;
+
+  box-shadow: 0px 10px 20px rgba(70, 64, 190, 0.4);
+ 
+  cursor: pointer;
+
+  &:focus {
+    box-shadow: 0 0 0 1px #e4e1e1, 0 0 10px #ffffff;
+  }
+
+  &_desc {        
+    font-size: 18px;
+    font-weight: bold;    
+    padding-left: 5px;
+    color: #ffffff;
+  }
+
+  &_img {
+    width: 24px;
+    height: 24px;
+    fill: #ffffff;
+  }
+}
+
+.sectionDimensions {
+  width: 140px;  
+}
+
+.sectionWr__page {
+  display: flex;
+}
+
+.sectionPage {
+  width: 160px;  
+}
+
+
+.button__previousPage {
+  width: 48px;
+
+  &_img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.button__nextPage {
+  width: 48px;
+
+  &_img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.button__game {
+  width: 180px;
+}
+
+.iconSection {
+  fill: inherit ;
+  width: 24px;
+  height: 24px;
+  padding-right: 10px;
+}
