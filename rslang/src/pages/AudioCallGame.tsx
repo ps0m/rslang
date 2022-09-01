@@ -5,12 +5,14 @@ import Button from "../components/UI/Button/Button";
 import CardOfAudio from "../components/UI/CardOfAudio/CardOfAudio";
 import Header from "../components/UI/Header/Header";
 import LevelPanel from "../components/UI/LevelPanel/LevelPanel";
+import Loader from "../components/UI/Loader/Loader";
 import PopUpMenu from "../components/UI/PopUpMenu/PopUpMenu";
 import Progress from "../components/UI/Progress/Progress";
 import { ReactComponent as NoLogo } from "../components/UI/Table/assets/x_circle.svg";
 import Table from "../components/UI/Table/Table";
 import { AMOUNT_VARIANTS_OF_AUDIO_GAMES, MAX_MISTAKES_OF_AUDIO_GAMES, PAGES_PER_GROUP } from "../constants/constatnts";
 import { shuffleArray } from "../helpers/helpers";
+import { useFetch } from "../hooks/useFetch";
 import { IContentForAudio, ICustomStat, IWords } from "../types/types";
 
 
@@ -21,9 +23,14 @@ const AudioCallGame = () => {
   const [contentForCard, setContentForCard] = useState<IContentForAudio | null>(null);
   const [statistic, setStatistic] = useState<ICustomStat[] | null>(null);
   const [amountMistakes, setAmountMistakes] = useState<number>(0);
+  const [fetchWords, isWordsLoad, wordsError] = useFetch(getWordsForGame)
 
-  const getWordsForGame = async (group: number | undefined) => {
+  async function getWordsForGame() {
+    if (group === undefined) {
+      return
+    }
     const arrayPromisesWord = [];
+
 
     for (let i = 0; i < PAGES_PER_GROUP; i++) {
       arrayPromisesWord.push(getWords(group, i))
@@ -35,9 +42,9 @@ const AudioCallGame = () => {
   }
 
   useEffect(() => {
-    if (group !== undefined) {
-      getWordsForGame(group);
-    }
+    // if (group !== undefined) {
+    fetchWords();
+    // }
   }, [group])
 
   const getOrderRandomWords = (words: IWords[]) => {
@@ -101,7 +108,11 @@ const AudioCallGame = () => {
       {menuActive && <PopUpMenu setActive={setMenuActive} />}
       <Header setActive={setMenuActive} />
       <section className="game">
-
+        {
+          isWordsLoad
+            ? <Loader></Loader>
+            : ''
+        }
         {
           amountMistakes >= MAX_MISTAKES_OF_AUDIO_GAMES
             ? <Table stat={statistic} />

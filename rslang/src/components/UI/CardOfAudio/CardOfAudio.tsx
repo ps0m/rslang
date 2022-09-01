@@ -20,8 +20,6 @@ const CardOfAudio: FC<IPropsCardOfAudio> = ({ content, getResult, setMistakes })
   const [isWin, setIsWin] = useState<boolean | null>(null);
   const [isSayWord, setIsSayWord] = useState<boolean>(false);
 
-
-
   const checkAnswer = (numberSelectWord: IWords | undefined) => {
 
     if (content !== null &&
