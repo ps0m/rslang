@@ -8,11 +8,33 @@ import { ReactComponent as IconGame} from '../../../assets/icon/gameBook.svg'
 import { ReactComponent as IconNextPage} from '../../../assets/icon/nextArrow.svg' 
 import { ReactComponent as IconPrevPage} from '../../../assets/icon/previousArrow.svg' 
 
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useRef, useState } from 'react'
 
-const MenuTextbook = () => {
+
+type Props = {
+  setGroup: Dispatch<SetStateAction<number>>;
+  setPage: Dispatch<SetStateAction<number>>;
+  numberPage: number;
+  numberGroup: number;
+}
+
+
+const MenuTextbook = ({ setPage, setGroup, numberPage, numberGroup }: Props) => {
   const [sectionActive, setSectionActive] = useState(false);
   const [pageActive, setPageActive] = useState(false);
+
+  const clickSectionItem = (number: number) => () => {
+    setSectionActive(false);
+    setGroup(number);
+  }
+
+  const clickPageActive = (number: number) => () => {
+    setPageActive(false);
+    setPage(number);
+  }
+
+  const refSectionActive = useRef<HTMLDivElement | null>(null);
+  const refPageActive = useRef<HTMLDivElement | null>(null);
 
   return (
     <>
@@ -21,13 +43,15 @@ const MenuTextbook = () => {
           <h1 className={styles.menuTextbook__wrNav__header}>{headerTextbook}</h1>
           <div className={styles.menuTextbook__wrNav__nav}>
             {/* блок с переключением разделов */}            
-            <div className={styles.sectionWr}>
+            <div ref={refSectionActive} className={styles.sectionWr}>
               <Button
               className={styles.sectionWr__button}
-              onClick={() => setSectionActive((prevState) => !prevState)}
+              onClick={() => {
+                setSectionActive((prevState) => !prevState)
+              }}
               >
                 <IconFolder className={styles.sectionWr__button_img} />
-                <div className={styles.sectionWr__button_desc}>Раздел1</div>
+                <div className={styles.sectionWr__button_desc}>{`Раздел ${numberGroup + 1}`}</div>
               </Button>
 
               {sectionActive && <DropdownList 
@@ -35,6 +59,8 @@ const MenuTextbook = () => {
               className={styles.sectionDimensions} 
               setActive={setSectionActive} 
               icon={<IconFolder className={styles.iconSection} />}
+              clickHandler={clickSectionItem}
+              refContainer={refSectionActive}
               />}
 
             </div>
@@ -44,28 +70,47 @@ const MenuTextbook = () => {
             {/* предыдущая */}
             <Button
             className={`${styles.sectionWr__button} ${styles.button__previousPage}`}
-            onClick={() => ('#')}
+            onClick={() => {
+              setPage((prevState) => {
+                if (prevState > 0) {
+                  return prevState - 1
+                }                
+
+                return prevState
+              })
+            }}
             >                
               <IconPrevPage className={styles.sectionWr__button_img} />
             </Button>
             {/* список страниц */}
-            <div className={styles.sectionWr}>
+            <div ref={refPageActive} className={styles.sectionWr}>
             <Button
             className={styles.sectionWr__button}
             onClick={() => setPageActive((prevState) => !prevState)}
             >
               <IconPage className={styles.sectionWr__button_img} />
-              <div className={styles.sectionWr__button_desc}>Страница1</div>
+              <div className={styles.sectionWr__button_desc}>{`Страница ${numberPage + 1}`}</div>
             </Button>
             {pageActive && <DropdownList 
             valueItem={page} 
             className={`${styles.sectionPage} ${styles.ulScroll}`} 
-            setActive= {setPageActive}/>}
+            setActive= {setPageActive}
+            clickHandler={clickPageActive}
+            refContainer={refPageActive}
+            />}
             </div>
             {/* следующая */}
             <Button
               className={`${styles.sectionWr__button} ${styles.button__nextPage}`}
-              onClick={() => ('#')}
+              onClick={() => {
+                setPage((prevState) => {
+                  if (prevState < 29) {
+                    return prevState + 1
+                  }                
+  
+                  return prevState
+                })
+              }}
               >                
                 <IconNextPage className={styles.sectionWr__button_img} />
             </Button>

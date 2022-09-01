@@ -7,7 +7,7 @@ import MainTeam from '../components/UI/MainTeam/MainTeam';
 
 import { useState } from 'react';
 
-function PageСollector() {
+const PageСollector = () => {
   const [menuActive, setMenuActive] = useState(false);
 
   return (

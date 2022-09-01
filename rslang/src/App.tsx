@@ -5,7 +5,7 @@ import TextbookPage from './pages/TextbookPage';
 import MainPage from './pages/MainPage';
 import AuthPage from './pages/AuthPage';
 import FormLogin from '../src/components/UI/Auth/FormLogin';
-import FormRegister from '../src/components/UI/Auth/FormRegister;
+import FormRegister from '../src/components/UI/Auth/FormRegister';
 import SprintGame from './pages/SprintGame';
 import './styles/App.scss';
 

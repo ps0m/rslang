@@ -10,7 +10,7 @@ type Props = {
 };
 
 
-function DropdownItem({textName, color, icon, clickHandler}:Props) {
+const DropdownItem = ({textName, color, icon, clickHandler}:Props) => {
   const fill = {
     fill: color
   }

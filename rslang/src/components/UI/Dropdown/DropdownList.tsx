@@ -1,25 +1,25 @@
-import { Dispatch, SetStateAction, useEffect, useRef} from 'react'
+import { Dispatch, MutableRefObject, SetStateAction, useEffect } from 'react'
 import styles from './Dropdown.module.scss'
 import DropdownItem from './DropdownItem'
 
 
 type Props = { 
-  valueItem: { textName: string;  color?: string; value?: number; }[], 
+  valueItem: { textName: string;  color?: string; value: number; }[],
   className: string,
   setActive: Dispatch<SetStateAction<boolean>>,
   icon?: JSX.Element | undefined
+  clickHandler: (number: number) => () => void;
+  refContainer: MutableRefObject<HTMLDivElement | null>;
   }
 
-function DropdownList({valueItem, className, setActive, icon}:Props) {
-
-  const ref = useRef<HTMLUListElement | null>(null);
+const DropdownList = ({ valueItem, className, setActive, icon, clickHandler, refContainer }: Props) => {
 
   useEffect(() => {
     const callback = (event: MouseEvent | TouchEvent) => {
-      if (!ref.current || (event.target instanceof Node && ref.current.contains(event.target))) {        
+      if (!refContainer.current || (event.target instanceof Node && refContainer.current.contains(event.target))) {
         return;
       }
-           
+
       setActive(false);
     };
 
@@ -34,7 +34,7 @@ function DropdownList({valueItem, className, setActive, icon}:Props) {
 
   return (
     <>
-      <ul ref={ref} className={`${styles.sectionWr__button__list} ${className}`} 
+      <ul  className={`${styles.sectionWr__button__list} ${className}`}
       >
         {valueItem.map((item, index) => {
           return <DropdownItem
@@ -43,15 +43,11 @@ function DropdownList({valueItem, className, setActive, icon}:Props) {
             color={item.color}
             value={item.value}            
             key={index}
-            clickHandler={() => {
-              console.log(item.value)
-            }}
+            clickHandler={clickHandler(item.value - 1)}
             />
         })
         }
       </ul>
-      {/* <input type={'text'} name={'section'} value={''} /> */}
-      {/* onClick={() => {setActive((prevState) => !prevState)}} */}
 </>
 
   ) 
