@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { MyContext } from './context/context';
+import AudioCallGame from './pages/AudioCallGame';
 import TextbookPage from './pages/TextbookPage';
 import MainPage from './pages/MainPage';
 import AuthPage from './pages/AuthPage';
@@ -21,7 +22,7 @@ function App() {
           <Route path="/home" element={<MainPage />} />
           <Route path="/book" element={<TextbookPage />} />
           <Route path="/sprint_game" element={<SprintGame />} />
-
+          <Route path="/audio_call_game" element={<AudioCallGame />} />
           <Route
             path="*"
             element={<Navigate to="/home" replace />} />
