@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { MyContext } from '../../../context/context';
 import styles from './Header.module.scss';
 
-
-
 const AuthButton = () => {
   const { isAuth, setIsAuth } = useContext(MyContext)
 
@@ -14,6 +12,7 @@ const AuthButton = () => {
   }
 
   return (
+
     <button
       className={styles.button__login}
       onClick={() => {

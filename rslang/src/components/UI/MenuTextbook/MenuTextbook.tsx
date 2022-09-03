@@ -22,15 +22,28 @@ type Props = {
 const MenuTextbook = ({ setPage, setGroup, numberPage, numberGroup }: Props) => {
   const [sectionActive, setSectionActive] = useState(false);
   const [pageActive, setPageActive] = useState(false);
+  const [colorActive, setColorActive] = useState('#ffffff');
 
-  const clickSectionItem = (number: number) => () => {
+  const clickSectionItem = (number: number, color?: string) => () => {
     setSectionActive(false);
     setGroup(number);
+    if (color !== undefined) {
+      setColorActive(color)
+    }
+    
   }
 
-  const clickPageActive = (number: number) => () => {
+  const clickPageActive = (number: number, color?: string) => () => {
     setPageActive(false);
     setPage(number);
+    if (color !== undefined) {
+      setColorActive(color)
+    }
+  }
+
+  const folderСolor = {
+    fill: colorActive,
+    color:colorActive
   }
 
   const refSectionActive = useRef<HTMLDivElement | null>(null);
@@ -50,8 +63,8 @@ const MenuTextbook = ({ setPage, setGroup, numberPage, numberGroup }: Props) => 
                 setSectionActive((prevState) => !prevState)
               }}
               >
-                <IconFolder className={styles.sectionWr__button_img} />
-                <div className={styles.sectionWr__button_desc}>{`Раздел ${numberGroup + 1}`}</div>
+                <IconFolder style={folderСolor} className={styles.sectionWr__button_img} />
+                <div style={folderСolor} className={styles.sectionWr__button_desc}>{`Раздел ${numberGroup + 1}`}</div>
               </Button>
 
               {sectionActive && <DropdownList 
