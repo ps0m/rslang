@@ -1,3 +1,5 @@
+import { IAuth } from "../types/types"
+
 export const getCoefficient = (rightAnswer: number) => {
   switch (Math.floor((rightAnswer) / 4)) {
     case 0:
@@ -24,4 +26,15 @@ export const shuffleArray = <T>(initialArray: T[]): T[] => {
   }
 
   return resultArray;
+}
+
+export const InitialisAuth: () => IAuth | null = () => {
+  const local = localStorage.getItem('rslang-ps0m')
+
+  const init: IAuth | null =
+    local !== null
+      ? JSON.parse(local)
+      : null
+
+  return init;
 }

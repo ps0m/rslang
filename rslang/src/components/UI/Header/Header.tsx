@@ -19,11 +19,7 @@ const Header = ({ setActive }: Props) => {
       </div>
 
       <div className={styles.header__login}>
-        <Button
-          className={styles.button__login}
-          onClick={() => ''}>
-          <AuthButton />
-        </Button>
+        <AuthButton />
       </div>
     </header>
   )

@@ -13,7 +13,6 @@ interface ICard {
   word: IWords,
   learned: boolean,
   difficult: boolean
-  isAuth: boolean,
 }
 
 const Card: FC<ICard> = ({ word, learned, difficult }) => {
