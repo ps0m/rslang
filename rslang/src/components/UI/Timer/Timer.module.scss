@@ -1,0 +1,22 @@
+@import "../../../styles/variables.scss";
+
+.timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: $trueColor;
+  cursor: pointer;
+  transition: 0.3s;
+  &:hover {
+    background-color: $trueColorHover;
+  }
+
+  &__text {
+    color: #fff;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+}

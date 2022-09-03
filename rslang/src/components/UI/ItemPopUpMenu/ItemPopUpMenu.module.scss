@@ -1,0 +1,27 @@
+@import "../../../styles/variables.scss";
+
+.item {
+  display: flex;
+
+  &__img {
+    display: flex;
+    width: 60px;
+    height: 60px;    
+  }
+
+  &__disc {
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    margin-left: 10px;
+
+    font-family: $fontFamilyOne;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+    color: #000000;;
+
+    text-decoration: none;
+  }
+}

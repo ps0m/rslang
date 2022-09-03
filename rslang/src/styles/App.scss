@@ -1,0 +1,68 @@
+@import-normalize;
+@import url(https://fonts.googleapis.com/css?family=Balsamiq+Sans:regular,italic,700,700italic);
+@import "./variables.scss";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.overflow {
+  overflow: hidden;
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin-top: -65px;
+  font-family: $fontFamilyOne;
+  background-image: linear-gradient(rgba(227, 209, 209, 0.95), rgba(225, 182, 182, 0.85)),
+    url(../assets/img/game_background_2000.jpg);
+  background-position: center;
+  background-repeat: repeat;
+  @media (max-height: 1400px) {
+    background-image: linear-gradient(rgba(227, 209, 209, 0.95), rgba(225, 182, 182, 0.85)),
+      url(../assets/img/game_background_1400.jpg);
+  }
+  @media (max-height: 1000px) {
+    background-image: linear-gradient(rgba(227, 209, 209, 0.95), rgba(225, 182, 182, 0.85)),
+      url(../assets/img/game_background_1000.jpg);
+  }
+  @media (max-height: 600px) {
+    background-image: linear-gradient(rgba(227, 209, 209, 0.95), rgba(225, 182, 182, 0.85)),
+      url(../assets/img/game_background_600.jpg);
+  }
+  &__cress {
+    position: absolute;
+    top: 75px;
+    right: 10px;
+    width: 50px;
+    height: 50px;
+    fill: transparent;
+    stroke-width: 0px;
+    stroke: $falseColor;
+    transition: 0.3s;
+    &:hover {
+      stroke: $falseColorHover;
+    }
+  }
+  &__audioCall {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    &_progress {
+      margin-top: 65px;
+    }
+  }
+}

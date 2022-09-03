@@ -1,0 +1,23 @@
+@import "../../../styles/variables.scss";
+
+.progress {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  @media (max-width: 400px) {
+    align-self: flex-start;
+    gap: 15px;
+  }
+  &__icon {
+    width: 30px;
+    height: 30px;
+    fill: $falseColor;
+
+    &_mistake {
+      fill: #808080;
+    }
+  }
+}

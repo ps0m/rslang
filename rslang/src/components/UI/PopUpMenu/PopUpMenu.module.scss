@@ -1,0 +1,38 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/App.scss";
+
+.popUpMenu {
+  position: fixed;
+  z-index: 2;
+
+  width: 300px;
+  height: 100vh;
+  padding: 20px;
+
+  display: flex;
+  flex-direction:column;
+  gap: 20px;
+
+  background-color: #99b98a;
+
+  animation: magic 1s 1;
+}
+
+.blackout {
+  position: fixed;
+  z-index: 2;
+
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+
+}
+
+@keyframes magic {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 300px;
+  }
+}
