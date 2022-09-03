@@ -16,14 +16,18 @@ const Table: FC<ITableProps> = ({ stat }) => {
 
   return (
     <div className={styles.table__container} >
-      <div className={styles.table__header}> <span>Верных слов: {rightAnswer},</span> слов с ошибками:  {mistakes}</div>
+      <p className={styles.table__header}> <span>Верных слов: {rightAnswer}</span></p>
+      <p className={styles.table__header}>  слов с ошибками:  {mistakes}</p>
       <table className={styles.table}>
-        <th >№</th>
-        <th >Answer</th>
-        <th >Word</th>
-        <th >Translate</th>
-        <th >Listen</th>
-
+        <thead>
+          <tr>
+            <th >№</th>
+            <th >Answer</th>
+            <th >Word</th>
+            <th >Translate</th>
+            <th >Listen</th>
+          </tr>
+        </thead>
         <tbody >
           {stat?.map((item, index) => {
             return (

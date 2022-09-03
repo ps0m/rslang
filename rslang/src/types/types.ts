@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react"
+
 export interface IWords {
   id: string,
   group: 0,
@@ -66,4 +68,23 @@ export interface IScore {
   amount: number,
   rightAnswer: number,
   coefficient: number
+}
+
+export interface IContentForAudio {
+  wordStudy: IWords,
+  extraWords: IWords[],
+  currentIndex: number
+}
+
+export enum VariantsAudioGame {
+  one = '1',
+  two = '2',
+  three = '3',
+  four = '4',
+  five = '5'
+}
+
+export interface IContext {
+  isAuth: IAuth | null
+  setIsAuth: Dispatch<SetStateAction<IAuth | null>>
 }
