@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { MyContext } from './context/context';
-import AudioCallGame from './pages/AudioCallGame';
-import TextbookPage from './pages/TextbookPage';
-import MainPage from './pages/MainPage';
-import AuthPage from './pages/AuthPage';
 import FormLogin from '../src/components/UI/Auth/FormLogin';
 import FormRegister from '../src/components/UI/Auth/FormRegister';
+import { MyContext } from './context/context';
+import AudioCallGame from './pages/AudioCallGame';
+import AuthPage from './pages/AuthPage';
+import MainPage from './pages/MainPage';
 import SprintGame from './pages/SprintGame';
+import StatisticPage from './pages/StatisticPage';
+import TextbookPage from './pages/TextbookPage';
 import './styles/App.scss';
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
           <Route path="/book" element={<TextbookPage />} />
           <Route path="/sprint_game" element={<SprintGame />} />
           <Route path="/audio_call_game" element={<AudioCallGame />} />
+          <Route path="/statistic" element={<StatisticPage />} />
+          statistic
           <Route
             path="*"
             element={<Navigate to="/home" replace />} />
