@@ -1,12 +1,10 @@
 import { createContext } from "react";
-
-interface IContext {
-  isAuth: boolean
-}
+import { IContext } from "../types/types";
 
 
-const InitialContext = {
-  isAuth: false
+export const InitialContext: IContext = {
+  "isAuth": null,
+  "setIsAuth": () => ""
 }
 
 export const MyContext = createContext<IContext>(InitialContext)

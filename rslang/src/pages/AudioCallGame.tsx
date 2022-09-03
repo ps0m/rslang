@@ -15,6 +15,7 @@ import { shuffleArray } from "../helpers/helpers";
 import { useFetch } from "../hooks/useFetch";
 import { IContentForAudio, ICustomStat, IWords } from "../types/types";
 
+type typeWord = number | undefined;
 
 const AudioCallGame = () => {
   const [menuActive, setMenuActive] = useState(false);
@@ -25,7 +26,8 @@ const AudioCallGame = () => {
   const [amountMistakes, setAmountMistakes] = useState<number>(0);
   const [fetchWords, isWordsLoad, wordsError] = useFetch(getWordsForGame)
 
-  async function getWordsForGame() {
+
+  async function getWordsForGame(): Promise<void> {
     if (group === undefined) {
       return
     }
