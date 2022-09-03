@@ -8,7 +8,7 @@ type Props = {
   className: string,
   setActive: Dispatch<SetStateAction<boolean>>,
   icon?: JSX.Element | undefined
-  clickHandler: (number: number) => () => void;
+  clickHandler: (number: number, color?: string) => () => void;
   refContainer: MutableRefObject<HTMLDivElement | null>;
   }
 
@@ -43,7 +43,7 @@ const DropdownList = ({ valueItem, className, setActive, icon, clickHandler, ref
             color={item.color}
             value={item.value}            
             key={index}
-            clickHandler={clickHandler(item.value - 1)}
+            clickHandler={clickHandler(item.value - 1, item.color)}
             />
         })
         }

@@ -7,7 +7,7 @@
   &__wrNav {
     padding: 0 0 0 50px;
     background: url(../../../assets/img/background_mainPage.png) center (center/auto) no-repeat;
-
+    
     &__header {
       margin: 0;
       padding-top: 74px;
@@ -19,6 +19,7 @@
     }
 
     &__nav {
+      height: 74px;
       display: flex;
       flex-wrap:wrap;
       gap: 10px;
@@ -47,11 +48,13 @@
   }
 }
 
-.sectionWr {
-  position: relative;
-}
+// .sectionWr {
+//   position: relative;
+// }
 
 .sectionWr__button {
+  height: 48px;
+
   display: flex;
   align-items:center; 
   justify-content: center;
@@ -97,6 +100,7 @@
 
 .button__previousPage {
   width: 48px;
+  height: 48px;
 
   &_img {
     width: 100%;
@@ -106,6 +110,7 @@
 
 .button__nextPage {
   width: 48px;
+  height: 48px;
 
   &_img {
     width: 100%;
@@ -115,6 +120,7 @@
 
 .button__game {
   width: 180px;
+  height: 48px;
 }
 
 .iconSection {

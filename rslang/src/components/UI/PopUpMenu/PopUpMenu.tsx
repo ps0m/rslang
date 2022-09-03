@@ -1,16 +1,15 @@
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useEffect } from 'react'
 import ItemPopUpMenu from '../ItemPopUpMenu/ItemPopUpMenu'
 import { contentForPopUp } from './contentForPopUpMenu'
 import styles from './PopUpMenu.module.scss'
 
-type Props = { setActive: Dispatch<SetStateAction<boolean>> }
+type Props = { setActive: Dispatch<SetStateAction<boolean>>;}
 
-const PopUpMenu = ({ setActive }: Props) => {
+const PopUpMenu = ({ setActive}: Props, ) => {  
 
   return (
-    <div className={styles.blackout} onClick={() => setActive(false)}>
-      <div className={styles.container}>
-        <div className={styles.popUpMenu} onClick={(e) => e.stopPropagation()}>
+    <div className={`${styles.popUpMenu}`} onClick={() => setActive(false)}>
+        <div className={styles.menu}>
           {contentForPopUp.map((item, index) => {
             return <ItemPopUpMenu
               itemText={item.itemText}
@@ -21,7 +20,7 @@ const PopUpMenu = ({ setActive }: Props) => {
           })
           }
         </div>
-      </div>
+        <div className={styles.blackout}></div>
     </div>
   )
 }

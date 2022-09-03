@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import styles from './Header.module.scss'
 
 const AuthButton = () => {
   const [value, setValue] = useState(false)
@@ -17,7 +18,7 @@ const AuthButton = () => {
   }
 
   return (
-    <div>
+    <div className={styles.button__login}>
       <Link to="/auth"><button className="log" onClick={clearStorage} type="button">{value ? 'Выход' : 'Вход'}</button>
       </Link>
     </div>

@@ -1,29 +1,37 @@
-import { Dispatch, SetStateAction } from 'react'
+import { useState, useEffect } from 'react'
 import { ReactComponent as IconBurgerMenu } from '../../../assets/icon/burger.svg'
 import Button from '../Button/Button'
 import AuthButton from './AuthButton'
 import styles from './Header.module.scss'
+import PopUpMenu from '../PopUpMenu/PopUpMenu';
 
-type Props = { setActive: Dispatch<SetStateAction<boolean>> }
+const Header = () => {
+  const [menuActive, setMenuActive] = useState(false);
 
-const Header = ({ setActive }: Props) => {
+  useEffect(() => {
+    if (menuActive) {
+      document.body.style.background = "rgba(0, 0, 0, 0.8)";
+      document.body.style.overflow = "hidden";
+     } else {
+      document.body.style.background = "none";
+      document.body.style.overflow = "visible";
+     }
+  }, [menuActive])
+  
 
   return (
     <header className={`${styles.header} ${styles.container}`}>
       <div className={styles.header__wrapper}>
+      {menuActive && <PopUpMenu setActive={setMenuActive} />}
         <Button
-          onClick={() => setActive((prevState) => !prevState)}>
+          onClick={() => setMenuActive((prevState) => !prevState)}>
           <IconBurgerMenu className={styles.button__BurgerMenu} />
         </Button>
         <div className={styles.header__wrapper__text}><h1>RS-Lang</h1></div>
       </div>
 
       <div className={styles.header__login}>
-        <Button
-          className={styles.button__login}
-          onClick={() => ''}>
-          <AuthButton />
-        </Button>
+        <AuthButton />
       </div>
     </header>
   )
