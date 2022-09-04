@@ -17,7 +17,7 @@ export const contentForPopUp = [
   {
     itemText: 'Аудиовызов',
     itemImg: 'gameTwo',
-    itemLink: '/audio_game'
+    itemLink: '/audio_call_game'
   },
   {
     itemText: 'Статистика',

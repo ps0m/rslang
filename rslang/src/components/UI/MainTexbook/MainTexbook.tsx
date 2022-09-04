@@ -1,6 +1,6 @@
-import styles from './MainTexbook.module.scss'
-import CardOfWord from '../CardOfWord/CardOfWord'
 import { IWords } from "../../../types/types";
+import CardOfWord from '../CardOfWord/CardOfWord';
+import styles from './MainTexbook.module.scss';
 
 type Props = {
   wordCards: IWords[]
@@ -14,12 +14,11 @@ export const MainTexbook = ({ wordCards, style }: Props) => {
         wordCards.map ((item) => {
           return <CardOfWord word={item} 
           learned={false} 
-          difficult={false} 
-          isAuth={false}
+          difficult={false}
           key={item.id}
           styleColor={style}/>          
         })
-      }      
+      }
     </div>
   )
 }

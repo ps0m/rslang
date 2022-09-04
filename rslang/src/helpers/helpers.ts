@@ -1,3 +1,5 @@
+import { IAuth } from "../types/types"
+
 export const getCoefficient = (rightAnswer: number) => {
   switch (Math.floor((rightAnswer) / 4)) {
     case 0:
@@ -9,4 +11,30 @@ export const getCoefficient = (rightAnswer: number) => {
     default:
       return 8
   }
+}
+
+
+export const shuffleArray = <T>(initialArray: T[]): T[] => {
+  const resultArray = initialArray.slice();
+
+  for (let i = 0; i < resultArray.length; i++) {
+    const current = resultArray[i];
+    const randomIndex = Math.floor(Math.random() * (resultArray.length - 1));
+
+    resultArray[i] = resultArray[randomIndex];
+    resultArray[randomIndex] = current;
+  }
+
+  return resultArray;
+}
+
+export const InitialisAuth: () => IAuth | null = () => {
+  const local = localStorage.getItem('rslang-ps0m')
+
+  const init: IAuth | null =
+    local !== null
+      ? JSON.parse(local)
+      : null
+
+  return init;
 }

@@ -215,14 +215,27 @@ export const updateUserSettings = async (id: string, statistics: ISettings, toke
 }
 
 export const loginUser = async (user: IEmailPassword) => {
-  const response = await fetch(URL_SINGIN, {
-    method: 'POST',
-    body: JSON.stringify(user),
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-  });
+  try {
+    const response = await fetch(URL_SINGIN, {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
 
-  return await response.json();
+    if (response.status === 404) {
+      throw new Error('Неверный логин или пароль');
+    } else {
+      return await response.json();
+    }
+
+  } catch (e: unknown) {
+    if (typeof e === "string") {
+      console.log(e);
+    }
+
+    throw e;
+  }
 }

@@ -1,27 +1,38 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import styles from './Header.module.scss'
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { MyContext } from '../../../context/context';
+import styles from './Header.module.scss';
 
 const AuthButton = () => {
-  const [value, setValue] = useState(false)
-  const history = useNavigate()
+  const { isAuth, setIsAuth } = useContext(MyContext)
 
-  useEffect(() => {
-    if (localStorage.getItem('userData') !== null) {
-      setValue(true)
-    }
-  }, [])
-  const clearStorage = () => {
-    window.localStorage.removeItem('userData')
-    setValue(false)
-    history('/')
+  const logOut = () => {
+    localStorage.removeItem('rslang-ps0m')
+    setIsAuth(null)
   }
 
   return (
-    <div className={styles.button__login}>
-      <Link to="/auth"><button className="log" onClick={clearStorage} type="button">{value ? 'Выход' : 'Вход'}</button>
-      </Link>
-    </div>
+
+    <button
+      className={styles.button__login}
+      onClick={() => {
+        isAuth !== null
+          ? logOut()
+          : ''
+      }}
+
+    >
+      {
+        isAuth !== null
+          ? <>
+            <span className={styles.button__login_yes}>{isAuth.name[0]}</span>
+            <span className={styles.button__login_hover}>Выход</span>
+          </>
+          : <Link to="/auth">
+            Вход
+          </Link>
+      }
+    </button >
   )
 }
 
