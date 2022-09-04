@@ -4,9 +4,10 @@ import { IWords } from "../../../types/types";
 
 type Props = {
   wordCards: IWords[]
+  style: string
 }
 
-export const MainTexbook = ({ wordCards }: Props) => {
+export const MainTexbook = ({ wordCards, style }: Props) => {
   return (
     <div className={`${styles.container} ${styles.cardsEng}`}>
       {
@@ -15,7 +16,8 @@ export const MainTexbook = ({ wordCards }: Props) => {
           learned={false} 
           difficult={false} 
           isAuth={false}
-          key={item.id}/>
+          key={item.id}
+          styleColor={style}/>          
         })
       }      
     </div>

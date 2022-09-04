@@ -14,9 +14,10 @@ interface ICard {
   learned: boolean,
   difficult: boolean
   isAuth: boolean,
+  styleColor: string,
 }
 
-const Card: FC<ICard> = ({ word, learned, difficult }) => {
+const Card: FC<ICard> = ({ word, learned, difficult, styleColor }) => {
 
   const { isAuth } = useContext(MyContext)
 
@@ -25,7 +26,7 @@ const Card: FC<ICard> = ({ word, learned, difficult }) => {
   }
 
   return (
-    <div className={styles.card}>
+    <div style={{backgroundColor: styleColor}} className={styles.card}>
       <div className={styles.card__block_image}>
         <img className={styles.card__image} src={`${URL_BASE}/${word.image}`} alt={word.word} />
       </div>
