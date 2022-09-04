@@ -1,9 +1,11 @@
 @import "../../../styles/variables.scss";
 
 .card {
-  width: 709px;
+  width: 460px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: start;
+  gap: 20px;  
   align-items: stretch;
   font-family: $fontFamilyOne;
   background-color: $subBaseColor;
@@ -12,8 +14,7 @@
   overflow: hidden;
 
   &__block_image {
-    width: 45%;
-    min-height: 100%;
+    width: 100%;
     object-fit: cover;
     border-radius: inherit;
     box-shadow: 0px 0px 3px #000;
@@ -23,18 +24,18 @@
     width: 100%;
     min-height: 100%;
     object-fit: cover;
-    // border-radius: inherit;
   }
 
   &__block_text {
-    padding: 5px 5px 5px 0;
+    padding: 15px;
   }
 
   &__block_title {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    align-items: stretch;
-    // padding: 10px 0;
+    align-items:center;
+    padding: 10px 0;
     gap: 10px;
   }
 
@@ -64,17 +65,27 @@
   }
 
   &__subblock {
+    position: relative;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 5px 0;
+    padding: 10px 0;
     gap: 10px;
+    fill: #ffffff36;
   }
 
   &__audioPlayer {
     height: 50px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    
     &_big {
       height: 65px;
+      fill: rgb(255 255 255);
     }
   }
 
@@ -96,6 +107,21 @@
   }
 }
 
-.card__text {
-  width: 300px;
+.card__container_section_one {
+  display: flex;
 }
+
+.card__container_section_two {
+  display: flex;
+  gap: 10px;
+}
+
+// .card__text {
+// align-items: center;
+// }
+
+// @media (max-width: 1200px) {
+//   .card {
+//     width: 32%;
+//   }
+// }

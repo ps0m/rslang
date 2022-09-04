@@ -31,42 +31,45 @@ const Card: FC<ICard> = ({ word, learned, difficult, styleColor }) => {
       </div>
       <div className={styles.card__block_text}>
         <div className={styles.card__block_title}>
-          <div className={styles.card__container_buttons}>
+          <div className={styles.card__container_section_one}>
             {isAuth
-              ? <div className={styles.card__buttons}>
-                <Button
-                  onClick={() => ''}
-                >
-                  <IconLearned className={
-                    learned
-                      ? styles.card__icon_active
-                      : styles.card__icon
-                  }
-                  />
-                </Button>
-                <Button
-                  onClick={() => ''} >
-                  <IconDifficult className={
-                    difficult
-                      ? styles.card__icon_active
-                      : styles.card__icon
-                  } />
-                </Button>
-              </div>
-              : ''
-            }
-
-            <AudioPlayer
-              path={`${URL_BASE}/${word.audio}`}
-              className={styles.card__audioPlayer_big}
-            />
+                ? <div className={styles.card__buttons}>
+                  <Button
+                    onClick={() => ''}
+                  >
+                    <IconLearned className={
+                      learned
+                        ? styles.card__icon_active
+                        : styles.card__icon
+                    }
+                    />
+                  </Button>
+                  <Button
+                    onClick={() => ''} >
+                    <IconDifficult className={
+                      difficult
+                        ? styles.card__icon_active
+                        : styles.card__icon
+                    } />
+                  </Button>
+                </div>
+                : ''
+              }
           </div>
+          <div className={styles.card__container_section_two}>
+            <div className={styles.card__container_buttons}>
+              <AudioPlayer
+                path={`${URL_BASE}/${word.audio}`}
+                className={styles.card__audioPlayer_big}
+              />
+            </div>
 
-          <div>
-            <div className={styles.card__title}>{word.word}</div>
-            <div className={styles.card__subtitle}>{word.transcription}</div>
-            <div className={styles.card__subtitle}>{word.wordTranslate}</div>
-          </div>
+            <div>
+              <div className={styles.card__title}>{word.word}</div>
+              <div className={styles.card__subtitle}>{word.transcription}</div>
+              <div className={styles.card__subtitle}>{word.wordTranslate}</div>
+            </div>
+          </div>          
         </div>
         <div className={styles.card__subblock}>
           <AudioPlayer
