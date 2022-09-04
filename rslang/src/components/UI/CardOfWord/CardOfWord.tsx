@@ -73,7 +73,7 @@ const Card: FC<ICard> = ({ word, learned, difficult, styleColor }) => {
             path={`${URL_BASE}/${word.audioExample}`}
             className={styles.card__audioPlayer}
           />
-          <div>
+          <div className={styles.card__text}>
             <div dangerouslySetInnerHTML={createMarkup(word.textExample)} />
             <div>{word.textExampleTranslate}</div>
           </div>
@@ -83,7 +83,7 @@ const Card: FC<ICard> = ({ word, learned, difficult, styleColor }) => {
             path={`${URL_BASE}/${word.audioMeaning}`}
             className={styles.card__audioPlayer}
           />
-          <div>
+          <div className={styles.card__text}>
             <div dangerouslySetInnerHTML={createMarkup(word.textMeaning)} />
             <div>{word.textMeaningTranslate}</div>
           </div>

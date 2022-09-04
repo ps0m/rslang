@@ -108,7 +108,7 @@ const AudioCallGame = () => {
   return (
     <>
       {menuActive && <PopUpMenu setActive={setMenuActive} />}
-      <Header setActive={setMenuActive} />
+      <Header />
       <section className="game">
         {
           isWordsLoad

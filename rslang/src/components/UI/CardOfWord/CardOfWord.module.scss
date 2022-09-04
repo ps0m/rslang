@@ -1,7 +1,7 @@
 @import "../../../styles/variables.scss";
 
 .card {
-  width: 600px;
+  width: 709px;
   display: flex;
   justify-content: space-between;
   align-items: stretch;
@@ -12,7 +12,7 @@
   overflow: hidden;
 
   &__block_image {
-    width: 50%;
+    width: 45%;
     min-height: 100%;
     object-fit: cover;
     border-radius: inherit;
@@ -23,18 +23,18 @@
     width: 100%;
     min-height: 100%;
     object-fit: cover;
-    border-radius: inherit;
+    // border-radius: inherit;
   }
 
   &__block_text {
-    padding: 10px 10px 10px 10px;
+    padding: 5px 5px 5px 0;
   }
 
   &__block_title {
     display: flex;
     justify-content: center;
     align-items: stretch;
-    padding: 10px 0;
+    // padding: 10px 0;
     gap: 10px;
   }
 
@@ -67,14 +67,14 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 10px 0;
+    padding: 5px 0;
     gap: 10px;
   }
 
   &__audioPlayer {
-    height: 25px;
+    height: 50px;
     &_big {
-      height: 50px;
+      height: 65px;
     }
   }
 
@@ -82,10 +82,10 @@
   &__icon_active {
     width: 25px;
     height: 25px;
-    fill: #c7c7c7;
+    fill: $trueColor;
     transition: 0.3s;
     &:hover {
-      fill: #ded9d9;
+      fill: $trueColorHover;
     }
     &_active {
       fill: $trueColor;
@@ -94,4 +94,8 @@
       }
     }
   }
+}
+
+.card__text {
+  width: 300px;
 }
