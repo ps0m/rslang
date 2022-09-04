@@ -15,7 +15,9 @@ const PageСollectorTextbook = ()  => {
   const [cologBgCard, setCologBgCard] = useState('#4640BE')
 
   localStorage.setItem('group', JSON.stringify(group));
-  
+  localStorage.setItem('page', JSON.stringify(page));
+  localStorage.setItem('color', JSON.stringify(cologBgCard));
+
   const getWordsForMain = async (group: number, page:number ) => {
     try {
       const wordMain: Array<IWords> =  await getWords(group, page);
