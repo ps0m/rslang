@@ -14,16 +14,27 @@
   overflow: hidden;
 
   &__block_image {
-    width: 100%;
-    object-fit: cover;
-    border-radius: inherit;
-    box-shadow: 0px 0px 3px #000;
+    position: relative;
+    overflow:hidden;
+    width:460px;
+    height:320px;
+    // width: 100%;
+    // object-fit: cover;
+    // border-radius: inherit;
+    // box-shadow: 0px 0px 3px #000;
   }
 
   &__image {
-    width: 100%;
-    min-height: 100%;
-    object-fit: cover;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:460px;
+    height:320px;
+    object-fit:cover;
+    // width: 100%;
+    // min-height: 100%;
+    // object-fit: cover;
   }
 
   &__block_text {
