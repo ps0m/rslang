@@ -36,9 +36,34 @@ export interface IAuth {
   name: string
 }
 
+export interface IElemOptionalProgress {
+  // 0?: boolean
+  // 1?: boolean
+  // 2?: boolean
+  // 3?: boolean
+  // 4?: boolean
+  [index: number]: boolean
+}
+
+export interface IOptionalProgress extends IElemOptionalProgress {
+  index: keyof IElemOptionalProgress
+}
+
+export enum IDifficulty {
+  hard = 'hard',
+  easy = 'easy'
+}
+
+export interface IOptionalPropertyWord {
+  id: string,
+  isNew: boolean,
+  learned: boolean,
+  progress: IOptionalProgress,
+}
+
 export interface IPropertyWord {
-  difficulty: string,
-  // "optional": {}
+  difficulty: IDifficulty,
+  optional: IOptionalPropertyWord
 }
 
 export interface IStatistic {

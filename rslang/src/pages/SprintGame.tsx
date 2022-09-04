@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { getWords } from "../components/API/API";
 import Button from "../components/UI/Button/Button";
 import CardOfSprint from "../components/UI/CardOfSprint/CardOfSprint";
+import Header from "../components/UI/Header/Header";
 import LevelPanel from "../components/UI/LevelPanel/LevelPanel";
 import { ReactComponent as NoLogo } from "../components/UI/Table/assets/x_circle.svg";
 import Table from "../components/UI/Table/Table";
@@ -103,26 +104,30 @@ const SprintGame = () => {
   }, [words])
 
   return (
-    <section className="game">
-      {
-        isFinishGame
-          ? <Table stat={statistic} />
-          : (group !== undefined
-            ? <CardOfSprint
-              content={contentForCard}
-              score={score}
-              setIsFinishGame={setIsFinishGame}
-              getResult={getResultOneStepGame} />
-            : <LevelPanel
-              setGroup={setGroup}
-            />)
-      }
-      <Button
-        className='game__cress'
-        onClick={() => ''}>
-        <Link to='/home'><NoLogo /></Link >
-      </Button>
-    </section>
+    <>
+      <Header />
+
+      <section className="game">
+        {
+          isFinishGame
+            ? <Table stat={statistic} />
+            : (group !== undefined
+              ? <CardOfSprint
+                content={contentForCard}
+                score={score}
+                setIsFinishGame={setIsFinishGame}
+                getResult={getResultOneStepGame} />
+              : <LevelPanel
+                setGroup={setGroup}
+              />)
+        }
+        <Button
+          className='game__cress'
+          onClick={() => ''}>
+          <Link to='/home'><NoLogo /></Link >
+        </Button>
+      </section>
+    </>
   );
 };
 

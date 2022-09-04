@@ -2,6 +2,7 @@ import { FC } from "react";
 import { URL_BASE } from "../../../constants/constatnts";
 import { ICustomStat } from "../../../types/types";
 import AudioPlayer from "../AudioPlayer/AudioPlayer";
+import PieChartInterest from "../PieChartInterest/PieChartInterest";
 import { ReactComponent as YesLogo } from "./assets/check_circle.svg";
 import { ReactComponent as NoLogo } from "./assets/x_circle.svg";
 import styles from "./Table.module.scss";
@@ -16,8 +17,16 @@ const Table: FC<ITableProps> = ({ stat }) => {
 
   return (
     <div className={styles.table__container} >
-      <p className={styles.table__header}> <span>Верных слов: {rightAnswer}</span></p>
-      <p className={styles.table__header}>  слов с ошибками:  {mistakes}</p>
+      <div className={styles.table__diagram}>
+        <p className={styles.table__diagram_title}>
+          Процент <span>правильных</span> ответов
+        </p>
+        <PieChartInterest
+          data={[
+            { title: 'Верных ответов', value: rightAnswer !== undefined ? rightAnswer : 0, color: '#91cb39' },
+            { title: 'Ошибок', value: mistakes !== undefined ? mistakes : 0, color: '#C13C37' },
+          ]} />
+      </div>
       <table className={styles.table}>
         <thead>
           <tr>

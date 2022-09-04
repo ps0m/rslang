@@ -39,11 +39,11 @@ const Statistic = () => {
         <div className={styles.statistic__diagrams}>
           <div className={styles.statistic__diagram}>
             <p className={styles.statistic__diagram_title}>
-              Процент правильных ответов
+              Процент <span>правильных</span> ответов
             </p>
             <PieChartInterest
               data={[
-                { title: 'Верных', value: 10, color: '#91cb39' },
+                { title: 'Верных ответов', value: 10, color: '#91cb39' },
                 { title: 'Ошибок', value: 15, color: '#C13C37' },
               ]} />
           </div>
