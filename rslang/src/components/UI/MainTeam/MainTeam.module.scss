@@ -3,20 +3,18 @@
 
 .MainTeam {
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-
   background-color: #DBD9FF;
 
   &__header {
     padding-top: 15px;
     font-family: $fontFamilyOne;
-    font-weight: bold; 
+    font-weight: bold;
     text-align: center;
     font-size: 32px;
     line-height: 42px;
-
     color: #4640BE;
   }
 }
@@ -25,7 +23,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
   gap: 20px;
   padding: 15px 0 30px 0;
 
@@ -39,24 +36,21 @@
     padding: 15px;
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
     border-radius: 40px;
-
     display: grid;
     justify-items: center;
-    grid-template-rows: 1fr 1fr; 
-    grid-template-areas: 
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas:
       "img name ."
       "img role ."
       "discr discr .";
-
     background-color: #ffffff;
-
     font-family: $fontFamilyOne;
     font-weight: 600;
 
     gap: 10px;
+
     &_img {
       grid-area: img;
-
       justify-self: end;
       width: 72px;
       height: 72px;
@@ -66,11 +60,9 @@
 
     &_name {
       grid-area: name;
-
       display: flex;
       align-items: center;
       text-align: center;
-
       font-size: 21px;
       line-height: 1.15;
       color: #4640BE;
@@ -78,11 +70,11 @@
 
     &_role {
       grid-area: role;
-
       justify-self: start;
       font-size: 15px;
       color: #666666;
     }
+
     &_discr {
       text-align: justify;
       grid-area: discr;

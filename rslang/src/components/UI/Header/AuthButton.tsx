@@ -12,7 +12,6 @@ const AuthButton = () => {
   }
 
   return (
-
     <button
       className={styles.button__login}
       onClick={() => {
@@ -20,7 +19,6 @@ const AuthButton = () => {
           ? logOut()
           : ''
       }}
-
     >
       {
         isAuth !== null
@@ -32,7 +30,7 @@ const AuthButton = () => {
             Вход
           </Link>
       }
-    </button >
+    </button>
   )
 }
 

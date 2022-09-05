@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { MAX_MISTAKES_OF_AUDIO_GAMES } from "../../../constants/constatnts";
+import { MAX_MISTAKES_OF_AUDIO_GAMES } from "../../../constants/constants";
 import { ReactComponent as IconHeart } from "./assets/heart.svg";
 import styles from './Progress.module.scss';
 

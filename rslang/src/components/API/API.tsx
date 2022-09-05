@@ -1,4 +1,4 @@
-import { URL_SINGIN, URL_USERS, URL_WORDS } from "../../constants/constatnts";
+import { URL_SINGIN, URL_USERS, URL_WORDS } from "../../constants/constants";
 import { IEmailPassword, IPropertyWord, ISettings, IStatistic, IUser, IWords } from "../../types/types";
 
 export const getWords = async (group = 0, page = 0) => {
@@ -104,14 +104,28 @@ export const createUserWord = async (id: string, wordId: string, property: IProp
 }
 
 export const getUserWord = async (id: string, wordId: string, token: string) => {
-  const response = await fetch(`${URL_USERS}/${id}/words/${wordId}`, {
-    headers: {
-      'Authorization': `Bearer ${token}`,
+  try {
+    const response = await fetch(`${URL_USERS}/${id}/words/${wordId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
     }
-  }
-  );
+    );
 
-  return await response.json();
+    if (response.status === 404) {
+      throw new Error('Нет такого пользователя');
+    } else {
+      return await response.json();
+    }
+
+  } catch (e: unknown) {
+    if (typeof e === "string") {
+      console.log(e);
+    }
+
+    throw e;
+  }
+
 }
 
 export const updateUserWord = async (id: string, wordId: string, property: IPropertyWord, token: string) => {

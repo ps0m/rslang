@@ -1,5 +1,5 @@
 import { FC, useContext } from "react";
-import { URL_BASE } from "../../../constants/constatnts";
+import { URL_BASE } from "../../../constants/constants";
 import { MyContext } from "../../../context/context";
 import { IWords } from "../../../types/types";
 import AudioPlayer from "../../UI/AudioPlayer/AudioPlayer";
@@ -7,7 +7,6 @@ import Button from "../../UI/Button/Button";
 import { ReactComponent as IconDifficult } from "./assets/icon_difficult.svg";
 import { ReactComponent as IconLearned } from "./assets/icon_learned.svg";
 import styles from "./CardOfWord.module.scss";
-
 
 interface ICard {
   word: IWords,
@@ -25,7 +24,7 @@ const Card: FC<ICard> = ({ word, learned, difficult, styleColor }) => {
   }
 
   return (
-    <div style={{backgroundColor: styleColor}} className={styles.card}>
+    <div style={{ backgroundColor: styleColor }} className={styles.card}>
       <div className={styles.card__block_image}>
         <img className={styles.card__image} src={`${URL_BASE}/${word.image}`} alt={word.word} />
       </div>
@@ -33,28 +32,28 @@ const Card: FC<ICard> = ({ word, learned, difficult, styleColor }) => {
         <div className={styles.card__block_title}>
           <div className={styles.card__container_section_one}>
             {isAuth
-                ? <div className={styles.card__buttons}>
-                  <Button
-                    onClick={() => ''}
-                  >
-                    <IconLearned className={
-                      learned
-                        ? styles.card__icon_active
-                        : styles.card__icon
-                    }
-                    />
-                  </Button>
-                  <Button
-                    onClick={() => ''} >
-                    <IconDifficult className={
-                      difficult
-                        ? styles.card__icon_active
-                        : styles.card__icon
-                    } />
-                  </Button>
-                </div>
-                : ''
-              }
+              ? <div className={styles.card__buttons}>
+                <Button
+                  onClick={() => ''}
+                >
+                  <IconLearned className={
+                    learned
+                      ? styles.card__icon_active
+                      : styles.card__icon
+                  }
+                  />
+                </Button>
+                <Button
+                  onClick={() => ''} >
+                  <IconDifficult className={
+                    difficult
+                      ? styles.card__icon_active
+                      : styles.card__icon
+                  } />
+                </Button>
+              </div>
+              : ''
+            }
           </div>
           <div className={styles.card__container_section_two}>
             <div className={styles.card__container_buttons}>
@@ -69,7 +68,7 @@ const Card: FC<ICard> = ({ word, learned, difficult, styleColor }) => {
               <div className={styles.card__subtitle}>{word.transcription}</div>
               <div className={styles.card__subtitle}>{word.wordTranslate}</div>
             </div>
-          </div>          
+          </div>
         </div>
         <div className={styles.card__subblock}>
           <AudioPlayer
@@ -91,10 +90,7 @@ const Card: FC<ICard> = ({ word, learned, difficult, styleColor }) => {
             <div>{word.textMeaningTranslate}</div>
           </div>
         </div>
-
-
       </div>
-
     </div>
   );
 };

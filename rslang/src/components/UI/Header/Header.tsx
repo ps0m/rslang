@@ -14,15 +14,16 @@ const Header = () => {
       document.body.style.overflow = "hidden";
      } else {
       document.body.classList.remove("hiddenBody");
+
       document.body.style.overflow = "visible";
-     }
+    }
   }, [menuActive])
-  
+
 
   return (
     <header className={`${styles.header} ${styles.container}`}>
       <div className={styles.header__wrapper}>
-      {menuActive && <PopUpMenu setActive={setMenuActive} />}
+        {menuActive && <PopUpMenu setActive={setMenuActive} />}
         <Button
           onClick={() => setMenuActive((prevState) => !prevState)}>
           <IconBurgerMenu className={styles.button__BurgerMenu} />

@@ -11,12 +11,12 @@ export const MainTexbook = ({ wordCards, style }: Props) => {
   return (
     <div className={`${styles.container} ${styles.cardsEng}`}>
       {
-        wordCards.map ((item) => {
-          return <CardOfWord word={item} 
-          learned={false} 
-          difficult={false}
-          key={item.id}
-          styleColor={style}/>          
+        wordCards.map((item) => {
+          return <CardOfWord word={item}
+            learned={false}
+            difficult={false}
+            key={item.id}
+            styleColor={style} />
         })
       }
     </div>

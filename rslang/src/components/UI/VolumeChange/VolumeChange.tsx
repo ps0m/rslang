@@ -13,6 +13,7 @@ interface IPropsVolumeChange {
 }
 
 const VolumeChange: FC<IPropsVolumeChange> = ({ active, action, className, disabled }) => {
+
   return (
     <Button
       disabled={disabled}

@@ -1,13 +1,13 @@
-import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from 'react';
 import { default as soundError } from '../../../assets/audio/error.mp3';
 import { default as soundSuccess } from '../../../assets/audio/success.mp3';
-import { URL_BASE } from '../../../constants/constatnts';
+import { URL_BASE } from '../../../constants/constants';
 import { IContentForAudio, ICustomStat, IWords } from '../../../types/types';
 import AudioPlayer from '../AudioPlayer/AudioPlayer';
 import Button from '../Button/Button';
 import VolumeChange from '../VolumeChange/VolumeChange';
 import styles from './CardOfAudio.module.scss';
-
 
 interface IPropsCardOfAudio {
   content: IContentForAudio | null
@@ -17,24 +17,30 @@ interface IPropsCardOfAudio {
 
 const CardOfAudio: FC<IPropsCardOfAudio> = ({ content, getResult, setMistakes }) => {
   const [isVolume, setIsVolume] = useState<boolean>(false);
+  // const [pauseGame, pauseGame.current] = useState<boolean>(false);
   const [isWin, setIsWin] = useState<boolean | null>(null);
   const [isSayWord, setIsSayWord] = useState<boolean>(false);
+
+  const pauseGame = useRef(false)
 
   const checkAnswer = (numberSelectWord: IWords | undefined) => {
 
     if (content !== null &&
-      numberSelectWord !== undefined) {
+      numberSelectWord !== undefined && pauseGame.current === false) {
       const resultGame = content.wordStudy.id === numberSelectWord.id
 
       setIsWin(resultGame);
-
+      pauseGame.current = true;
       setTimeout(() => {
         getResult({
           word: content.wordStudy,
           isRight: resultGame,
           index: content.currentIndex
         })
-        setIsWin(null)
+
+        setIsWin(null);
+        pauseGame.current = false;
+
         if (!resultGame) {
           setMistakes(prevMistakes => prevMistakes + 1)
         }
@@ -43,18 +49,27 @@ const CardOfAudio: FC<IPropsCardOfAudio> = ({ content, getResult, setMistakes })
   }
 
   const keyListener = (event: KeyboardEventInit) => {
-    console.log(event.code);
+
+    if (event.code === undefined || content === null) {
+      return
+    }
+
+    const arrayKeyDigit = ['Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5']
+
+    // if (arrayKeyDigit.includes(event.code)) {
+    //   pauseGame.current = true;
+    // }
 
     switch (event.code) {
       case 'Digit1': checkAnswer(content?.extraWords[0])
         break;
-      case 'Digit2': checkAnswer(content?.extraWords[1])
+      case arrayKeyDigit[1]: checkAnswer(content?.extraWords[1])
         break;
-      case 'Digit3': checkAnswer(content?.extraWords[2])
+      case arrayKeyDigit[2]: checkAnswer(content?.extraWords[2])
         break;
-      case 'Digit4': checkAnswer(content?.extraWords[3])
+      case arrayKeyDigit[3]: checkAnswer(content?.extraWords[3])
         break;
-      case 'Digit5': checkAnswer(content?.extraWords[4])
+      case arrayKeyDigit[4]: checkAnswer(content?.extraWords[4])
         break;
       case 'Space': {
         setIsSayWord(true)
@@ -68,9 +83,8 @@ const CardOfAudio: FC<IPropsCardOfAudio> = ({ content, getResult, setMistakes })
 
   useEffect(() => {
     document.addEventListener('keyup', keyListener);
-    if (content !== null) {
-      console.log(2);
 
+    if (content !== null) {
       setIsSayWord(true)
     }
 
@@ -152,7 +166,7 @@ const CardOfAudio: FC<IPropsCardOfAudio> = ({ content, getResult, setMistakes })
           content !== null
             ? content.extraWords.map((word, index) => {
               return <Button
-                disabled={isWin !== null}
+                disabled={pauseGame.current}
                 key={word.id}
                 className={[styles.card__buttons,
                 (content.wordStudy.id === word.id && isWin !== null)
@@ -165,7 +179,6 @@ const CardOfAudio: FC<IPropsCardOfAudio> = ({ content, getResult, setMistakes })
             })
             : ''
         }
-
 
       </div>
     </div >

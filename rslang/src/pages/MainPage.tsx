@@ -8,11 +8,11 @@ const PageСollector = () => {
 
 
   return (
-    <>      
+    <>
       <Header />
       <MainSection />
-      <MainTeam />
       <FeaturesSection />
+      <MainTeam />
       <Footer />
     </>
   );

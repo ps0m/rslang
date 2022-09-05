@@ -1,16 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Dispatch, MutableRefObject, SetStateAction, useEffect } from 'react'
 import styles from './Dropdown.module.scss'
 import DropdownItem from './DropdownItem'
 
 
-type Props = { 
-  valueItem: { textName: string;  color?: string; value: number; }[],
+type Props = {
+  valueItem: { textName: string; color?: string; value: number; }[],
   className: string,
   setActive: Dispatch<SetStateAction<boolean>>,
   icon?: JSX.Element | undefined
   clickHandler: (number: number, color?: string) => () => void;
   refContainer: MutableRefObject<HTMLDivElement | null>;
-  }
+}
 
 const DropdownList = ({ valueItem, className, setActive, icon, clickHandler, refContainer }: Props) => {
 
@@ -34,23 +35,23 @@ const DropdownList = ({ valueItem, className, setActive, icon, clickHandler, ref
 
   return (
     <>
-      <ul  className={`${styles.sectionWr__button__list} ${className}`}
+      <ul className={`${styles.sectionWr__button__list} ${className}`}
       >
         {valueItem.map((item, index) => {
           return <DropdownItem
-            icon={icon} 
+            icon={icon}
             textName={item.textName}
             color={item.color}
-            value={item.value}            
+            value={item.value}
             key={index}
             clickHandler={clickHandler(item.value - 1, item.color)}
-            />
+          />
         })
         }
       </ul>
-</>
+    </>
 
-  ) 
+  )
 }
 
 export default DropdownList;

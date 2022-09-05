@@ -10,7 +10,6 @@
 }
 
 .title {
-  // margin-bottom: 10%;
   font-size: 24px;
   text-align: center;
   padding: 5%;
@@ -46,7 +45,7 @@ input {
 
 .button:hover {
   cursor: pointer;
-  background-color: #dbd9ff;
+  background-color: $bgColorHover;
 }
 
 .no_account {
