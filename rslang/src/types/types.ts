@@ -88,13 +88,6 @@ export interface IDailyStatistic extends IGameDailyStatistic {
   date: string
 }
 
-// export interface IDailyStatistic {
-//   sprint: IOptionalStatisticGame,
-//   audio: IOptionalStatisticGame,
-//   words: IOptionalStatisticWords,
-//   date: string
-// }
-
 export interface IItemOfLongTermStatistic {
   newLearnedWords: number
   totalLearnedWords: number

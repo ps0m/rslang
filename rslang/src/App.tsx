@@ -25,7 +25,6 @@ const App = () => {
           <Route element={<SprintGame />} path="/sprint_game" />
           <Route element={<AudioCallGame />} path="/audio_call_game" />
           <Route element={<StatisticPage />} path="/statistic" />
-          statistic
           <Route element={<MainPage />} path="/team" />
           <Route element={<AuthPage />} path="/auth" />
           <Route element={<Navigate to="/home" replace />} path="*" />

@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
-import { getWords } from '../components/API/API';
+import { useContext, useEffect, useState } from 'react';
+import { getAllUserAggregatedWords, getUserWord, getWords } from '../components/API/API';
 import Footer from '../components/UI/Footer/Footer';
 import Header from '../components/UI/Header/Header';
+import Loader from '../components/UI/Loader/Loader';
 import MainTexbook from '../components/UI/MainTexbook/MainTexbook';
 import MenuTextbook from '../components/UI/MenuTextbook/MenuTextbook';
-import { IWords } from '../types/types';
+import { MyContext } from '../context/context';
+import { useFetch } from '../hooks/useFetch';
+import { IAgregateWords, IDifficulty, IFullWordsForBook, IOptionalProgress, IPropertyWord, IWords } from '../types/types';
 
 const PageСollectorTextbook = () => {
 

@@ -1,5 +1,5 @@
 import { FC, useContext, useState } from "react";
-import { URL_BASE } from "../../../constants/constatnts";
+import { URL_BASE } from "../../../constants/constants";
 import { MyContext } from "../../../context/context";
 import { IDifficulty, IOptionalProgress, IPropertyWord, IWords } from "../../../types/types";
 import { updateUserWord } from "../../API/API";

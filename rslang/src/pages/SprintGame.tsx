@@ -11,6 +11,7 @@ import Loader from "../components/UI/Loader/Loader";
 import { ReactComponent as NoLogo } from "../components/UI/Table/assets/x_circle.svg";
 import Table from "../components/UI/Table/Table";
 import { getRandomWord, updateAfterGame } from "../components/Updater";
+import { PAGES_PER_GROUP } from "../constants/constants";
 import { MyContext } from "../context/context";
 import { getCoefficient } from "../helpers/helpers";
 import { useFetch } from "../hooks/useFetch";
@@ -34,8 +35,8 @@ const SprintGame = () => {
     const arrayPromisesWord = [];
 
     // Раскоментировать после отладки
-    // for (let i = 0; i < PAGES_PER_GROUP; i++) {
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < PAGES_PER_GROUP; i++) {
+      // for (let i = 0; i < 1; i++) {
       arrayPromisesWord.push(getWords(group, i))
     }
 

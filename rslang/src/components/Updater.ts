@@ -9,7 +9,7 @@ import {
   IGameDailyStatisticKey,
   IPropertyWord,
   IStatistic,
-  IWords,
+  IWords
 } from '../types/types'
 import {
   createUserWord,
@@ -17,7 +17,7 @@ import {
   getUserStatistics,
   getUserWord,
   updateUserStatistics,
-  updateUserWord,
+  updateUserWord
 } from './API/API'
 
 // const amountLearned = 0
@@ -92,18 +92,18 @@ const updateOneUserWord = async ({ isAuth, wordOfStat }: IUpdateOneUserWord) => 
     const newProgress =
       progressIndex < 4
         ? {
-            ...currentUserWord.optional.progress,
-            index: progressIndex + 1,
-            [progressIndex + 1]: wordOfStat.isRight,
-          }
+          ...currentUserWord.optional.progress,
+          index: progressIndex + 1,
+          [progressIndex + 1]: wordOfStat.isRight,
+        }
         : {
-            index: progressIndex,
-            0: currentUserWord.optional.progress[1],
-            1: currentUserWord.optional.progress[2],
-            2: currentUserWord.optional.progress[3],
-            3: currentUserWord.optional.progress[4],
-            4: wordOfStat.isRight,
-          }
+          index: progressIndex,
+          0: currentUserWord.optional.progress[1],
+          1: currentUserWord.optional.progress[2],
+          2: currentUserWord.optional.progress[3],
+          3: currentUserWord.optional.progress[4],
+          4: wordOfStat.isRight,
+        }
 
     const updatedCurrentUserWord: IPropertyWord = {
       difficulty: newDifficulty,
@@ -217,26 +217,26 @@ const createNewStatistic = ({
   const sprintIfCurrentDateContent =
     currentGame === 'audio'
       ? {
-          ...oldStatistics.optional.daily[notCurrentGame],
-        }
+        ...oldStatistics.optional.daily[notCurrentGame],
+      }
       : {
-          newWords: oldStatistics.optional.daily[currentGame].newWords + amountNewWords,
-          totalAnswer: oldStatistics.optional.daily[currentGame].totalAnswer + totalAnswer,
-          rightAnswer: oldStatistics.optional.daily[currentGame].rightAnswer + rightAnswer,
-          maxSeries: Math.max(oldStatistics.optional.daily[currentGame].maxSeries, maxSeries),
-        }
+        newWords: oldStatistics.optional.daily[currentGame].newWords + amountNewWords,
+        totalAnswer: oldStatistics.optional.daily[currentGame].totalAnswer + totalAnswer,
+        rightAnswer: oldStatistics.optional.daily[currentGame].rightAnswer + rightAnswer,
+        maxSeries: Math.max(oldStatistics.optional.daily[currentGame].maxSeries, maxSeries),
+      }
 
   const audioIfCurrentDateContent =
     currentGame === 'sprint'
       ? {
-          ...oldStatistics.optional.daily[notCurrentGame],
-        }
+        ...oldStatistics.optional.daily[notCurrentGame],
+      }
       : {
-          newWords: oldStatistics.optional.daily[currentGame].newWords + amountNewWords,
-          totalAnswer: oldStatistics.optional.daily[currentGame].totalAnswer + totalAnswer,
-          rightAnswer: oldStatistics.optional.daily[currentGame].rightAnswer + rightAnswer,
-          maxSeries: Math.max(oldStatistics.optional.daily[currentGame].maxSeries, maxSeries),
-        }
+        newWords: oldStatistics.optional.daily[currentGame].newWords + amountNewWords,
+        totalAnswer: oldStatistics.optional.daily[currentGame].totalAnswer + totalAnswer,
+        rightAnswer: oldStatistics.optional.daily[currentGame].rightAnswer + rightAnswer,
+        maxSeries: Math.max(oldStatistics.optional.daily[currentGame].maxSeries, maxSeries),
+      }
 
   const statIfCurrentDate: IStatistic = {
     learnedWords: 0,
@@ -269,26 +269,26 @@ const createNewStatistic = ({
   const sprintIfNewDateContent =
     currentGame === 'audio'
       ? {
-          ...oldStatistics.optional.daily.sprint,
-        }
+        ...oldStatistics.optional.daily.sprint,
+      }
       : {
-          newWords: 0 + amountNewWords,
-          totalAnswer: 0 + totalAnswer,
-          rightAnswer: 0 + rightAnswer,
-          maxSeries: maxSeries,
-        }
+        newWords: 0 + amountNewWords,
+        totalAnswer: 0 + totalAnswer,
+        rightAnswer: 0 + rightAnswer,
+        maxSeries: maxSeries,
+      }
 
   const audioIfNewDateContent =
     currentGame === 'sprint'
       ? {
-          ...oldStatistics.optional.daily.audio,
-        }
+        ...oldStatistics.optional.daily.audio,
+      }
       : {
-          newWords: 0 + amountNewWords,
-          totalAnswer: 0 + totalAnswer,
-          rightAnswer: 0 + rightAnswer,
-          maxSeries: maxSeries,
-        }
+        newWords: 0 + amountNewWords,
+        totalAnswer: 0 + totalAnswer,
+        rightAnswer: 0 + rightAnswer,
+        maxSeries: maxSeries,
+      }
 
   const statIfNewDate: IStatistic = {
     learnedWords: 0,

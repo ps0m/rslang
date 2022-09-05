@@ -54,10 +54,7 @@ export const getMaxSeries = (array: ICustomStat[]) => {
 export const getCurrentDate = () => {
   const f = new Date()
 
-  // console.log(f, [f.getFullYear(), f.getMonth(), f.getDate()].join('_'), 'today');
-
   return [f.getFullYear(), f.getMonth(), f.getDate()].join('_')
-  // return "2022_8_3"
 }
 
 export const initialStatistic: IStatistic = {

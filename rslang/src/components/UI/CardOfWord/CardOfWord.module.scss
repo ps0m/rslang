@@ -109,12 +109,12 @@
       &:hover {
         fill: $trueColor;
       }
-    &_lose {
-      fill: $falseColor;
+      &_lose {
+        fill: $falseColor;
+      }
     }
   }
 }
-
 .progress {
   display: flex;
   justify-content: center;
