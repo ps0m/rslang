@@ -13,6 +13,7 @@
     justify-content: space-between;
     align-items: stretch;
     font-family: $fontFamilyOne;
+
     @media (max-width: 800px) {
       flex-direction: column;
     }
@@ -29,10 +30,12 @@
     color: #000;
     background-color: $subBaseColor;
     box-shadow: 0 0 5px #000;
+
     @media (max-width: 800px) {
       font-size: 1rem;
       padding: 30px;
     }
+
     &:disabled {
       background-color: grey;
       color: #fff;
@@ -47,6 +50,7 @@
     justify-content: space-between;
     align-items: stretch;
     gap: 20px;
+
     @media (max-width: 800px) {
       flex-direction: column;
       justify-content: center;
@@ -60,23 +64,28 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     @media (max-width: 800px) {
       max-width: 500px;
     }
+
     &_title {
       font-family: $fontFamilyOne;
       font-size: 1.2rem;
       text-align: center;
+
       & span {
         background-color: $trueColor;
       }
     }
   }
+
   &__notate {
     font-family: $fontFamilyOne;
     font-size: 3rem;
     text-align: center;
     color: #e38627;
+
     @media (max-width: 800px) {
       font-size: 2rem;
     }

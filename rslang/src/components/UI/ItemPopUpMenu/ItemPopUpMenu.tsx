@@ -18,4 +18,3 @@ const ItemPopUpMenu = ({ itemText, itemImg, itemLink }: IItemProps) => {
 }
 
 export default ItemPopUpMenu
-

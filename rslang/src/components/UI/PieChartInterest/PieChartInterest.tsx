@@ -5,7 +5,7 @@ type Props = {
   data: ComponentProps<typeof PieChart>['data'];
 };
 
-function PieChartInterest(props: Props) {
+const PieChartInterest = (props: Props) => {
   const [hovered, setHovered] = useState<number | undefined>(undefined);
 
   const data = props.data.map((entry, i) => {

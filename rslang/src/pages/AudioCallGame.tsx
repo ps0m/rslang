@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getWords } from "../components/API/API";
@@ -10,7 +12,7 @@ import Progress from "../components/UI/Progress/Progress";
 import { ReactComponent as NoLogo } from "../components/UI/Table/assets/x_circle.svg";
 import Table from "../components/UI/Table/Table";
 import { getOrderRandomWords, updateAfterGame } from "../components/Updater";
-import { MAX_MISTAKES_OF_AUDIO_GAMES } from "../constants/constatnts";
+import { MAX_MISTAKES_OF_AUDIO_GAMES } from "../constants/constants";
 import { MyContext } from "../context/context";
 import { useFetch } from "../hooks/useFetch";
 import { IContentForAudio, ICustomStat, IWords } from "../types/types";

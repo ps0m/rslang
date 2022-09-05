@@ -10,7 +10,6 @@ const PopUpMenu = ({ setActive }: Props,) => {
 
   const { isAuth } = useContext(MyContext)
 
-
   return (
     <div className={`${styles.popUpMenu}`} onClick={() => setActive(false)}>
       <div className={styles.menu}>

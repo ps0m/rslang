@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, ReactNode, useEffect, useState } from "react";
 import Button from "../Button/Button";
 import { ReactComponent as IconPause } from "./assets/pauseCircle.svg";

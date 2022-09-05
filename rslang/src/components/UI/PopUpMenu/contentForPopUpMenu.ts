@@ -2,26 +2,31 @@ export const contentForPopUp = [
   {
     itemText: 'Главная',
     itemImg: 'home',
-    itemLink: '/home'
+    itemLink: '/home',
   },
   {
     itemText: 'Учебник',
     itemImg: 'book',
-    itemLink: '/book'
+    itemLink: '/book',
   },
   {
     itemText: 'Спринт',
     itemImg: 'gameOne',
-    itemLink: '/sprint_game'
+    itemLink: '/sprint_game',
   },
   {
     itemText: 'Аудиовызов',
     itemImg: 'gameTwo',
-    itemLink: '/audio_call_game'
+    itemLink: '/audio_call_game',
   },
   {
     itemText: 'Статистика',
-    itemImg: "home",
-    itemLink: '/statistic'
+    itemImg: 'statistic',
+    itemLink: '/statistic',
+  },
+  {
+    itemText: 'Команда',
+    itemImg: 'team',
+    itemLink: '/team',
   },
 ]

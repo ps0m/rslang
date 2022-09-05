@@ -1,13 +1,13 @@
-import Footer from '../components/UI/Footer/Footer';
-import Header from '../components/UI/Header/Header';
-import MenuTextbook from '../components/UI/MenuTextbook/MenuTextbook';
-import MainTexbook from '../components/UI/MainTexbook/MainTexbook';
-
 import { useEffect, useState } from 'react'
 import { IWords } from '../types/types'
 import { getWords } from '../components/API/API'
+import Footer from '../components/UI/Footer/Footer';
+import Header from '../components/UI/Header/Header';
+import MenuTextbook from '../components/UI/MenuTextbook/MenuTextbook';
+import { MainTexbook } from '../components/UI/MainTexbook/MainTexbook';
 
-const PageСollectorTextbook = ()  => {
+
+const PageСollectorTextbook = () => {
 
   const [wordCards, setWordCards] = useState<Array<IWords>>([]);
   const [group, setGroup] = useState<number>(0);
@@ -18,9 +18,9 @@ const PageСollectorTextbook = ()  => {
   localStorage.setItem('page', JSON.stringify(page));
   localStorage.setItem('color', JSON.stringify(cologBgCard));
 
-  const getWordsForMain = async (group: number, page:number ) => {
+  const getWordsForMain = async (group: number, page: number) => {
     try {
-      const wordMain: Array<IWords> =  await getWords(group, page);
+      const wordMain: Array<IWords> = await getWords(group, page);
 
       setWordCards(wordMain)
     } catch {
@@ -35,12 +35,12 @@ const PageСollectorTextbook = ()  => {
   return (
     <>
       <Header />
-      <MenuTextbook 
-      setGroup={setGroup} 
-      setPage={setPage}
-      setCologBgCard={setCologBgCard}
-      numberPage={page}
-      numberGroup={group}/>
+      <MenuTextbook
+        setGroup={setGroup}
+        setPage={setPage}
+        setCologBgCard={setCologBgCard}
+        numberPage={page}
+        numberGroup={group} />
       <MainTexbook wordCards={wordCards} style={cologBgCard} />
       <Footer />
     </>

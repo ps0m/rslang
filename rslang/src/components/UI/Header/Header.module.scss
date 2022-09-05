@@ -11,7 +11,6 @@
   &__wrapper {
     display: flex;
     align-items: center;
-
     margin-left: 50px;
     display: flex;
     gap: 10px;
@@ -20,11 +19,10 @@
       h1 {
         margin: 0;
         padding: 0;
-
         font-family: $fontFamilyOne;
         font-weight: bold;
-        font-size: 42px;
-        color: #99b98a;
+        font-size: 32px;
+        color: $trueColor;
       }
     }
   }
@@ -35,7 +33,7 @@
   width: 60px;
   height: 60px;
   margin-right: 50px;
-  background-color: #fff;
+  background-color: $trueColor;
   border: none;
   border-radius: 50%;
   color: $baseColor;
@@ -83,10 +81,10 @@
 .button__BurgerMenu {
   width: 60px;
   height: 60px;
-  fill: #99b98a;
+  fill: $trueColor;
 
   &:hover {
-    fill: #65a149;
+    fill: $bgColorHover;
   }
 }
 

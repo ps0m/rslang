@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { URL_BASE } from "../../../constants/constatnts";
+import { URL_BASE } from "../../../constants/constants";
 import { ICustomStat } from "../../../types/types";
 import AudioPlayer from "../AudioPlayer/AudioPlayer";
 import PieChartInterest from "../PieChartInterest/PieChartInterest";
@@ -39,27 +39,27 @@ const Table: FC<ITableProps> = ({ stat, children }) => {
             <table className={styles.table}>
               <thead>
                 <tr>
-                  <th >№</th>
-                  <th >Answer</th>
-                  <th >Word</th>
-                  <th >Translate</th>
-                  <th >Listen</th>
+                  <th>№</th>
+                  <th>Answer</th>
+                  <th>Word</th>
+                  <th>Translate</th>
+                  <th>Listen</th>
                 </tr>
               </thead>
-              <tbody >
+              <tbody>
                 {stat?.map((item, index) => {
                   return (
                     <tr key={item.word.id}>
-                      <td >{index + 1}</td>
-                      <td >{
+                      <td>{index + 1}</td>
+                      <td>{
                         item.isRight
                           ? <YesLogo className={styles.logo_yes} />
                           : <NoLogo className={styles.logo_no} />
                       }
                       </td>
-                      <td >{item.word.word}</td>
-                      <td >{item.word.wordTranslate}</td>
-                      <td ><AudioPlayer
+                      <td>{item.word.word}</td>
+                      <td>{item.word.wordTranslate}</td>
+                      <td><AudioPlayer
                         path={`${URL_BASE}/${item.word.audio}`}
                         className={styles.audioPlayer}
                       /></td>
@@ -68,11 +68,11 @@ const Table: FC<ITableProps> = ({ stat, children }) => {
                 })}
               </tbody>
 
-            </table >
+            </table>
           </>
       }
 
-    </div >
+    </div>
 
   );
 };

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { FC, useEffect, useState } from "react";
 import Button from "../Button/Button";
 import styles from "./Timer.module.scss";
