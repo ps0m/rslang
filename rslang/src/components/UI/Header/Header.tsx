@@ -10,10 +10,10 @@ const Header = () => {
 
   useEffect(() => {
     if (menuActive) {
-      document.body.style.background = "rgba(0, 0, 0, 0.8)";
+      document.body.classList.add("hiddenBody");
       document.body.style.overflow = "hidden";
      } else {
-      document.body.style.background = "none";
+      document.body.classList.remove("hiddenBody");
       document.body.style.overflow = "visible";
      }
   }, [menuActive])

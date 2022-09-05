@@ -57,6 +57,7 @@
     background-color: rgba(227, 209, 209, $alpha: 0.9);
     box-shadow: 0 0 10px #000;
     transition: 0.3s;
+    fill: $trueColor;
     @media (max-width: 700px) {
       width: 100px;
       height: 100px;

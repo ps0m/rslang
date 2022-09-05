@@ -8,6 +8,27 @@
 
 body {
   margin: 0;
+
+  background-image: linear-gradient(rgba(227, 209, 209, 0.95), rgba(225, 182, 182, 0.85)),
+  url(../assets/img/game_background_2000.jpg);
+background-position: center;
+background-repeat: repeat;
+@media (max-height: 1400px) {
+  background-image: linear-gradient(rgba(227, 209, 209, 0.95), rgba(225, 182, 182, 0.85)),
+    url(../assets/img/game_background_1400.jpg);
+}
+@media (max-height: 1000px) {
+  background-image: linear-gradient(rgba(227, 209, 209, 0.95), rgba(225, 182, 182, 0.85)),
+    url(../assets/img/game_background_1000.jpg);
+}
+@media (max-height: 600px) {
+  background-image: linear-gradient(rgba(227, 209, 209, 0.95), rgba(225, 182, 182, 0.85)),
+    url(../assets/img/game_background_600.jpg);
+}
+}
+
+.hiddenBody {
+  background: rgba(0, 0, 0, 0.8);;
 }
 
 .container {

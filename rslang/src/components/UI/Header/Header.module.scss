@@ -24,7 +24,7 @@
         font-family: $fontFamilyOne;
         font-weight: bold;
         font-size: 42px;
-        color: #99b98a;
+        color: $trueColor;
       }
     }
   }
@@ -83,10 +83,10 @@
 .button__BurgerMenu {
   width: 60px;
   height: 60px;
-  fill: #99b98a;
+  fill: $trueColor;
 
   &:hover {
-    fill: #65a149;
+    fill: $trueColorHover;
   }
 }
 
