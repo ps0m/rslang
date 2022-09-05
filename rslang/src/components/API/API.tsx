@@ -113,7 +113,7 @@ export const getUserWord = async (id: string, wordId: string, token: string) => 
     );
 
     if (response.status === 404) {
-      throw new Error('Нет такого пользователя');
+      throw new Error('Нет такого слова у пользователя');
     } else {
       return await response.json();
     }
@@ -155,7 +155,7 @@ export const deleteUserWord = async (id: string, wordId: string, token: string) 
 
 export const getAllUserAggregatedWords = async (id: string, perPage: number, filter: object, token: string) => {
   const filterToString = JSON.stringify(filter)
-  const response = await fetch(`${URL_USERS}/${id}/aggregatedWords?wordsPerPage=${perPage}&filter=${filterToString}`, {
+  const response = await fetch(`${URL_USERS}/${id}/aggregatedWords?&wordsPerPage=${perPage}&filter=${filterToString}`, {
     headers: {
       'Authorization': `Bearer ${token}`,
     }

@@ -85,7 +85,10 @@ const CardOfSprint: FC<IPropsCardOfSprint> = ({ content, score, setIsFinishGame,
 
           <Button
             className={styles.card__volume}
-            onClick={() => setIsVolume(!isVolume)}>
+            onClick={(e) => {
+              e.preventDefault();
+              setIsVolume(!isVolume)
+            }}>
             {isVolume
               ? <VolumeOn />
               : <VolumeOff />

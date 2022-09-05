@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   justify-content: start;
-  gap: 20px;  
+  gap: 20px;
   align-items: stretch;
   font-family: $fontFamilyOne;
   background-color: $subBaseColor;
@@ -15,9 +15,9 @@
 
   &__block_image {
     position: relative;
-    overflow:hidden;
-    width:460px;
-    height:320px;
+    overflow: hidden;
+    width: 460px;
+    height: 320px;
     // width: 100%;
     // object-fit: cover;
     // border-radius: inherit;
@@ -26,12 +26,12 @@
 
   &__image {
     position: absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:460px;
-    height:320px;
-    object-fit:cover;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 460px;
+    height: 320px;
+    object-fit: cover;
     // width: 100%;
     // min-height: 100%;
     // object-fit: cover;
@@ -45,7 +45,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     padding: 10px 0;
     gap: 10px;
   }
@@ -93,7 +93,7 @@
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    
+
     &_big {
       height: 65px;
       fill: rgb(255 255 255);
@@ -102,18 +102,37 @@
 
   &__icon,
   &__icon_active {
-    width: 25px;
-    height: 25px;
-    fill: $trueColor;
+    width: 35px;
+    height: 35px;
+    fill: #808080;
     transition: 0.3s;
     &:hover {
-      fill: $trueColorHover;
+      fill: #c5c2c2;
     }
     &_active {
       fill: $trueColor;
       &:hover {
         fill: $trueColorHover;
       }
+    }
+  }
+}
+
+.progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  &__icon {
+    width: 30px;
+    height: 30px;
+    fill: grey;
+    &_win {
+      fill: $trueColor;
+    }
+    &_lose {
+      fill: $falseColor;
     }
   }
 }

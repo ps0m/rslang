@@ -1,22 +1,24 @@
-import { IWords } from "../../../types/types";
+import { IDifficulty, IFullWordsForBook } from "../../../types/types";
 import CardOfWord from '../CardOfWord/CardOfWord';
 import styles from './MainTexbook.module.scss';
 
 type Props = {
-  wordCards: IWords[]
+  words: IFullWordsForBook[]
   style: string
 }
 
-export const MainTexbook = ({ wordCards, style }: Props) => {
+export const MainTexbook = ({ words, style }: Props) => {
+
   return (
     <div className={`${styles.container} ${styles.cardsEng}`}>
       {
-        wordCards.map ((item) => {
-          return <CardOfWord word={item} 
-          learned={false} 
-          difficult={false}
-          key={item.id}
-          styleColor={style}/>          
+        words.map((item) => {
+          return <CardOfWord word={item.word}
+            learned={item.learned}
+            difficult={item.difficult === IDifficulty.hard}
+            progress={item.progress}
+            key={item.word.id}
+            styleColor={style} />
         })
       }
     </div>
