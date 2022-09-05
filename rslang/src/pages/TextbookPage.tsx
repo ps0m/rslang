@@ -1,30 +1,20 @@
+import { useEffect, useState } from 'react';
+import { getWords } from '../components/API/API';
 import Footer from '../components/UI/Footer/Footer';
 import Header from '../components/UI/Header/Header';
 import MainTexbook from '../components/UI/MainTexbook/MainTexbook';
 import MenuTextbook from '../components/UI/MenuTextbook/MenuTextbook';
-
-import { useContext, useEffect, useState } from 'react';
-import { getAllUserAggregatedWords, getUserWord, getWords } from '../components/API/API';
-import Loader from '../components/UI/Loader/Loader';
-import { MyContext } from '../context/context';
-import { useFetch } from '../hooks/useFetch';
-import { IAgregateWords, IDifficulty, IFullWordsForBook, IOptionalProgress, IPropertyWord, IWords } from '../types/types';
+import { IWords } from '../types/types';
 
 const PageСollectorTextbook = () => {
 
   const [words, setWords] = useState<IWords[]>([]);
   const [fullWords, setFullWords] = useState<IFullWordsForBook[]>([]);
-  // const [difficultWords, setDifficultWords] = useState<IWords[]>([]);
-  // const [learnedWords, setLearnedWords] = useState<IWords[]>([]);
   const [group, setGroup] = useState<number>(0);
   const [page, setPage] = useState<number>(0);
   const [cologBgCard, setCologBgCard] = useState('#4640BE')
   const [fetchWords, isWordsLoad, wordsError] = useFetch(getWordsForMain)
-
   const { isAuth } = useContext(MyContext)
-  // localStorage.setItem('ps0m_group', JSON.stringify(group));
-  // localStorage.setItem('ps0m_page', JSON.stringify(page));
-  // localStorage.setItem('ps0m_color', JSON.stringify(cologBgCard));
 
   async function getWordsForMain() {
     const wordMain: IWords[] = await getWords(group, page);
@@ -62,7 +52,6 @@ const PageСollectorTextbook = () => {
 
     console.log(wordsWithProgress, progressForWords);
 
-
     const allWords: IFullWordsForBook[] = wordMain.map(oneWord => {
       let isDifficult: IDifficulty = IDifficulty.easy;
       let isLearned = false;
@@ -87,7 +76,6 @@ const PageСollectorTextbook = () => {
           progress = progressForWords[i].optional.progress
           break;
         }
-
       }
 
       return {

@@ -7,7 +7,7 @@
   &__wrNav {
     padding: 0 0 0 50px;
     background: url(../../../assets/img/background_mainPage.png) center (center/auto) no-repeat;
-    
+
     &__header {
       margin: 0;
       padding-top: 74px;
@@ -21,7 +21,7 @@
     &__nav {
       height: 74px;
       display: flex;
-      flex-wrap:wrap;
+      flex-wrap: wrap;
       gap: 10px;
       padding: 15px 0 15px 0;
     }
@@ -30,16 +30,16 @@
 }
 
 .ulScroll {
-  overflow-y:scroll;
-  
+  overflow-y: scroll;
+
   &::-webkit-scrollbar {
     width: 10px;
     background-color: transparent;
-}
+  }
 
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: #99b98a;
+    background-color: $trueColorHover;
   }
 
   &::-webkit-scrollbar-track {
@@ -50,30 +50,27 @@
 
 .sectionWr__button {
   height: 48px;
-
   display: flex;
-  align-items:center; 
+  align-items: center;
   justify-content: center;
-
   border: 2px solid #ffffff;
   border-radius: 15px;
   padding: 10px 15px;
-
   box-shadow: 0px 10px 20px rgba(70, 64, 190, 0.4);
- 
+
   cursor: pointer;
 
   &:hover {
-    background-color: #99b98a !important;
+    background-color: $trueColor !important;
   }
 
   &:focus {
     box-shadow: 0 0 0 1px #e4e1e1, 0 0 10px #ffffff;
   }
 
-  &_desc {        
+  &_desc {
     font-size: 18px;
-    font-weight: bold;    
+    font-weight: bold;
     padding-left: 5px;
     color: #ffffff;
   }
@@ -91,7 +88,7 @@
 }
 
 .sectionDimensions {
-  width: 140px;  
+  width: 140px;
 }
 
 .sectionWr__page {
@@ -99,16 +96,13 @@
 }
 
 .sectionPage {
-  width: 160px;  
+  width: 160px;
 }
 
 .sectionWr__game {
   display: flex;
   gap: 10px;
 }
-
-
-
 
 .button__previousPage {
   width: 48px;
@@ -136,7 +130,7 @@
 }
 
 .iconSection {
-  fill: inherit ;
+  fill: inherit;
   width: 24px;
   height: 24px;
   padding-right: 10px;
@@ -155,6 +149,7 @@
   .sectionWr__navAndPage {
     order: 1;
   }
+
   .menuTextbook__wrNav__header {
     text-align: center;
   }
@@ -164,10 +159,12 @@
   .menuTextbook__wrNav__nav {
     justify-content: center;
   }
+
   .sectionWr__navAndPage {
     flex-wrap: wrap;
     justify-content: center;
   }
+
   .sectionWr__game {
     flex-wrap: wrap;
   }
@@ -180,19 +177,20 @@
 }
 
 @media (max-width: 432px) {
-  
+
   .menuTextbook__wrNav__nav {
     height: 196px;
     justify-content: center;
-  } 
+  }
 }
 
 @media (max-width: 390px) {
-  
-  .sectionWr__game {    
+
+  .sectionWr__game {
     justify-content: center;
   }
+
   .menuTextbook__wrNav__nav {
-    height: 252px;    
-  }  
+    height: 252px;
+  }
 }

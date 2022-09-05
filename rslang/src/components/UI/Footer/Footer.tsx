@@ -1,6 +1,5 @@
 import styles from './Footer.module.scss'
 
-
 const Footer = () => {
   return (
     <footer className={`${styles.footer} ${styles.container}`}>
@@ -10,7 +9,7 @@ const Footer = () => {
       </div>
 
       <div className={styles.footer__team}>
-        <a className={styles.footer__team_link} href='https://github.com/ZmitserFurmanau'>Źmićer Furmanaŭ</a>
+        <a className={styles.footer__team_link} href='https://github.com/ZmitserFurmanau'>Zmitser Furmanau</a>
         <a className={styles.footer__team_link} href='https://github.com/ps0m'>Sergey Pobudey</a>
         <a className={styles.footer__team_link} href='https://github.com/Glav-Tz'>Anton Gorshkov</a>
       </div>

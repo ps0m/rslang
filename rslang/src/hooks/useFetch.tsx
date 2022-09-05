@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface IFetching {
   // (): [() => void, boolean, string]
   (): Promise<void>

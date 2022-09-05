@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { MyContext } from '../../../context/context'

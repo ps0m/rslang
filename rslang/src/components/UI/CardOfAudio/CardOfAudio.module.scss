@@ -13,6 +13,7 @@
     justify-content: center;
     align-items: baseline;
   }
+
   &__block_image {
     max-width: 90%;
     position: relative;
@@ -25,6 +26,7 @@
     opacity: 0%;
     transition-property: transform, opacity;
     transition-duration: 1s;
+
     &_active {
       transform: scale(1);
       opacity: 100%;
@@ -57,17 +59,21 @@
     background-color: rgba(227, 209, 209, $alpha: 0.9);
     box-shadow: 0 0 10px #000;
     transition: 0.3s;
+    fill: $trueColor;
     @media (max-width: 700px) {
       width: 100px;
       height: 100px;
     }
+
     &:hover {
       box-shadow: 0 0 20px rgb(84, 79, 79);
     }
+
     &:active {
       box-shadow: 0 0 60px rgb(167, 156, 156);
     }
   }
+
   &__volume_background {
     display: flex;
     justify-content: center;
@@ -81,6 +87,7 @@
   &__volume {
     height: 40px;
   }
+
   &__container_buttons {
     width: 100%;
     display: flex;
@@ -102,20 +109,26 @@
     white-space: nowrap;
     background-color: $subBaseColor;
     transition: 0.3s;
+
     @media (max-width: 400px) {
       font-size: 1.3rem;
     }
+
     &:hover {
       background-color: $baseColor;
     }
+
     &_win {
       background-color: $trueColor;
+
       &:hover {
         background-color: $trueColor;
       }
     }
+
     &_lose {
       background-color: $falseColor;
+
       &:hover {
         background-color: $falseColor;
       }

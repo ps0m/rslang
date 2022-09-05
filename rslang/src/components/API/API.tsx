@@ -1,4 +1,4 @@
-import { URL_SINGIN, URL_USERS, URL_WORDS } from "../../constants/constatnts";
+import { URL_SINGIN, URL_USERS, URL_WORDS } from "../../constants/constants";
 import { IEmailPassword, IPropertyWord, ISettings, IStatistic, IUser, IWords } from "../../types/types";
 
 export const getWords = async (group = 0, page = 0) => {

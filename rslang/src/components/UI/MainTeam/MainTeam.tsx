@@ -1,5 +1,5 @@
 import styles from './MainTeam.module.scss'
-import {textHeaderTeam, descriptionTeam} from './contentMainTeam'
+import { textHeaderTeam, descriptionTeam } from './contentMainTeam'
 import CardMainTeam from './cardMainTeam'
 
 const MainTeam = () => {
@@ -7,8 +7,8 @@ const MainTeam = () => {
     <>
       <section className={`${styles.MainTeam} ${styles.container}`}>
         <div className={`${styles.MainTeam__header}`}>{textHeaderTeam}</div>
-        <div className={`${styles.teamWr}`}>        
-        {descriptionTeam.map((item, index) => {
+        <div className={`${styles.teamWr}`}>
+          {descriptionTeam.map((item, index) => {
             return <CardMainTeam
               imgItem={item.imgItem}
               nameItem={item.nameItem}

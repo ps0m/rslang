@@ -10,19 +10,20 @@ const Header = () => {
 
   useEffect(() => {
     if (menuActive) {
-      document.body.style.background = "rgba(0, 0, 0, 0.8)";
+      document.body.classList.add("hiddenBody");
       document.body.style.overflow = "hidden";
      } else {
-      document.body.style.background = "none";
+      document.body.classList.remove("hiddenBody");
+
       document.body.style.overflow = "visible";
-     }
+    }
   }, [menuActive])
-  
+
 
   return (
     <header className={`${styles.header} ${styles.container}`}>
       <div className={styles.header__wrapper}>
-      {menuActive && <PopUpMenu setActive={setMenuActive} />}
+        {menuActive && <PopUpMenu setActive={setMenuActive} />}
         <Button
           onClick={() => setMenuActive((prevState) => !prevState)}>
           <IconBurgerMenu className={styles.button__BurgerMenu} />

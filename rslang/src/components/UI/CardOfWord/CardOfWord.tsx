@@ -10,7 +10,6 @@ import { ReactComponent as IconDifficult } from "./assets/icon_difficult.svg";
 import { ReactComponent as IconLearned } from "./assets/icon_learned.svg";
 import styles from "./CardOfWord.module.scss";
 
-
 interface ICard {
   word: IWords,
   learned: boolean,
@@ -165,10 +164,7 @@ const Card: FC<ICard> = ({ word, learned, difficult, progress, styleColor }) => 
             <div>{word.textMeaningTranslate}</div>
           </div>
         </div>
-
-
       </div>
-
     </div>
   );
 };

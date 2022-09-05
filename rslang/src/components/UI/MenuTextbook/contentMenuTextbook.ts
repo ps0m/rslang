@@ -1,4 +1,4 @@
-export const headerTextbook = "Учебник" 
+export const headerTextbook = 'Учебник'
 export const section = [
   {
     textName: 'Раздел 1',
@@ -12,12 +12,12 @@ export const section = [
   },
   {
     textName: 'Раздел 3',
-    color: '#424abf',
+    color: '#E38627',
     value: 3,
   },
   {
     textName: 'Раздел 4',
-    color: '#99b98a',
+    color: '#91cb39',
     value: 4,
   },
   {
@@ -34,7 +34,7 @@ export const section = [
     textName: 'Раздел 7',
     color: '#37373d',
     value: 7,
-  }
+  },
 ]
 
 export const page = [
