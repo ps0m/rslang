@@ -88,13 +88,6 @@ export interface IDailyStatistic extends IGameDailyStatistic {
   date: string
 }
 
-// export interface IDailyStatistic {
-//   sprint: IOptionalStatisticGame,
-//   audio: IOptionalStatisticGame,
-//   words: IOptionalStatisticWords,
-//   date: string
-// }
-
 export interface IItemOfLongTermStatistic {
   newLearnedWords: number
   totalLearnedWords: number
@@ -155,4 +148,20 @@ export enum VariantsAudioGame {
 export interface IContext {
   isAuth: IAuth | null
   setIsAuth: Dispatch<SetStateAction<IAuth | null>>
+}
+
+export interface IAgregateWordsTotal {
+  count: number
+}
+
+export interface IAgregateWords {
+  paginatedResults: IWords[],
+  totalCount: IAgregateWordsTotal[]
+}
+
+export interface IFullWordsForBook {
+  word: IWords,
+  difficult: IDifficulty
+  learned: boolean
+  progress: IOptionalProgress
 }

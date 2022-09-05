@@ -109,6 +109,27 @@
       &:hover {
         fill: $trueColor;
       }
+      &_lose {
+        fill: $falseColor;
+      }
+    }
+  }
+}
+.progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  &__icon {
+    width: 30px;
+    height: 30px;
+    fill: grey;
+    &_win {
+      fill: $trueColor;
+    }
+    &_lose {
+      fill: $falseColor;
     }
   }
 }

@@ -12,7 +12,7 @@ import Progress from "../components/UI/Progress/Progress";
 import { ReactComponent as NoLogo } from "../components/UI/Table/assets/x_circle.svg";
 import Table from "../components/UI/Table/Table";
 import { getOrderRandomWords, updateAfterGame } from "../components/Updater";
-import { MAX_MISTAKES_OF_AUDIO_GAMES } from "../constants/constants";
+import { MAX_MISTAKES_OF_AUDIO_GAMES, PAGES_PER_GROUP } from "../constants/constants";
 import { MyContext } from "../context/context";
 import { useFetch } from "../hooks/useFetch";
 import { IContentForAudio, ICustomStat, IWords } from "../types/types";
@@ -37,8 +37,8 @@ const AudioCallGame = () => {
     const arrayPromisesWord = [];
 
     // Раскоментировать после отладки
-    // for (let i = 0; i < PAGES_PER_GROUP; i++) {
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < PAGES_PER_GROUP; i++) {
+      // for (let i = 0; i < 1; i++) {
       arrayPromisesWord.push(getWords(group, i))
     }
 

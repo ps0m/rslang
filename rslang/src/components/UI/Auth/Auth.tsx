@@ -19,17 +19,13 @@ const Auth = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [errorText, setErrorText] = useState<string | null>(null)
   const [fetchAuth, isAuthLoad, AuthError] = useFetch(handleRegisterSubmit)
 
   const history = useNavigate();
   const { setIsAuth } = useContext(MyContext)
 
 
-  // async function handleRegisterSubmit(event: React.FormEvent<HTMLFormElement>) {
   async function handleRegisterSubmit() {
-    // try {
-    // event.preventDefault()
 
     if (subPage === typeSubPage.registration) {
       await createUser({ name, email, password });
@@ -44,14 +40,6 @@ const Auth = () => {
 
     setIsAuth(response)
     history('/home')
-    // } catch (e: unknown) {
-    //   if (typeof e === "string") {
-    //     setErrorText(e);
-    //   } else if (e instanceof Error) {
-    //     setErrorText(e.message);
-    //   }
-
-    // }
   }
 
   return (
@@ -65,8 +53,8 @@ const Auth = () => {
             fetchAuth()
           }
           }>
-            {errorText !== null
-              ? <div className={styles.error}>{errorText}</div>
+            {AuthError.length !== 0
+              ? <div className={styles.error}>{AuthError}</div>
               : ''
             }
             {subPage === typeSubPage.registration
