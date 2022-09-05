@@ -12,12 +12,12 @@ export const section = [
   },
   {
     textName: 'Раздел 3',
-    color: '#424abf',
+    color: '#E38627',
     value: 3,
   },
   {
     textName: 'Раздел 4',
-    color: '#99b98a',
+    color: '#91cb39',
     value: 4,
   },
   {

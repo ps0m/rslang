@@ -21,7 +21,7 @@
         padding: 0;
         font-family: $fontFamilyOne;
         font-weight: bold;
-        font-size: 32px;
+        font-size: 42px;
         color: $trueColor;
       }
     }
@@ -84,7 +84,7 @@
   fill: $trueColor;
 
   &:hover {
-    fill: $bgColorHover;
+    fill: $trueColorHover;
   }
 }
 

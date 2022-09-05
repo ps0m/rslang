@@ -97,18 +97,17 @@
   &__icon_active {
     width: 25px;
     height: 25px;
-    fill: $trueColor;
+    fill: $playerColor;
     transition: 0.3s;
 
     &:hover {
-      fill: $trueColorHover;
+      fill: $trueColor;
     }
 
     &_active {
-      fill: $trueColor;
-
+      fill: $playerColor;
       &:hover {
-        fill: $trueColorHover;
+        fill: $trueColor;
       }
     }
   }

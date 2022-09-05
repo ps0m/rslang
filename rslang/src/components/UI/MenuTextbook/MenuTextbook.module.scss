@@ -39,7 +39,7 @@
 
   &::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background-color: #99b98a;
+    background-color: $trueColorHover;
   }
 
   &::-webkit-scrollbar-track {
@@ -61,7 +61,7 @@
   cursor: pointer;
 
   &:hover {
-    background-color: #99b98a !important;
+    background-color: $trueColor !important;
   }
 
   &:focus {
