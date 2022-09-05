@@ -148,6 +148,7 @@
 .loader__circle:nth-child(5):after {
   animation-delay: -0.66667s;
 }
+
 .loader__circle:nth-child(6) {
   transform: rotate(-150deg) translateX(5em) rotate(150deg);
   z-index: 1;
@@ -238,10 +239,12 @@
     animation-timing-function: ease-in;
     box-shadow: 0.1em 0.1em 0 0.1em black, 0.3em 0 0.3em rgba(0, 0, 0, 0.3);
   }
+
   25% {
     animation-timing-function: ease-out;
     box-shadow: 0.1em 0.1em 0 0.1em black, 0.8em 0 0.8em rgba(0, 0, 0, 0.5);
   }
+
   50%,
   to {
     box-shadow: 0.1em 0.1em 0 0.1em black, 0.3em 0 0.3em rgba(0, 0, 0, 0.3);
@@ -254,11 +257,13 @@
     background-color: var(--bg);
     transform: translate(0, 0);
   }
+
   25% {
     animation-timing-function: ease-out;
     background-color: var(--primary2);
     transform: translate(-71%, -71%);
   }
+
   50%,
   to {
     background-color: var(--bg);
@@ -272,11 +277,13 @@
     background-color: var(--bg);
     clip-path: polygon(0 75%, 100% 75%, 100% 100%, 0 100%);
   }
+
   25% {
     animation-timing-function: ease-out;
     background-color: var(--primary1);
     clip-path: polygon(0 25%, 100% 25%, 100% 100%, 0 100%);
   }
+
   50%,
   to {
     background-color: var(--bg);

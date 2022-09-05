@@ -11,28 +11,24 @@ import TextbookPage from './pages/TextbookPage';
 import './styles/App.scss';
 import { IAuth } from './types/types';
 
-function App() {
+const App = () => {
   const [isAuth, setIsAuth] = useState<IAuth | null>(() => {
     return InitialisAuth()
   })
 
   return (
-    <MyContext.Provider value={{
-      isAuth,
-      setIsAuth
-    }}>
+    <MyContext.Provider value={{ isAuth, setIsAuth }}>
       <BrowserRouter>
         <Routes>
-          <Route path="/home" element={<MainPage />} />
-          <Route path="/book" element={<TextbookPage />} />
-          <Route path="/sprint_game" element={<SprintGame />} />
-          <Route path="/audio_call_game" element={<AudioCallGame />} />
-          <Route path="/statistic" element={<StatisticPage />} />
+          <Route element={<MainPage />} path="/home" />
+          <Route element={<TextbookPage />} path="/book" />
+          <Route element={<SprintGame />} path="/sprint_game" />
+          <Route element={<AudioCallGame />} path="/audio_call_game" />
+          <Route element={<StatisticPage />} path="/statistic" />
           statistic
-          <Route path="/auth" element={<AuthPage />} />
-          <Route
-            path="*"
-            element={<Navigate to="/home" replace />} />
+          <Route element={<MainPage />} path="/team" />
+          <Route element={<AuthPage />} path="/auth" />
+          <Route element={<Navigate to="/home" replace />} path="*" />
         </Routes>
       </BrowserRouter>
     </MyContext.Provider>

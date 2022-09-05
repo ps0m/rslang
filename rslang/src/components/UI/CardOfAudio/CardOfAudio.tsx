@@ -1,13 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Dispatch, FC, SetStateAction, useEffect, useRef, useState } from 'react';
 import { default as soundError } from '../../../assets/audio/error.mp3';
 import { default as soundSuccess } from '../../../assets/audio/success.mp3';
-import { URL_BASE } from '../../../constants/constatnts';
+import { URL_BASE } from '../../../constants/constants';
 import { IContentForAudio, ICustomStat, IWords } from '../../../types/types';
 import AudioPlayer from '../AudioPlayer/AudioPlayer';
 import Button from '../Button/Button';
 import VolumeChange from '../VolumeChange/VolumeChange';
 import styles from './CardOfAudio.module.scss';
-
 
 interface IPropsCardOfAudio {
   content: IContentForAudio | null
@@ -59,7 +59,6 @@ const CardOfAudio: FC<IPropsCardOfAudio> = ({ content, getResult, setMistakes })
     // if (arrayKeyDigit.includes(event.code)) {
     //   pauseGame.current = true;
     // }
-
 
     switch (event.code) {
       case 'Digit1': checkAnswer(content?.extraWords[0])
@@ -180,7 +179,6 @@ const CardOfAudio: FC<IPropsCardOfAudio> = ({ content, getResult, setMistakes })
             })
             : ''
         }
-
 
       </div>
     </div >
