@@ -3,7 +3,6 @@ import Header from '../components/UI/Header/Header';
 import MenuTextbook from '../components/UI/MenuTextbook/MenuTextbook';
 import MainTexbook from '../components/UI/MainTexbook/MainTexbook';
 
-
 import { useEffect, useState } from 'react'
 import { IWords } from '../types/types'
 import { getWords } from '../components/API/API'
@@ -13,6 +12,11 @@ const PageСollectorTextbook = ()  => {
   const [wordCards, setWordCards] = useState<Array<IWords>>([]);
   const [group, setGroup] = useState<number>(0);
   const [page, setPage] = useState<number>(0);
+  const [cologBgCard, setCologBgCard] = useState('#4640BE')
+
+  localStorage.setItem('group', JSON.stringify(group));
+  localStorage.setItem('page', JSON.stringify(page));
+  localStorage.setItem('color', JSON.stringify(cologBgCard));
 
   const getWordsForMain = async (group: number, page:number ) => {
     try {
@@ -33,10 +37,11 @@ const PageСollectorTextbook = ()  => {
       <Header />
       <MenuTextbook 
       setGroup={setGroup} 
-      setPage={setPage} 
+      setPage={setPage}
+      setCologBgCard={setCologBgCard}
       numberPage={page}
       numberGroup={group}/>
-      <MainTexbook wordCards={wordCards} />
+      <MainTexbook wordCards={wordCards} style={cologBgCard} />
       <Footer />
     </>
   );

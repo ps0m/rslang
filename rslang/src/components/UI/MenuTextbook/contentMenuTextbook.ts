@@ -1,161 +1,161 @@
 export const headerTextbook = "Учебник" 
 export const section = [
   {
-    textName: 'Раздел1',
+    textName: 'Раздел 1',
     color: '#4640BE',
     value: 1,
   },
   {
-    textName: 'Раздел2',
-    color: '#DBD9FF',
+    textName: 'Раздел 2',
+    color: '#732e70',
     value: 2,
   },
   {
-    textName: 'Раздел3',
-    color: '#FFC656',
+    textName: 'Раздел 3',
+    color: '#424abf',
     value: 3,
   },
   {
-    textName: 'Раздел4',
+    textName: 'Раздел 4',
     color: '#99b98a',
     value: 4,
   },
   {
-    textName: 'Раздел5',
-    color: '#0817cb',
+    textName: 'Раздел 5',
+    color: '#7984dc',
     value: 5,
   },
   {
-    textName: 'Раздел6',
+    textName: 'Раздел 6',
     color: '#b8495b',
     value: 6,
   },
   {
-    textName: 'Раздел7',
-    color: '#e0ca54',
+    textName: 'Раздел 7',
+    color: '#37373d',
     value: 7,
   }
 ]
 
 export const page = [
   {
-    textName: 'Страница1',
+    textName: 'Страница 1',
     value: 1,
   },
   {
-    textName: 'Страница2',
+    textName: 'Страница 2',
     value: 2,
   },
   {
-    textName: 'Страница3',
+    textName: 'Страница 3',
     value: 3,
   },
   {
-    textName: 'Страница4',
+    textName: 'Страница 4',
     value: 4,
   },
   {
-    textName: 'Страница5',
+    textName: 'Страница 5',
     value: 5,
   },
   {
-    textName: 'Страница6',
+    textName: 'Страница 6',
     value: 6,
   },
   {
-    textName: 'Страница7',
+    textName: 'Страница 7',
     value: 7,
   },
   {
-    textName: 'Страница8',
+    textName: 'Страница 8',
     value: 8,
   },
   {
-    textName: 'Страница9',
+    textName: 'Страница 9',
     value: 9,
   },
   {
-    textName: 'Страница10',
+    textName: 'Страница 10',
     value: 10,
   },
   {
-    textName: 'Страница11',
+    textName: 'Страница 11',
     value: 11,
   },
   {
-    textName: 'Страница12',
+    textName: 'Страница 12',
     value: 12,
   },
   {
-    textName: 'Страница13',
+    textName: 'Страница 13',
     value: 13,
   },
   {
-    textName: 'Страница14',
+    textName: 'Страница 14',
     value: 14,
   },
   {
-    textName: 'Страница15',
+    textName: 'Страница 15',
     value: 15,
   },
   {
-    textName: 'Страница16',
+    textName: 'Страница 16',
     value: 16,
   },
   {
-    textName: 'Страница17',
+    textName: 'Страница 17',
     value: 17,
   },
   {
-    textName: 'Страница18',
+    textName: 'Страница 18',
     value: 18,
   },
   {
-    textName: 'Страница19',
+    textName: 'Страница 19',
     value: 19,
   },
   {
-    textName: 'Страница20',
+    textName: 'Страница 20',
     value: 20,
   },
   {
-    textName: 'Страница21',
+    textName: 'Страница 21',
     value: 21,
   },
   {
-    textName: 'Страница22',
+    textName: 'Страница 22',
     value: 23,
   },
   {
-    textName: 'Страница23',
+    textName: 'Страница 23',
     value: 23,
   },
   {
-    textName: 'Страница24',
+    textName: 'Страница 24',
     value: 24,
   },
   {
-    textName: 'Страница25',
+    textName: 'Страница 25',
     value: 25,
   },
   {
-    textName: 'Страница26',
+    textName: 'Страница 26',
     value: 26,
   },
   {
-    textName: 'Страница27',
+    textName: 'Страница 27',
     value: 27,
   },
   {
-    textName: 'Страница28',
+    textName: 'Страница 28',
     value: 28,
   },
   {
-    textName: 'Страница29',
+    textName: 'Страница 29',
     value: 29,
   },
   {
-    textName: 'Страница30',
+    textName: 'Страница 30',
     value: 30,
   },
 ]

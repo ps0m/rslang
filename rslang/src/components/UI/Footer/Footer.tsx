@@ -11,8 +11,8 @@ const Footer = () => {
 
       <div className={styles.footer__team}>
         <a className={styles.footer__team_link} href='https://github.com/ZmitserFurmanau'>Źmićer Furmanaŭ</a>
-        <a className={styles.footer__team_link} href='https://github.com/ps0m'>Сергей Побудей</a>
-        <a className={styles.footer__team_link} href='https://github.com/Glav-Tz'>GlavTz</a>
+        <a className={styles.footer__team_link} href='https://github.com/ps0m'>Sergey Pobudey</a>
+        <a className={styles.footer__team_link} href='https://github.com/Glav-Tz'>Anton Gorshkov</a>
       </div>
 
       <div className={styles.footer__year}>2022г.</div>

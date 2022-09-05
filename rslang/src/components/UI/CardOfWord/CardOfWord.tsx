@@ -13,9 +13,10 @@ interface ICard {
   word: IWords,
   learned: boolean,
   difficult: boolean
+  styleColor: string,
 }
 
-const Card: FC<ICard> = ({ word, learned, difficult }) => {
+const Card: FC<ICard> = ({ word, learned, difficult, styleColor }) => {
 
   const { isAuth } = useContext(MyContext)
 
@@ -24,55 +25,58 @@ const Card: FC<ICard> = ({ word, learned, difficult }) => {
   }
 
   return (
-    <div className={styles.card}>
+    <div style={{backgroundColor: styleColor}} className={styles.card}>
       <div className={styles.card__block_image}>
         <img className={styles.card__image} src={`${URL_BASE}/${word.image}`} alt={word.word} />
       </div>
       <div className={styles.card__block_text}>
         <div className={styles.card__block_title}>
-          <div className={styles.card__container_buttons}>
+          <div className={styles.card__container_section_one}>
             {isAuth
-              ? <div className={styles.card__buttons}>
-                <Button
-                  onClick={() => ''}
-                >
-                  <IconLearned className={
-                    learned
-                      ? styles.card__icon_active
-                      : styles.card__icon
-                  }
-                  />
-                </Button>
-                <Button
-                  onClick={() => ''} >
-                  <IconDifficult className={
-                    difficult
-                      ? styles.card__icon_active
-                      : styles.card__icon
-                  } />
-                </Button>
-              </div>
-              : ''
-            }
-
-            <AudioPlayer
-              path={`${URL_BASE}/${word.audio}`}
-              className={styles.card__audioPlayer_big}
-            />
+                ? <div className={styles.card__buttons}>
+                  <Button
+                    onClick={() => ''}
+                  >
+                    <IconLearned className={
+                      learned
+                        ? styles.card__icon_active
+                        : styles.card__icon
+                    }
+                    />
+                  </Button>
+                  <Button
+                    onClick={() => ''} >
+                    <IconDifficult className={
+                      difficult
+                        ? styles.card__icon_active
+                        : styles.card__icon
+                    } />
+                  </Button>
+                </div>
+                : ''
+              }
           </div>
+          <div className={styles.card__container_section_two}>
+            <div className={styles.card__container_buttons}>
+              <AudioPlayer
+                path={`${URL_BASE}/${word.audio}`}
+                className={styles.card__audioPlayer_big}
+              />
+            </div>
 
-          <div>
-            <div className={styles.card__title}>{word.word}</div>
-            <div className={styles.card__subtitle}>{word.transcription}</div>
-            <div className={styles.card__subtitle}>{word.wordTranslate}</div>
-          </div>
+            <div>
+              <div className={styles.card__title}>{word.word}</div>
+              <div className={styles.card__subtitle}>{word.transcription}</div>
+              <div className={styles.card__subtitle}>{word.wordTranslate}</div>
+            </div>
+          </div>          
         </div>
         <div className={styles.card__subblock}>
           <AudioPlayer
             path={`${URL_BASE}/${word.audioExample}`}
             className={styles.card__audioPlayer}
           />
-          <div>
+          <div className={styles.card__text}>
             <div dangerouslySetInnerHTML={createMarkup(word.textExample)} />
             <div>{word.textExampleTranslate}</div>
           </div>
@@ -82,7 +86,7 @@ const Card: FC<ICard> = ({ word, learned, difficult }) => {
             path={`${URL_BASE}/${word.audioMeaning}`}
             className={styles.card__audioPlayer}
           />
-          <div>
+          <div className={styles.card__text}>
             <div dangerouslySetInnerHTML={createMarkup(word.textMeaning)} />
             <div>{word.textMeaningTranslate}</div>
           </div>
