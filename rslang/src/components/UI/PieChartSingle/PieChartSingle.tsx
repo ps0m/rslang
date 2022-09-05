@@ -5,15 +5,16 @@ import { PieChart } from 'react-minimal-pie-chart';
 
 type Props = {
   data: ComponentProps<typeof PieChart>['data'];
+  totalValue?: number
 };
 
-function PieChartSingle({ data }: Props) {
+function PieChartSingle({ data, totalValue }: Props) {
 
   return (
 
     <PieChart
       data={data}
-      totalValue={100}
+      totalValue={totalValue ? totalValue : 100}
       lineWidth={20}
       label={({ dataEntry }) => dataEntry.value}
       labelStyle={{

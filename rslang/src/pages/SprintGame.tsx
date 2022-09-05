@@ -1,66 +1,53 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getWords } from "../components/API/API";
 import Button from "../components/UI/Button/Button";
 import CardOfSprint from "../components/UI/CardOfSprint/CardOfSprint";
 import Header from "../components/UI/Header/Header";
 import LevelPanel from "../components/UI/LevelPanel/LevelPanel";
+import Loader from "../components/UI/Loader/Loader";
 import { ReactComponent as NoLogo } from "../components/UI/Table/assets/x_circle.svg";
 import Table from "../components/UI/Table/Table";
-import { PAGES_PER_GROUP } from "../constants/constatnts";
+import { getRandomWord, updateAfterGame } from "../components/Updater";
+import { MyContext } from "../context/context";
 import { getCoefficient } from "../helpers/helpers";
-import { IContentForCard, ICustomStat, IScore, IWords } from "../types/types";
+import { useFetch } from "../hooks/useFetch";
+import { IContentForSprintCard, ICustomStat, IScore, IWords } from "../types/types";
 
 
 const SprintGame = () => {
   const [group, setGroup] = useState<number | undefined>();
-  const [words, setWords] = useState<IWords[]>([]);
-  const [contentForCard, setContentForCard] = useState<IContentForCard | null>(null);
+  const [initialWords, setInitialWords] = useState<IWords[]>([]);
+  const [currentWords, setCurrentWords] = useState<IWords[]>([]);
+  const [contentForCard, setContentForCard] = useState<IContentForSprintCard | null>(null);
   const [score, setScore] = useState<IScore>({ amount: 0, rightAnswer: 0, coefficient: 1 });
-  const [statistic, setStatistic] = useState<ICustomStat[] | null>(null);
+  const [currentStatistic, setCurrentStatistic] = useState<ICustomStat[] | null>(null);
   const [isFinishGame, setIsFinishGame] = useState<boolean>(false);
+  const [fetchWords, isWordsLoad, wordsError] = useFetch(getWordsForGame)
+  const [error, setError] = useState<string | null>(null);
 
-  const getWordsForGame = async (group: number | undefined) => {
+  const { isAuth } = useContext(MyContext)
+
+  async function getWordsForGame() {
     const arrayPromisesWord = [];
 
-    for (let i = 0; i < PAGES_PER_GROUP; i++) {
+    // Раскоментировать после отладки
+    // for (let i = 0; i < PAGES_PER_GROUP; i++) {
+    for (let i = 0; i < 1; i++) {
       arrayPromisesWord.push(getWords(group, i))
     }
 
     const allWordsOfgroup = await Promise.all(arrayPromisesWord)
 
-    setWords(allWordsOfgroup.flat())
+    setInitialWords(allWordsOfgroup.flat())
+    setCurrentWords(allWordsOfgroup.flat())
   }
 
   useEffect(() => {
     if (group !== undefined) {
-      getWordsForGame(group);
+      fetchWords();
     }
   }, [group])
-
-  const getRandomWord = (words: IWords[]) => {
-    if (words.length === 0) {
-      return
-    }
-    const randomIndex = Math.floor(Math.random() * words.length)
-    const isWillBeEqual = !!Math.floor(Math.random() * 2)
-    let randomIndexForTranslate: number;
-
-    if (!isWillBeEqual) {
-      do {
-        randomIndexForTranslate = Math.floor(Math.random() * words.length)
-
-      } while (randomIndexForTranslate === randomIndex);
-    } else randomIndexForTranslate = randomIndex;
-
-
-    setContentForCard({
-      word: words[randomIndex],
-      translate: words[randomIndexForTranslate].wordTranslate,
-      isEqual: isWillBeEqual,
-      currentIndex: randomIndex
-    });
-  }
 
   const updateScore = (newItem: ICustomStat) => {
     newItem.isRight
@@ -77,56 +64,89 @@ const SprintGame = () => {
   }
 
 
-  const updateStatistic = (newItem: ICustomStat) => {
-    statistic === null
-      ? setStatistic([newItem])
-      : setStatistic([...statistic, newItem])
+  const updateCurrentStatistic = (newItem: ICustomStat) => {
+    currentStatistic === null
+      ? setCurrentStatistic([newItem])
+      : setCurrentStatistic([...currentStatistic, newItem])
   }
 
   const getResultOneStepGame = (newItem: ICustomStat) => {
     updateScore(newItem);
-    updateStatistic(newItem);
+    updateCurrentStatistic(newItem);
+  }
+
+  const checkErrorFromUpdate = async () => {
+
+    const isError = await updateAfterGame({ isAuth, currentStatistic, currentGame: 'sprint' })
+
+    if (isError !== undefined) {
+      setError(isError);
+    }
   }
 
   useEffect(() => {
-    if (statistic !== null
-      && contentForCard !== null
-      && words !== null) {
-      setWords([...words.slice(0, contentForCard?.currentIndex), ...words.slice(contentForCard?.currentIndex + 1)])
+
+    if (isAuth !== null) {
+      checkErrorFromUpdate();
     }
-  }, [statistic])
+  }, [isFinishGame])
+
+  useEffect(() => {
+    if (currentStatistic !== null
+      && contentForCard !== null
+      && currentWords !== null) {
+
+      const newWords = [...currentWords.slice(0, contentForCard?.currentIndex), ...currentWords.slice(contentForCard?.currentIndex + 1)]
+
+      if (newWords.length === 0) {
+        setIsFinishGame(true);
+      }
+
+      setCurrentWords(newWords);
+    }
+  }, [currentStatistic])
 
 
   useEffect(() => {
-    if (words !== undefined) {
-      getRandomWord(words);
+    if (initialWords.length !== 0 && currentWords.length !== 0) {
+      setContentForCard(getRandomWord(initialWords, currentWords));
+      // getRandomWord(words);
     }
-  }, [words])
+  }, [initialWords, currentWords])
+
 
   return (
     <>
       <Header />
+      {
+        isWordsLoad
+          ? <Loader></Loader>
+          : <section className="game">
+            {
+              isFinishGame
+                ? <>
+                  <Table stat={currentStatistic} >
+                    <>Ваш результат: {score.amount} баллов</>
+                  </Table>
+                </>
+                : (group !== undefined
+                  ? <CardOfSprint
+                    content={contentForCard}
+                    score={score}
+                    setIsFinishGame={setIsFinishGame}
+                    getResult={getResultOneStepGame} />
+                  : <LevelPanel
+                    setGroup={setGroup}
+                  />)
+            }
+            <Button
+              className='game__cress'
+              onClick={() => ''}>
+              <Link to='/home'><NoLogo /></Link >
+            </Button>
+          </section>
+      }
 
-      <section className="game">
-        {
-          isFinishGame
-            ? <Table stat={statistic} />
-            : (group !== undefined
-              ? <CardOfSprint
-                content={contentForCard}
-                score={score}
-                setIsFinishGame={setIsFinishGame}
-                getResult={getResultOneStepGame} />
-              : <LevelPanel
-                setGroup={setGroup}
-              />)
-        }
-        <Button
-          className='game__cress'
-          onClick={() => ''}>
-          <Link to='/home'><NoLogo /></Link >
-        </Button>
-      </section>
     </>
   );
 };

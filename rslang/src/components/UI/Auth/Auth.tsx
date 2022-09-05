@@ -1,7 +1,9 @@
 import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { MyContext } from '../../../context/context'
-import { createUser, loginUser } from '../../API/API'
+import { initialStatistic } from '../../../helpers/helpers'
+import { IAuth } from '../../../types/types'
+import { createUser, loginUser, updateUserStatistics } from '../../API/API'
 import styles from '../../UI/Auth/Auth.module.scss'
 
 enum typeSubPage {
@@ -19,16 +21,22 @@ const Auth = () => {
   const history = useNavigate();
   const { setIsAuth } = useContext(MyContext)
 
+
+
   async function handleRegisterSubmit(event: React.FormEvent<HTMLFormElement>) {
     try {
       event.preventDefault()
       if (subPage === typeSubPage.registration) {
         await createUser({ name, email, password });
       }
-      const response = await loginUser({ email, password })
+      const response: IAuth = await loginUser({ email, password })
 
       console.log('response', response)
       localStorage.setItem('rslang-ps0m', JSON.stringify(response));
+      if (subPage === typeSubPage.registration) {
+        await updateUserStatistics(response.userId, initialStatistic, response.token,)
+      }
+
       setIsAuth(response)
       history('/home')
     } catch (e: unknown) {

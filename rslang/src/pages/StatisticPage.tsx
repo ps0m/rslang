@@ -3,6 +3,7 @@ import Statistic from "../components/UI/Statistic/Statistic";
 
 const StatisticPage = () => {
 
+
   return (
     <>
       <Header />

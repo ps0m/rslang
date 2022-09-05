@@ -37,12 +37,7 @@ export interface IAuth {
 }
 
 export interface IElemOptionalProgress {
-  // 0?: boolean
-  // 1?: boolean
-  // 2?: boolean
-  // 3?: boolean
-  // 4?: boolean
-  [index: number]: boolean
+  [key: number]: boolean
 }
 
 export interface IOptionalProgress extends IElemOptionalProgress {
@@ -66,10 +61,61 @@ export interface IPropertyWord {
   optional: IOptionalPropertyWord
 }
 
+// ///////////////////////////
+
+export interface IOptionalStatisticGame {
+  newWords: number,
+  totalAnswer: number,
+  rightAnswer: number,
+  maxSeries: number
+}
+
+export interface IOptionalStatisticWords {
+  newWords: number,
+  learnedWords: number,
+  totalAnswer: number,
+  rightAnswer: number,
+}
+
+export type IGameDailyStatisticKey = 'sprint' | 'audio';
+
+export type IGameDailyStatistic = {
+  [index in IGameDailyStatisticKey]: IOptionalStatisticGame
+}
+
+export interface IDailyStatistic extends IGameDailyStatistic {
+  'words': IOptionalStatisticWords
+  'date': string
+}
+
+
+// export interface IDailyStatistic {
+//   sprint: IOptionalStatisticGame,
+//   audio: IOptionalStatisticGame,
+//   words: IOptionalStatisticWords,
+//   date: string
+// }
+
+export interface IItemOfLongTermStatistic {
+  newLearnedWords: number,
+  totalLearnedWords: number,
+}
+
+export interface ILongTermStatistic {
+  [key: string]: IItemOfLongTermStatistic
+}
+
+export interface IOptionalStatistic {
+  daily: IDailyStatistic,
+  longTerm: ILongTermStatistic
+}
+
+
 export interface IStatistic {
   learnedWords: number,
-  // "optional": {}
+  optional: IOptionalStatistic
 }
+
 
 export interface ISettings {
   "wordsPerDay": number
@@ -82,9 +128,9 @@ export interface ICustomStat {
   index: number
 }
 
-export interface IContentForCard {
+export interface IContentForSprintCard {
   word: IWords,
-  translate: string,
+  translate: IWords,
   isEqual: boolean,
   currentIndex: number
 }
