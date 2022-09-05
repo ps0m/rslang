@@ -9,7 +9,7 @@ const AuthPage = () => {
   return (
     <div>
       {menuActive && <PopUpMenu setActive={setMenuActive} />}
-      <Header setActive={setMenuActive} />
+      <Header />
       <Auth />
     </div>
   )

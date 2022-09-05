@@ -2,7 +2,7 @@
 @import "../../../styles/App.scss";
 
 .menuTextbook {
-  margin-top: -68px;
+  margin-top: -65px;
 
   &__wrNav {
     padding: 0 0 0 50px;
@@ -48,10 +48,6 @@
   }
 }
 
-// .sectionWr {
-//   position: relative;
-// }
-
 .sectionWr__button {
   height: 48px;
 
@@ -66,6 +62,10 @@
   box-shadow: 0px 10px 20px rgba(70, 64, 190, 0.4);
  
   cursor: pointer;
+
+  &:hover {
+    background-color: #99b98a !important;
+  }
 
   &:focus {
     box-shadow: 0 0 0 1px #e4e1e1, 0 0 10px #ffffff;
@@ -85,6 +85,11 @@
   }
 }
 
+.sectionWr__navAndPage {
+  display: flex;
+  gap: 10px;
+}
+
 .sectionDimensions {
   width: 140px;  
 }
@@ -96,6 +101,13 @@
 .sectionPage {
   width: 160px;  
 }
+
+.sectionWr__game {
+  display: flex;
+  gap: 10px;
+}
+
+
 
 
 .button__previousPage {
@@ -128,4 +140,59 @@
   width: 24px;
   height: 24px;
   padding-right: 10px;
+}
+
+@media (max-width: 864px) {
+  .menuTextbook__wrNav {
+    padding: 0 0 0 0;
+  }
+
+  .menuTextbook__wrNav__nav {
+    height: 132px;
+    justify-content: center;
+  }
+
+  .sectionWr__navAndPage {
+    order: 1;
+  }
+  .menuTextbook__wrNav__header {
+    text-align: center;
+  }
+}
+
+@media (max-width: 483px) {
+  .menuTextbook__wrNav__nav {
+    justify-content: center;
+  }
+  .sectionWr__navAndPage {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .sectionWr__game {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 450px) {
+  .menuTextbook__wrNav__header {
+    display: block;
+  }
+}
+
+@media (max-width: 432px) {
+  
+  .menuTextbook__wrNav__nav {
+    height: 196px;
+    justify-content: center;
+  } 
+}
+
+@media (max-width: 390px) {
+  
+  .sectionWr__game {    
+    justify-content: center;
+  }
+  .menuTextbook__wrNav__nav {
+    height: 252px;    
+  }  
 }
