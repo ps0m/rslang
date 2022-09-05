@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { default as soundError } from '../../../assets/audio/error.mp3';
 import { default as soundSuccess } from '../../../assets/audio/success.mp3';
 import { URL_BASE } from '../../../constants/constatnts';
-import { IContentForCard, ICustomStat, IScore } from '../../../types/types';
+import { IContentForSprintCard, ICustomStat, IScore } from '../../../types/types';
 import AudioPlayer from '../AudioPlayer/AudioPlayer';
 import Button from '../Button/Button';
 import Timer from '../Timer/Timer';
@@ -13,7 +13,7 @@ import styles from './CardOfSprint.module.scss';
 
 
 interface IPropsCardOfSprint {
-  content: IContentForCard | null
+  content: IContentForSprintCard | null
   score: IScore
   setIsFinishGame: (isFinish: boolean) => void
   getResult: (newItem: ICustomStat) => void
@@ -52,7 +52,7 @@ const CardOfSprint: FC<IPropsCardOfSprint> = ({ content, score, setIsFinishGame,
   }
 
   useEffect(() => {
-    document.addEventListener('keyup', keyListener, { once: true })
+    document.addEventListener('keyup', keyListener)
     return () => {
       document.removeEventListener('keyup', keyListener);
     }
@@ -128,7 +128,7 @@ const CardOfSprint: FC<IPropsCardOfSprint> = ({ content, score, setIsFinishGame,
 
       <div className={styles.card__block_title}>
         <div className={styles.card__title}>{content?.word.word}</div>
-        <div className={styles.card__subtitle}>{content?.translate}</div>
+        <div className={styles.card__subtitle}>{content?.translate.wordTranslate}</div>
       </div>
       <div className={styles.card__container_buttons}>
         <Button

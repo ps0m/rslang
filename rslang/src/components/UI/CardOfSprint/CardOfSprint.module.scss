@@ -157,6 +157,7 @@
   &__notate {
     position: absolute;
     top: 40px;
+    white-space: nowrap;
     font-family: $fontFamilyOne;
     font-size: 1rem;
   }

@@ -36,15 +36,86 @@ export interface IAuth {
   name: string
 }
 
-export interface IPropertyWord {
-  difficulty: string,
-  // "optional": {}
+export interface IElemOptionalProgress {
+  [key: number]: boolean
 }
+
+export interface IOptionalProgress extends IElemOptionalProgress {
+  index: keyof IElemOptionalProgress
+}
+
+export enum IDifficulty {
+  hard = 'hard',
+  easy = 'easy'
+}
+
+export interface IOptionalPropertyWord {
+  id: string,
+  isNew: boolean,
+  learned: boolean,
+  progress: IOptionalProgress,
+}
+
+export interface IPropertyWord {
+  difficulty: IDifficulty,
+  optional: IOptionalPropertyWord
+}
+
+// ///////////////////////////
+
+export interface IOptionalStatisticGame {
+  newWords: number,
+  totalAnswer: number,
+  rightAnswer: number,
+  maxSeries: number
+}
+
+export interface IOptionalStatisticWords {
+  newWords: number,
+  learnedWords: number,
+  totalAnswer: number,
+  rightAnswer: number,
+}
+
+export type IGameDailyStatisticKey = 'sprint' | 'audio';
+
+export type IGameDailyStatistic = {
+  [index in IGameDailyStatisticKey]: IOptionalStatisticGame
+}
+
+export interface IDailyStatistic extends IGameDailyStatistic {
+  'words': IOptionalStatisticWords
+  'date': string
+}
+
+
+// export interface IDailyStatistic {
+//   sprint: IOptionalStatisticGame,
+//   audio: IOptionalStatisticGame,
+//   words: IOptionalStatisticWords,
+//   date: string
+// }
+
+export interface IItemOfLongTermStatistic {
+  newLearnedWords: number,
+  totalLearnedWords: number,
+}
+
+export interface ILongTermStatistic {
+  [key: string]: IItemOfLongTermStatistic
+}
+
+export interface IOptionalStatistic {
+  daily: IDailyStatistic,
+  longTerm: ILongTermStatistic
+}
+
 
 export interface IStatistic {
   learnedWords: number,
-  // "optional": {}
+  optional: IOptionalStatistic
 }
+
 
 export interface ISettings {
   "wordsPerDay": number
@@ -57,9 +128,9 @@ export interface ICustomStat {
   index: number
 }
 
-export interface IContentForCard {
+export interface IContentForSprintCard {
   word: IWords,
-  translate: string,
+  translate: IWords,
   isEqual: boolean,
   currentIndex: number
 }
