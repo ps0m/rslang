@@ -1,0 +1,144 @@
+@import "../../../styles/variables.scss";
+
+.card {
+  width: 460px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+  align-items: stretch;
+  font-family: $fontFamilyOne;
+  background-color: $subBaseColor;
+  border-radius: 40px;
+  box-shadow: 0px 0px 3px #000;
+  overflow: hidden;
+
+  &__block_image {
+    position: relative;
+    overflow: hidden;
+    width: 460px;
+    height: 320px;
+  }
+
+  &__image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 460px;
+    height: 320px;
+    object-fit: cover;
+  }
+
+  &__block_text {
+    padding: 15px;
+  }
+
+  &__block_title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    gap: 10px;
+  }
+
+  &__container_buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  &__subtitle {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  &__subblock {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 0;
+    gap: 10px;
+    fill: #ffffff36;
+  }
+
+  &__audioPlayer {
+    height: 50px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+
+    &_big {
+      height: 65px;
+      fill: rgb(255 255 255);
+    }
+  }
+
+  &__icon,
+  &__icon_active {
+    width: 25px;
+    height: 25px;
+    fill: $playerColor;
+    transition: 0.3s;
+
+    &:hover {
+      fill: $trueColor;
+    }
+
+    &_active {
+      fill: $playerColor;
+      &:hover {
+        fill: $trueColor;
+      }
+      &_lose {
+        fill: $falseColor;
+      }
+    }
+  }
+}
+.progress {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  &__icon {
+    width: 30px;
+    height: 30px;
+    fill: grey;
+    &_win {
+      fill: $trueColor;
+    }
+    &_lose {
+      fill: $falseColor;
+    }
+  }
+}
+
+.card__container_section_one {
+  display: flex;
+}
+
+.card__container_section_two {
+  display: flex;
+  gap: 10px;
+}

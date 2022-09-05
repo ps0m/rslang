@@ -1,0 +1,39 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/App.scss";
+
+.popUpMenu {
+  position: absolute;
+  z-index: 2;
+  top: -10px;
+  left: 0px;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+
+.menu {
+  width: 300px;
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: $trueColor;
+  animation: magic 1s 1;
+}
+
+.blackout {
+  width: 1140px;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+@keyframes magic {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 300px;
+  }
+}

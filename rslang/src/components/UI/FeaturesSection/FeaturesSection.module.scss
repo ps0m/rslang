@@ -1,0 +1,33 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/App.scss";
+
+.featuresSection {
+  padding: 10px 0;
+  background-color: #FFFFFF;
+
+  &__title {
+    font-family: $fontFamilyOne;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 42px;
+    text-align: center;
+    color: $baseColor;
+  }
+
+  &__wrapper {
+    margin: 0 auto;
+    padding-top: 10px;
+    max-width: 800px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    grid-column-gap: 40px;
+    grid-row-gap: 20px;
+  }
+}
+
+@media (max-width: 450px) {
+  .featuresSection__title {
+    font-size: 24px;
+  }
+}

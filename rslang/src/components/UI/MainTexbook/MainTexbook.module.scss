@@ -1,0 +1,11 @@
+@import "../../../styles/variables.scss";
+@import "../../../styles/App.scss";
+
+.cardsEng {
+  padding: 15px 0 15px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  background-color: #ffffff;
+}
