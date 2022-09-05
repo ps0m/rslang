@@ -1,4 +1,4 @@
-import { ComponentProps, useState } from 'react';
+import React, { ComponentProps, useState } from 'react';
 import { PieChart } from 'react-minimal-pie-chart';
 
 type Props = {
