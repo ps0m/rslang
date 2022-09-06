@@ -129,18 +129,32 @@ export const getUserWord = async (id: string, wordId: string, token: string) => 
 }
 
 export const updateUserWord = async (id: string, wordId: string, property: IPropertyWord, token: string) => {
-  const response = await fetch(`${URL_USERS}/${id}/words/${wordId}`, {
-    method: 'PUT',
-    body: JSON.stringify(property),
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
+  try {
+    const response = await fetch(`${URL_USERS}/${id}/words/${wordId}`, {
+      method: 'PUT',
+      body: JSON.stringify(property),
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      }
+    }
+    );
+
+    if (response.status === 404) {
+      createUserWord(id, wordId, property, token)
+      // throw new Error('Не могу обновить, создам в словаре');
+    } else {
+      return await response.json();
+    }
+  } catch (e: unknown) {
+    if (typeof e === "string") {
+      console.log(e);
+    } else if (e instanceof Error) {
+      console.log(e.message);
+      throw e
     }
   }
-  );
-
-  return await response.json();
 }
 
 export const deleteUserWord = async (id: string, wordId: string, token: string) => {

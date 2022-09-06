@@ -13,6 +13,16 @@
   box-shadow: 0px 0px 3px #000;
   overflow: hidden;
 
+  // &_isDifficult {
+  //   border: 5px solid $falseColor;
+  //   box-shadow: 0px 0px 10px $falseColor;
+  // }
+
+  // &_isLearned {
+  //   border: 5px solid $trueColor;
+  //   box-shadow: 0px 0px 10px $trueColor;
+  // }
+
   &__block_image {
     position: relative;
     overflow: hidden;
@@ -51,10 +61,32 @@
   }
 
   &__buttons {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 10px;
+    &::after {
+      position: absolute;
+      top: -10%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      content: "";
+      width: 460px;
+      height: 20px;
+      transition: 0.3s;
+    }
+    &_isDifficult::after {
+      content: "";
+      background-color: $falseColor;
+      box-shadow: 0px 0px 10px $falseColor;
+    }
+
+    &_isLearned::after {
+      content: "";
+      background-color: $trueColor;
+      box-shadow: 0px 0px 10px $trueColor;
+    }
   }
 
   &__title {
@@ -95,22 +127,35 @@
 
   &__icon,
   &__icon_active {
-    width: 25px;
-    height: 25px;
+    width: 35px;
+    height: 35px;
     fill: $playerColor;
     transition: 0.3s;
-
     &:hover {
       fill: $trueColor;
     }
 
     &_active {
-      fill: $playerColor;
+      fill: $trueColor;
       &:hover {
         fill: $trueColor;
       }
       &_lose {
         fill: $falseColor;
+      }
+    }
+
+    &_isDifficult {
+      fill: $falseColor;
+      &:hover {
+        fill: $falseColorHover;
+      }
+    }
+
+    &_isLearned {
+      fill: $trueColor;
+      &:hover {
+        fill: $trueColorHover;
       }
     }
   }

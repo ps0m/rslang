@@ -11,7 +11,7 @@ export const MainTexbook = ({ words, style }: Props) => {
 
   return (
     <div className={`${styles.container} ${styles.cardsEng}`}>
-      {
+      { 
         words.map((item) => {
           return <CardOfWord word={item.word}
             learned={item.learned}

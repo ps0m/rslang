@@ -17,7 +17,7 @@ export const section = [
   },
   {
     textName: 'Раздел 4',
-    color: '#91cb39',
+    color: '#fb8484',
     value: 4,
   },
   {

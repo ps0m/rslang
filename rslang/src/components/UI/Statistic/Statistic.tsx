@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useContext, useEffect, useRef, useState } from "react";
 import { MyContext } from "../../../context/context";
 import { useFetch } from "../../../hooks/useFetch";

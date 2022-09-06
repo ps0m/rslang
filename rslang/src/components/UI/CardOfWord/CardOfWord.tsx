@@ -29,50 +29,64 @@ const Card: FC<ICard> = ({ word, learned, difficult, progress, styleColor }) => 
   }
 
   const updateWord = async (flag: keyof ICard) => {
-    if (!isAuth) {
-      return
-    }
-    let newLearned: boolean;
-    let newDifficult: IDifficulty;
+    try {
 
-    if (flag === 'learned' && !isLearned) {
-      newLearned = true;
-      newDifficult = IDifficulty.easy
-    } else
-      if (flag === 'learned' && isLearned) {
-        newLearned = false;
-        newDifficult = isDifficult ? IDifficulty.hard : IDifficulty.easy
+      if (!isAuth) {
+        return
+      }
+      let newLearned: boolean;
+      let newDifficult: IDifficulty;
+
+      if (flag === 'learned' && !isLearned) {
+        newLearned = true;
+        newDifficult = IDifficulty.easy
       } else
-
-        if (flag === 'difficult' && !isDifficult) {
+        if (flag === 'learned' && isLearned) {
           newLearned = false;
-          newDifficult = IDifficulty.hard
-        } else {
-          newLearned = isLearned;
-          newDifficult = IDifficulty.easy;
+          newDifficult = isDifficult ? IDifficulty.hard : IDifficulty.easy
+        } else
+
+          if (flag === 'difficult' && !isDifficult) {
+            newLearned = false;
+            newDifficult = IDifficulty.hard
+          } else {
+            newLearned = isLearned;
+            newDifficult = IDifficulty.easy;
+          }
+
+
+
+      const propertyWord: IPropertyWord = {
+        difficulty: newDifficult,
+        optional: {
+          id: word.id,
+          isNew: false,
+          learned: newLearned,
+          progress: progress,
         }
+      }
 
 
+      await updateUserWord(isAuth.userId, word.id, propertyWord, isAuth.token);
 
-    const propertyWord: IPropertyWord = {
-      difficulty: newDifficult,
-      optional: {
-        id: word.id,
-        isNew: false,
-        learned: newLearned,
-        progress: progress,
+      setIsDifficult(newDifficult === IDifficulty.hard)
+      setIsLearned(newLearned)
+
+    } catch (e: unknown) {
+      if (typeof e === "string") {
+        console.log(e);
+      } else if (e instanceof Error) {
+        console.log(e.message);
       }
     }
-
-
-    await updateUserWord(isAuth.userId, word.id, propertyWord, isAuth.token);
-
-    setIsDifficult(newDifficult === IDifficulty.hard)
-    setIsLearned(newLearned)
   }
 
   return (
-    <div style={{ backgroundColor: styleColor }} className={styles.card}>
+    <div
+      style={{ backgroundColor: styleColor }}
+      className={[styles.card,
+      isDifficult ? styles.card_isDifficult : '',
+      isLearned ? styles.card_isLearned : ''].join(' ')}>
       <div className={styles.card__block_image}>
         <img className={styles.card__image} src={`${URL_BASE}/${word.image}`} alt={word.word} />
       </div>
@@ -80,7 +94,10 @@ const Card: FC<ICard> = ({ word, learned, difficult, progress, styleColor }) => 
         <div className={styles.card__block_title}>
           <div className={styles.card__container_section_one}>
             {isAuth
-              ? <div className={styles.card__buttons}>
+              ? <div
+                className={[styles.card__buttons,
+                isDifficult ? styles.card__buttons_isDifficult : '',
+                isLearned ? styles.card__buttons_isLearned : ''].join(' ')}>
                 <Button
                   title='Изученное слово'
                   onClick={(e) => {
@@ -90,7 +107,7 @@ const Card: FC<ICard> = ({ word, learned, difficult, progress, styleColor }) => 
                 >
                   <IconLearned className={
                     isLearned
-                      ? styles.card__icon_active
+                      ? [styles.card__icon, styles.card__icon_isLearned].join(' ')
                       : styles.card__icon
                   }
                   />
@@ -121,7 +138,7 @@ const Card: FC<ICard> = ({ word, learned, difficult, progress, styleColor }) => 
                   <IconDifficult
                     className={
                       isDifficult
-                        ? styles.card__icon_active
+                        ? [styles.card__icon, styles.card__icon_isDifficult].join(' ')
                         : styles.card__icon
                     } />
                 </Button>

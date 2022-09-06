@@ -49,7 +49,7 @@ const Table: FC<ITableProps> = ({ stat, children }) => {
               <tbody>
                 {stat?.map((item, index) => {
                   return (
-                    <tr key={item.word.id}>
+                    <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{
                         item.isRight

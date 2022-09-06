@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from 'react'
 
 export interface IWords {
   id: string
+  _id?: string
   group: 0
   page: 0
   word: string
@@ -21,6 +22,14 @@ export interface IUser {
   name: string
   email: string
   password: string
+}
+
+export type IGroupAndPage = 'group' | 'page'
+
+export type LocationState = {
+  group: number;
+  page: number
+
 }
 
 export interface IEmailPassword {
@@ -154,10 +163,15 @@ export interface IAgregateWordsTotal {
   count: number
 }
 
+export interface IPaginatedResults extends IWords {
+  userWord: IPropertyWord
+}
+
 export interface IAgregateWords {
-  paginatedResults: IWords[],
+  paginatedResults: IPaginatedResults[],
   totalCount: IAgregateWordsTotal[]
 }
+
 
 export interface IFullWordsForBook {
   word: IWords,

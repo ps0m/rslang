@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Dispatch, MutableRefObject, SetStateAction, useEffect } from 'react'
-import styles from './Dropdown.module.scss'
-import DropdownItem from './DropdownItem'
+import { Dispatch, MutableRefObject, SetStateAction, useContext, useEffect } from 'react';
+import { MyContext } from '../../../context/context';
+import styles from './Dropdown.module.scss';
+import DropdownItem from './DropdownItem';
 
 
 type Props = {
@@ -14,6 +15,9 @@ type Props = {
 }
 
 const DropdownList = ({ valueItem, className, setActive, icon, clickHandler, refContainer }: Props) => {
+
+  const { isAuth } = useContext(MyContext)
+
 
   useEffect(() => {
     const callback = (event: MouseEvent | TouchEvent) => {
@@ -38,6 +42,10 @@ const DropdownList = ({ valueItem, className, setActive, icon, clickHandler, ref
       <ul className={`${styles.sectionWr__button__list} ${className}`}
       >
         {valueItem.map((item, index) => {
+          if (!isAuth && index > 5) {
+            return
+          }
+
           return <DropdownItem
             icon={icon}
             textName={item.textName}

@@ -21,7 +21,7 @@ const Auth = () => {
   const [password, setPassword] = useState('')
   const [fetchAuth, isAuthLoad, AuthError] = useFetch(handleRegisterSubmit)
 
-  const history = useNavigate();
+  const navigate = useNavigate();
   const { setIsAuth } = useContext(MyContext)
 
 
@@ -39,7 +39,7 @@ const Auth = () => {
     }
 
     setIsAuth(response)
-    history('/home')
+    navigate('/home')
   }
 
   return (

@@ -1,13 +1,14 @@
-import styles from './MenuTextbook.module.scss'
-import { headerTextbook, section, page } from './contentMenuTextbook'
-import DropdownList from '../Dropdown/DropdownList'
-import Button from '../Button/Button'
+import { Dispatch, SetStateAction, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ReactComponent as IconFolder } from '../../../assets/icon/folder.svg'
-import { ReactComponent as IconPage } from '../../../assets/icon/page.svg'
 import { ReactComponent as IconGame } from '../../../assets/icon/gameBook.svg'
 import { ReactComponent as IconNextPage } from '../../../assets/icon/nextArrow.svg'
+import { ReactComponent as IconPage } from '../../../assets/icon/page.svg'
 import { ReactComponent as IconPrevPage } from '../../../assets/icon/previousArrow.svg'
-import { Dispatch, SetStateAction, useRef, useState } from 'react'
+import Button from '../Button/Button'
+import DropdownList from '../Dropdown/DropdownList'
+import { headerTextbook, page, section } from './contentMenuTextbook'
+import styles from './MenuTextbook.module.scss'
 
 type Props = {
   setGroup: Dispatch<SetStateAction<number>>;
@@ -21,6 +22,8 @@ const MenuTextbook = ({ setPage, setGroup, setCologBgCard, numberPage, numberGro
   const [sectionActive, setSectionActive] = useState(false);
   const [pageActive, setPageActive] = useState(false);
   const [colorActive, setColorActive] = useState('#4640BE');
+
+  const navigate = useNavigate();
 
   const clickSectionItem = (number: number, color?: string) => () => {
     setSectionActive(false);
@@ -47,6 +50,9 @@ const MenuTextbook = ({ setPage, setGroup, setCologBgCard, numberPage, numberGro
 
   const refSectionActive = useRef<HTMLDivElement | null>(null);
   const refPageActive = useRef<HTMLDivElement | null>(null);
+
+  const goSprintGame = () => navigate('/sprint_game', { state: { group: numberGroup, page: numberPage } });
+  const goAudioGame = () => navigate('/audio_call_game', { state: { group: numberGroup, page: numberPage } });
 
   return (
     <>
@@ -134,14 +140,14 @@ const MenuTextbook = ({ setPage, setGroup, setCologBgCard, numberPage, numberGro
             <div className={styles.sectionWr__game}>
               <Button
                 className={`${styles.sectionWr__button} ${styles.button__game}`}
-                onClick={() => ('#')}
+                onClick={() => goAudioGame()}
               >
                 <IconGame className={styles.sectionWr__button_img} />
                 <div className={styles.sectionWr__button_desc}>Аудиовызов</div>
               </Button>
               <Button
                 className={`${styles.sectionWr__button} ${styles.button__game}`}
-                onClick={() => ('#')}
+                onClick={() => goSprintGame()}
               >
                 <IconGame className={styles.sectionWr__button_img} />
                 <div className={styles.sectionWr__button_desc}>Спринт</div>

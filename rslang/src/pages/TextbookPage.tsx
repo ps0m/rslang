@@ -5,26 +5,73 @@ import Header from '../components/UI/Header/Header';
 import Loader from '../components/UI/Loader/Loader';
 import MainTexbook from '../components/UI/MainTexbook/MainTexbook';
 import MenuTextbook from '../components/UI/MenuTextbook/MenuTextbook';
+import { NUMBER_OF_SECTIONS_IN_TEXTBOOK } from '../constants/constants';
 import { MyContext } from '../context/context';
 import { useFetch } from '../hooks/useFetch';
-import { IAgregateWords, IDifficulty, IFullWordsForBook, IOptionalProgress, IPropertyWord, IWords } from '../types/types';
+import { IAgregateWords, IDifficulty, IFullWordsForBook, IOptionalProgress, IPropertyWord, IWords, LocationState } from '../types/types';
 
 const PageСollectorTextbook = () => {
 
-  const [words, setWords] = useState<IWords[]>([]);
+  // const [words, setWords] = useState<IWords[]>([]);
   const [fullWords, setFullWords] = useState<IFullWordsForBook[]>([]);
-  const [group, setGroup] = useState<number>(0);
-  const [page, setPage] = useState<number>(0);
   const [cologBgCard, setCologBgCard] = useState('#4640BE')
   const [fetchWords, isWordsLoad, wordsError] = useFetch(getWordsForMain)
+
+  const [group, setGroup] = useState<number>(() => {
+    const local: LocationState = (JSON.parse(window.sessionStorage.getItem('ps0m-textBook') || '{}'))
+
+    return local.group ? local.group : 0
+  });
+
+  const [page, setPage] = useState<number>(() => {
+    const local: LocationState = (JSON.parse(window.sessionStorage.getItem('ps0m-textBook') || '{}'))
+
+    return local.page ? local.page : 0
+  });
+
   const { isAuth } = useContext(MyContext)
 
-  async function getWordsForMain() {
-    const wordMain: IWords[] = await getWords(group, page);
+  useEffect(() => {
+    fetchWords()
+  }, [group, page])
 
-    setWords(wordMain)
+
+  async function getWordsForMain() {
+    let wordMain: IWords[] = []
+
+    if (group < NUMBER_OF_SECTIONS_IN_TEXTBOOK) {
+      wordMain = [...await getWords(group, page)]
+    } else if (isAuth) {
+      const filterAllDifficultWords = { "$and": [{ "userWord.difficulty": "hard" }] }
+      const difficultWordsAnswer: IAgregateWords[] = await getAllUserAggregatedWords(isAuth.userId, 100, filterAllDifficultWords, isAuth.token)
+
+      const difficultWords: IFullWordsForBook[] = difficultWordsAnswer[0].paginatedResults.map(word => {
+        const newWordId = word._id ? word._id : ''
+
+        return {
+          word: { ...word, id: newWordId },
+          difficult: word.userWord.difficulty,
+          learned: word.userWord.optional.learned,
+          progress: word.userWord.optional.progress
+        }
+      });
+
+      setFullWords(difficultWords);
+      console.log('sep', difficultWordsAnswer);
+      return
+    }
 
     if (!isAuth) {
+      const faceFullWords: IFullWordsForBook[] = wordMain.map(word => {
+        return {
+          word: word,
+          difficult: IDifficulty.easy,
+          learned: false,
+          progress: { index: 0 }
+        }
+      })
+
+      setFullWords([...faceFullWords])
       return
     }
 
@@ -52,8 +99,6 @@ const PageСollectorTextbook = () => {
       progressForWordsPromises.push(getUserWord(isAuth.userId, wordsWithProgress[i]._id, isAuth.token))
     }
     const progressForWords: IPropertyWord[] = await Promise.all(progressForWordsPromises)
-
-    console.log(wordsWithProgress, progressForWords);
 
     const allWords: IFullWordsForBook[] = wordMain.map(oneWord => {
       let isDifficult: IDifficulty = IDifficulty.easy;
@@ -93,9 +138,26 @@ const PageСollectorTextbook = () => {
 
   }
 
+
   useEffect(() => {
-    fetchWords()
+    window.onbeforeunload = () => {
+      console.log(group, page);
+      window.sessionStorage.setItem('ps0m-textBook', JSON.stringify({ group: group, page: page }))
+    }
+
+    return window.onbeforeunload = () => {
+      console.log(group, page);
+      window.sessionStorage.setItem('ps0m-textBook', JSON.stringify({ group: group, page: page }))
+    }
   }, [group, page])
+
+  useEffect(() => {
+    const local: LocationState = (JSON.parse(window.sessionStorage.getItem('ps0m-textBook') || '{}'))
+
+    local.group ? setGroup(local.group) : setGroup(0)
+    local.page ? setPage(local.page) : setPage(0)
+
+  }, [])
 
   return (
     isWordsLoad
