@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { MyContext } from "../../../context/context";
+import { getCurrentDate } from "../../../helpers/helpers";
 import { useFetch } from "../../../hooks/useFetch";
 import { IOptionalStatisticGame, IOptionalStatisticWords, IStatistic } from "../../../types/types";
 import { getUserStatistics } from "../../API/API";
@@ -7,6 +8,7 @@ import Button from "../Button/Button";
 import Loader from "../Loader/Loader";
 import PieChartInterest from "../PieChartInterest/PieChartInterest";
 import PieChartSingle from "../PieChartSingle/PieChartSingle";
+import { LineChart } from "./LineChart";
 import styles from "./Statistic.module.scss";
 
 type typeSubPage = 'sprint' | 'audio' | 'words';
@@ -14,7 +16,9 @@ type typeSubPage = 'sprint' | 'audio' | 'words';
 const Statistic = () => {
   const [subPage, setSubPage] = useState<typeSubPage>('sprint')
   const [statistics, setStatistics] = useState<IStatistic | null>(null);
+  const [showLongStat, setShowLongStat] = useState<boolean>(false)
   const [fetchStat, isStatLoad, StatError] = useFetch(getStat)
+
 
   const sprintStat = useRef<IOptionalStatisticGame | null>(null)
   const audiotStat = useRef<IOptionalStatisticGame | null>(null)
@@ -40,6 +44,7 @@ const Statistic = () => {
     fetchStat();
   }, [])
 
+
   return (
     isStatLoad
       ? <Loader></Loader>
@@ -47,6 +52,7 @@ const Statistic = () => {
         <div className={styles.statistic__container} >
 
           <nav className={styles.statistic__buttons}>
+
             <Button
               disabled={subPage === 'sprint'}
               className={styles.statistic__button}
@@ -65,9 +71,14 @@ const Statistic = () => {
               onClick={() => setSubPage('words')}>
               Статистика по словам
             </Button>
+            <Button
+              className={[styles.statistic__button, showLongStat ? styles.statistic__button_disable : ''].join(' ')}
+              onClick={() => setShowLongStat(prev => !prev)}>
+              Долгосрочная статистика
+            </Button>
           </nav>
           {
-            statistics?.optional.daily[subPage].totalAnswer !== 0
+            statistics?.optional.daily.date === getCurrentDate()
               ? <div className={styles.statistic__diagrams}>
                 <div className={styles.statistic__diagram}>
                   <p className={styles.statistic__diagram_title}>
@@ -134,8 +145,15 @@ const Statistic = () => {
               </div>
               : <p className={styles.statistic__notate}> Статистика в данном разделе отсутствует</p>
           }
-
-
+          {
+            showLongStat
+              ? <div className={styles.statistic__chart}>
+                <LineChart
+                  dataOfParents={statistics?.optional.longTerm}
+                />
+              </div>
+              : ''
+          }
         </div>
       </section >
   );

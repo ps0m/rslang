@@ -20,7 +20,7 @@ const Table: FC<ITableProps> = ({ stat, children }) => {
     <div className={styles.table__container} >
       {
         (stat === null || stat.length === 0)
-          ? <p className={styles.notate}>К сожалению статистика пуста, вы не ответили ни на один вопрос. Попробуйте
+          ? <p className={styles.notate}>К сожалению статистика пуста, вы не ответили ни на один вопрос или в игре слишком мало слов. Попробуйте
             еще раз...</p>
           : <>
             <p className={styles.table__diagram_title}>
