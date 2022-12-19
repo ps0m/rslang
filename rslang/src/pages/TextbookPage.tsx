@@ -12,10 +12,10 @@ import { IAgregateWords, IDifficulty, IFullWordsForBook, IOptionalProgress, IPro
 
 const PageСollectorTextbook = () => {
 
-  // const [words, setWords] = useState<IWords[]>([]);
   const [fullWords, setFullWords] = useState<IFullWordsForBook[]>([]);
   const [cologBgCard, setCologBgCard] = useState('#4640BE')
-  const [fetchWords, isWordsLoad, wordsError] = useFetch(getWordsForMain)
+  const [fetchWords, isWordsLoad, wordsError] = useFetch(getWordsForMain);
+  const [addStylePage, setAddStylePage] = useState<boolean>(false)
 
   const [group, setGroup] = useState<number>(() => {
     const local: LocationState = (JSON.parse(window.sessionStorage.getItem('ps0m-textBook') || '{}'))
@@ -31,10 +31,26 @@ const PageСollectorTextbook = () => {
 
   const { isAuth } = useContext(MyContext)
 
+
   useEffect(() => {
     fetchWords()
   }, [group, page])
 
+  const handlerCurrentState = (updatedWord: IFullWordsForBook) => {
+    const newFullWords = fullWords.map(item => {
+      if (item.word.id === updatedWord.word.id) {
+        return updatedWord
+      } else return item
+    })
+
+    setFullWords(newFullWords);
+  }
+
+  useEffect(() => {
+    const filterArray = fullWords.filter(item => item.difficult === IDifficulty.hard || item.learned)
+
+    filterArray.length === fullWords.length ? setAddStylePage(true) : setAddStylePage(false)
+  }, [fullWords])
 
   async function getWordsForMain() {
     let wordMain: IWords[] = []
@@ -57,21 +73,20 @@ const PageСollectorTextbook = () => {
       });
 
       setFullWords(difficultWords);
-      console.log('sep', difficultWordsAnswer);
       return
     }
 
     if (!isAuth) {
-      const faceFullWords: IFullWordsForBook[] = wordMain.map(word => {
+      const fakeFullWords: IFullWordsForBook[] = wordMain.map(word => {
         return {
           word: word,
           difficult: IDifficulty.easy,
           learned: false,
-          progress: { index: 0 }
+          progress: { index: -1 }
         }
       })
 
-      setFullWords([...faceFullWords])
+      setFullWords([...fakeFullWords])
       return
     }
 
@@ -141,12 +156,10 @@ const PageСollectorTextbook = () => {
 
   useEffect(() => {
     window.onbeforeunload = () => {
-      console.log(group, page);
       window.sessionStorage.setItem('ps0m-textBook', JSON.stringify({ group: group, page: page }))
     }
 
     return window.onbeforeunload = () => {
-      console.log(group, page);
       window.sessionStorage.setItem('ps0m-textBook', JSON.stringify({ group: group, page: page }))
     }
   }, [group, page])
@@ -169,10 +182,12 @@ const PageСollectorTextbook = () => {
           setPage={setPage}
           setCologBgCard={setCologBgCard}
           numberPage={page}
-          numberGroup={group} />
+          numberGroup={group}
+          isAddStyle={addStylePage} />
         <MainTexbook
           words={fullWords}
-          style={cologBgCard} />
+          style={cologBgCard}
+          handlerCurrentState={handlerCurrentState} />
         <Footer />
       </>
   );

@@ -5,20 +5,23 @@ import styles from './MainTexbook.module.scss';
 type Props = {
   words: IFullWordsForBook[]
   style: string
+  handlerCurrentState: (updatedWord: IFullWordsForBook) => void
 }
 
-export const MainTexbook = ({ words, style }: Props) => {
+export const MainTexbook = ({ words, style, handlerCurrentState }: Props) => {
 
   return (
     <div className={`${styles.container} ${styles.cardsEng}`}>
-      { 
+      {
         words.map((item) => {
           return <CardOfWord word={item.word}
             learned={item.learned}
             difficult={item.difficult === IDifficulty.hard}
             progress={item.progress}
             key={item.word.id}
-            styleColor={style} />
+            styleColor={style}
+            handlerCurrentState={handlerCurrentState}
+          />
         })
       }
     </div>

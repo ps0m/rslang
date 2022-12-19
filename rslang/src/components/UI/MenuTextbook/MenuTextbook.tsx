@@ -1,10 +1,11 @@
-import { Dispatch, SetStateAction, useRef, useState } from 'react'
+import { Dispatch, SetStateAction, useContext, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ReactComponent as IconFolder } from '../../../assets/icon/folder.svg'
 import { ReactComponent as IconGame } from '../../../assets/icon/gameBook.svg'
 import { ReactComponent as IconNextPage } from '../../../assets/icon/nextArrow.svg'
 import { ReactComponent as IconPage } from '../../../assets/icon/page.svg'
 import { ReactComponent as IconPrevPage } from '../../../assets/icon/previousArrow.svg'
+import { MyContext } from '../../../context/context'
 import Button from '../Button/Button'
 import DropdownList from '../Dropdown/DropdownList'
 import { headerTextbook, page, section } from './contentMenuTextbook'
@@ -16,12 +17,15 @@ type Props = {
   setCologBgCard: Dispatch<SetStateAction<string>>;
   numberPage: number;
   numberGroup: number;
+  isAddStyle: boolean
 }
 
-const MenuTextbook = ({ setPage, setGroup, setCologBgCard, numberPage, numberGroup }: Props) => {
+const MenuTextbook = ({ setPage, setGroup, setCologBgCard, numberPage, numberGroup, isAddStyle }: Props) => {
   const [sectionActive, setSectionActive] = useState(false);
   const [pageActive, setPageActive] = useState(false);
   const [colorActive, setColorActive] = useState('#4640BE');
+
+  const { isAuth } = useContext(MyContext)
 
   const navigate = useNavigate();
 
@@ -51,13 +55,14 @@ const MenuTextbook = ({ setPage, setGroup, setCologBgCard, numberPage, numberGro
   const refSectionActive = useRef<HTMLDivElement | null>(null);
   const refPageActive = useRef<HTMLDivElement | null>(null);
 
-  const goSprintGame = () => navigate('/sprint_game', { state: { group: numberGroup, page: numberPage } });
-  const goAudioGame = () => navigate('/audio_call_game', { state: { group: numberGroup, page: numberPage } });
+  const goSprintGame = () => navigate('/sprint_game', { state: { group: numberGroup, page: numberPage, from: 'book' } });
+  const goAudioGame = () => navigate('/audio_call_game', { state: { group: numberGroup, page: numberPage, from: 'book' } });
 
   return (
     <>
       <section className={`${styles.menuTextbook} ${styles.container}`}>
-        <div className={styles.menuTextbook__wrNav}>
+        <div className={[styles.menuTextbook__wrNav,
+        isAddStyle ? styles.menuTextbook__wrNav_active : ''].join(' ')}>
           <h1 className={styles.menuTextbook__wrNav__header}>{headerTextbook}</h1>
           <div className={styles.menuTextbook__wrNav__nav}>
             {/* блок с переключением разделов */}
@@ -75,7 +80,7 @@ const MenuTextbook = ({ setPage, setGroup, setCologBgCard, numberPage, numberGro
                 </Button>
 
                 {sectionActive && <DropdownList
-                  valueItem={section}
+                  valueItem={isAuth ? section : section.slice(0, -1)}
                   className={styles.sectionDimensions}
                   setActive={setSectionActive}
                   icon={<IconFolder className={styles.iconSection} />}
@@ -113,7 +118,7 @@ const MenuTextbook = ({ setPage, setGroup, setCologBgCard, numberPage, numberGro
                   </Button>
                   {pageActive && <DropdownList
                     valueItem={page}
-                    className={`${styles.sectionPage} ${styles.ulScroll}`}
+                    className={[styles.sectionPage, styles.ulScroll].join(' ')}
                     setActive={setPageActive}
                     clickHandler={clickPageActive}
                     refContainer={refPageActive}
@@ -139,6 +144,7 @@ const MenuTextbook = ({ setPage, setGroup, setCologBgCard, numberPage, numberGro
             {/* блок с играми */}
             <div className={styles.sectionWr__game}>
               <Button
+                disabled={isAddStyle}
                 className={`${styles.sectionWr__button} ${styles.button__game}`}
                 onClick={() => goAudioGame()}
               >
@@ -146,6 +152,7 @@ const MenuTextbook = ({ setPage, setGroup, setCologBgCard, numberPage, numberGro
                 <div className={styles.sectionWr__button_desc}>Аудиовызов</div>
               </Button>
               <Button
+                disabled={isAddStyle}
                 className={`${styles.sectionWr__button} ${styles.button__game}`}
                 onClick={() => goSprintGame()}
               >

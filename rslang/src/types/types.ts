@@ -26,10 +26,13 @@ export interface IUser {
 
 export type IGroupAndPage = 'group' | 'page'
 
-export type LocationState = {
-  group: number;
-  page: number
 
+export type IPageForGame = 'menu' | 'book'
+
+export interface LocationState {
+  group: number;
+  page: number;
+  from: IPageForGame
 }
 
 export interface IEmailPassword {
