@@ -39,7 +39,7 @@ const Auth = () => {
     }
 
     setIsAuth(response)
-    navigate('/home')
+    navigate(-1)
   }
 
   return (

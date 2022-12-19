@@ -16,16 +16,30 @@ export const getWord = async (id: string) => {
 }
 
 export const createUser = async (user: IUser) => {
-  const response = await fetch(URL_USERS, {
-    method: 'POST',
-    body: JSON.stringify(user),
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-  });
+  try {
 
-  return await response.json();
+    const response = await fetch(URL_USERS, {
+      method: 'POST',
+      body: JSON.stringify(user),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (response.status === 417) {
+      throw new Error('Пользователь уже существует');
+    } else {
+      return await response.json();
+    }
+
+  } catch (e: unknown) {
+    if (typeof e === "string") {
+      console.log(e);
+    }
+
+    throw e;
+  }
 };
 
 export const getUser = async (id: string, token: string) => {
@@ -143,7 +157,7 @@ export const updateUserWord = async (id: string, wordId: string, property: IProp
 
     if (response.status === 404) {
       createUserWord(id, wordId, property, token)
-      // throw new Error('Не могу обновить, создам в словаре');
+      throw new Error('Не могу обновить, создам в словаре');
     } else {
       return await response.json();
     }
@@ -152,8 +166,8 @@ export const updateUserWord = async (id: string, wordId: string, property: IProp
       console.log(e);
     } else if (e instanceof Error) {
       console.log(e.message);
+    } else
       throw e
-    }
   }
 }
 
@@ -254,6 +268,8 @@ export const loginUser = async (user: IEmailPassword) => {
     });
 
     if (response.status === 404) {
+      throw new Error('Неверный логин или пароль');
+    } else if (response.status === 403) {
       throw new Error('Неверный логин или пароль');
     } else {
       return await response.json();
