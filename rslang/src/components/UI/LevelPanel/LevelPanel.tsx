@@ -4,18 +4,18 @@ import { contentForLevelPanel } from "./contentForLevelPanel";
 import styles from "./LevelPanel.module.scss";
 
 interface IPropsLevelPanel {
-  setGroup: Dispatch<SetStateAction<number | undefined>>
+  setGroup: Dispatch<SetStateAction<number | null>>
 }
 
 const LevelPanel: FC<IPropsLevelPanel> = ({ setGroup }) => {
-  const [level, setLevel] = useState<number | undefined>()
+  const [level, setLevel] = useState<number | null>(null)
 
   return (
     <div className={styles.panel}>
       <p className={styles.panel__title}>Выберите уровень сложности:</p>
       <p className={styles.panel__text} >
         {
-          level !== undefined
+          level
             ? contentForLevelPanel[level].text
             : 'Выбирайте уровень ниже, здесь мы немного расскажем о каждом из них'
         }
@@ -49,7 +49,12 @@ const LevelPanel: FC<IPropsLevelPanel> = ({ setGroup }) => {
       <Button
         disabled={level === undefined}
         className={styles.panel__button}
-        onClick={() => setGroup(level)}>
+        onClick={() => {
+
+          if (level !== null) {
+            setGroup(level)
+          }
+        }}>
         К игре
       </Button>
     </div >

@@ -1,6 +1,6 @@
-import styles from './MainTeam.module.scss'
-import { textHeaderTeam, descriptionTeam } from './contentMainTeam'
 import CardMainTeam from './cardMainTeam'
+import { descriptionTeam, textHeaderTeam } from './contentMainTeam'
+import styles from './MainTeam.module.scss'
 
 const MainTeam = () => {
   return (
@@ -13,6 +13,7 @@ const MainTeam = () => {
               imgItem={item.imgItem}
               nameItem={item.nameItem}
               roleTeam={item.roleTeam}
+              link={item.link}
               discr={item.discr}
               key={index}
             />

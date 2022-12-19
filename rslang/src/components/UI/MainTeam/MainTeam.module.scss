@@ -6,7 +6,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #DBD9FF;
+  background-color: #dbd9ff;
 
   &__header {
     padding-top: 15px;
@@ -15,7 +15,7 @@
     text-align: center;
     font-size: 32px;
     line-height: 42px;
-    color: #4640BE;
+    color: #4640be;
   }
 }
 
@@ -25,11 +25,9 @@
   justify-content: center;
   gap: 20px;
   padding: 15px 0 30px 0;
-
 }
 
 .teamCard {
-
   &__wrHeader {
     max-width: 380px;
     min-height: 192px;
@@ -46,7 +44,8 @@
     background-color: #ffffff;
     font-family: $fontFamilyOne;
     font-weight: 600;
-
+    text-decoration: none;
+    color: #000000;
     gap: 10px;
 
     &_img {
@@ -65,7 +64,7 @@
       text-align: center;
       font-size: 21px;
       line-height: 1.15;
-      color: #4640BE;
+      color: #4640be;
     }
 
     &_role {
@@ -82,5 +81,4 @@
       color: #666666;
     }
   }
-
 }
