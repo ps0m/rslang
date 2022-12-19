@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { getWords } from "../components/API/API";
+import { Link, useLocation } from "react-router-dom";
+import { getAllUserAggregatedWords, getWords } from "../components/API/API";
 import Button from "../components/UI/Button/Button";
 import CardOfAudio from "../components/UI/CardOfAudio/CardOfAudio";
 import Header from "../components/UI/Header/Header";
@@ -15,42 +15,125 @@ import { getOrderRandomWords, updateAfterGame } from "../components/Updater";
 import { MAX_MISTAKES_OF_AUDIO_GAMES, PAGES_PER_GROUP } from "../constants/constants";
 import { MyContext } from "../context/context";
 import { useFetch } from "../hooks/useFetch";
-import { IContentForAudio, ICustomStat, IWords } from "../types/types";
+import { IAgregateWords, IContentForAudio, ICustomStat, IWords, LocationState } from "../types/types";
 
 const AudioCallGame = () => {
-  const [group, setGroup] = useState<number | undefined>();
-  const [initialWords, setInitialWords] = useState<IWords[] | null>(null);
-  const [currentWords, setCurrentWords] = useState<IWords[] | null>([]);
+  const [group, setGroup] = useState<number | null>(null);
+  const [page, setPage] = useState<number | null>(null);
+  const [initialWords, setInitialWords] = useState<IWords[]>([]);
+  const [currentWords, setCurrentWords] = useState<IWords[]>([]);
   const [contentForCard, setContentForCard] = useState<IContentForAudio | null>(null);
   const [currentStatistic, setCurrentStatistic] = useState<ICustomStat[] | null>(null);
   const [amountMistakes, setAmountMistakes] = useState<number>(0);
-  const [fetchWords, isWordsLoad, wordsError] = useFetch(getWordsForGame)
+  const [fetchWordsFromMenu, isWordsLoadFromMenu, wordsErrorFromMenu] = useFetch(getWordsForGameFromMenu)
+  const [fetchWordsFromBook, isWordsLoadFromBook, wordsErrorFromBook] = useFetch(getWordsForGameFromBook)
   const [error, setError] = useState<string | null>(null);
-  const [isWinishGame, setIsFinishGame] = useState<boolean>(false)
-
+  const [isFinishGame, setIsFinishGame] = useState<boolean>(false)
+  const [smallWords, setSmallWords] = useState<boolean>(false)
   const { isAuth } = useContext(MyContext)
 
-  async function getWordsForGame(): Promise<void> {
-    if (group === undefined) {
-      return
-    }
-    const arrayPromisesWord = [];
 
-    // Раскоментировать после отладки
-    for (let i = 0; i < PAGES_PER_GROUP; i++) {
-      // for (let i = 0; i < 1; i++) {
-      arrayPromisesWord.push(getWords(group, i))
-    }
-
-    const allWordsOfgroup = await Promise.all(arrayPromisesWord)
-
-    setInitialWords(allWordsOfgroup.flat())
-    setCurrentWords(allWordsOfgroup.flat())
-  }
+  const locationState = useLocation().state as LocationState
 
   useEffect(() => {
-    fetchWords();
-  }, [group])
+    if (group !== null) {
+      if (locationState.from === 'book') {
+        fetchWordsFromBook()
+      } else if (locationState.from === 'menu') {
+        fetchWordsFromMenu();
+      }
+    }
+
+  }, [group, page])
+
+  useEffect(() => {
+    if (locationState !== null) {
+
+      setGroup(locationState.group)
+      setPage(locationState.page)
+    }
+  }, [])
+
+
+  const getUnLearnedWords = async () => {
+
+    if (isAuth && group !== null && page !== null) {
+
+      const filterLearned = { "$and": [{ "group": group }, { "page": page }, { "userWord.optional.learned": true }] }
+      const learnedWords: IAgregateWords[] = await getAllUserAggregatedWords(isAuth.userId, 20, filterLearned, isAuth.token)
+
+      const allWordsForPage = await getWords(group, page);
+
+      const filterWordsForPage = allWordsForPage.filter(word => {
+
+        for (let i = 0; i < learnedWords[0].paginatedResults.length; i++) {
+
+          if (word.word === learnedWords[0].paginatedResults[i].word) {
+
+            return false
+          }
+        }
+
+        return true;
+      })
+
+      return filterWordsForPage
+    }
+  }
+
+  async function getWordsForGameFromBook() {
+
+    if (group !== null && page !== null) {
+      const words: IWords[] | undefined = isAuth
+        ? await getUnLearnedWords()
+        : await getWords(group, page);
+
+      // if (isAuth) {
+
+      //   const words: IWords[] | undefined = await getUnLearnedWords();
+
+      if (words) {
+
+
+        setCurrentWords(prev => [...prev, ...words])
+        setInitialWords(prev => [...prev, ...words])
+        if (words.length < 6) {
+          if (page !== null && page >= 0) {
+            setPage(page - 1)
+
+          }
+        }
+      }
+    }
+  }
+
+
+  useEffect(() => {
+
+    if (page !== null && page < 0 && initialWords.length < 5) {
+
+      setSmallWords(true);
+    }
+  }, [page, initialWords])
+
+
+
+
+  async function getWordsForGameFromMenu(): Promise<void> {
+    if (group !== null) {
+      const arrayPromisesWord = [];
+
+      for (let i = 0; i < PAGES_PER_GROUP; i++) {
+        arrayPromisesWord.push(getWords(group, i))
+      }
+
+      const allWordsOfgroup = await Promise.all(arrayPromisesWord)
+
+      setInitialWords(allWordsOfgroup.flat())
+      setCurrentWords(allWordsOfgroup.flat())
+    }
+
+  }
 
 
   const updateCurrentStatistic = (newItem: ICustomStat) => {
@@ -89,7 +172,11 @@ const AudioCallGame = () => {
       const newWords = [...currentWords.slice(0, contentForCard?.currentIndex), ...currentWords.slice(contentForCard?.currentIndex + 1)]
 
       if (newWords.length === 0) {
-        setIsFinishGame(true);
+        if (page !== null && page >= 0) {
+          setPage(page - 1)
+        } else {
+          setIsFinishGame(true);
+        }
       }
 
       setCurrentWords(newWords);
@@ -98,7 +185,8 @@ const AudioCallGame = () => {
 
 
   useEffect(() => {
-    if (initialWords !== null && currentWords !== null) {
+    if (initialWords.length !== 0 && currentWords.length !== 0 && initialWords.length > 4) {
+
       setContentForCard(getOrderRandomWords(initialWords, currentWords));
     }
   }, [initialWords, currentWords])
@@ -109,13 +197,13 @@ const AudioCallGame = () => {
     <>
       <Header />
       {
-        isWordsLoad
+        isWordsLoadFromBook || isWordsLoadFromMenu
           ? <Loader></Loader>
           : <section className="game">
             {
-              isWinishGame
+              isFinishGame || smallWords
                 ? <Table stat={currentStatistic} />
-                : (group !== undefined
+                : (group !== null
                   ? <div className="game__audioCall">
                     <Progress
                       className="game__audioCall_progress"

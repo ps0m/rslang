@@ -18,6 +18,7 @@ const AudioPlayer: FC<IAudioPlayer> = ({ path, className, children, disabled, pl
   const [isPlay, setIsPlay] = useState<boolean>(false)
 
   const playAudio = () => {
+
     const player = new Audio(path);
 
     player.play()
@@ -29,6 +30,7 @@ const AudioPlayer: FC<IAudioPlayer> = ({ path, className, children, disabled, pl
         resetPlayOfParent();
       }
     })
+
   }
 
   useEffect(() => {

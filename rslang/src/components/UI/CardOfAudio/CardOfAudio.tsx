@@ -17,7 +17,6 @@ interface IPropsCardOfAudio {
 
 const CardOfAudio: FC<IPropsCardOfAudio> = ({ content, getResult, setMistakes }) => {
   const [isVolume, setIsVolume] = useState<boolean>(false);
-  // const [pauseGame, pauseGame.current] = useState<boolean>(false);
   const [isWin, setIsWin] = useState<boolean | null>(null);
   const [isSayWord, setIsSayWord] = useState<boolean>(false);
 
@@ -55,10 +54,6 @@ const CardOfAudio: FC<IPropsCardOfAudio> = ({ content, getResult, setMistakes })
     }
 
     const arrayKeyDigit = ['Digit1', 'Digit2', 'Digit3', 'Digit4', 'Digit5']
-
-    // if (arrayKeyDigit.includes(event.code)) {
-    //   pauseGame.current = true;
-    // }
 
     switch (event.code) {
       case 'Digit1': checkAnswer(content?.extraWords[0])
@@ -150,7 +145,6 @@ const CardOfAudio: FC<IPropsCardOfAudio> = ({ content, getResult, setMistakes })
         </div>
 
         <AudioPlayer
-          // disabled={isWin !== null}
           playOfParent={isSayWord}
           path={`${URL_BASE}/${content?.wordStudy.audio}`}
           className={styles.card__audioPlayer}
@@ -167,7 +161,7 @@ const CardOfAudio: FC<IPropsCardOfAudio> = ({ content, getResult, setMistakes })
             ? content.extraWords.map((word, index) => {
               return <Button
                 disabled={pauseGame.current}
-                key={word.id}
+                key={index}
                 className={[styles.card__buttons,
                 (content.wordStudy.id === word.id && isWin !== null)
                   ? styles.card__buttons_win

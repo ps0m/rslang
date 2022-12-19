@@ -33,7 +33,8 @@ export const getOrderRandomWords = (
   randomExtraWords.push(randomWordStudy)
 
   for (let i = 1; i < AMOUNT_VARIANTS_OF_AUDIO_GAMES; i++) {
-    let randomIndexExtraWords
+    // const randomIndexExtraWords = Math.floor(Math.random() * initWords.length)
+    let randomIndexExtraWords: number;
 
     do {
       randomIndexExtraWords = Math.floor(Math.random() * initWords.length)
@@ -84,10 +85,6 @@ const updateOneUserWord = async ({ isAuth, wordOfStat }: IUpdateOneUserWord) => 
     const progressIndex = currentUserWord.optional.progress.index
     const newLearned = checkLearned({ currentUserWord, wordOfStat })
     const newDifficulty = newLearned ? IDifficulty.easy : currentUserWord.difficulty
-
-    // if (newLearned === true) {
-    //   amountLearned++
-    // }
 
     const newProgress =
       progressIndex < 4
@@ -344,15 +341,6 @@ export const updateAfterGame = async ({
 
       const oldStatistics: IStatistic = await getUserStatistics(isAuth.userId, isAuth.token)
 
-      console.log(oldStatistics)
-
-      // const responseTwoUserWords = await divisionCurrentStatistic({ isAuth, currentStatistic })
-
-      // if (responseTwoUserWords === undefined) {
-      //   return
-      // }
-
-      // const [newUserWords, oldUserWords] = responseTwoUserWords;
 
       const responseUpdateUserWords: Promise<
         { last: IPropertyWord; updated: IPropertyWord } | undefined
@@ -364,8 +352,6 @@ export const updateAfterGame = async ({
 
       for await (const iterator of responseUpdateUserWords) {
         if (iterator === undefined) return
-
-        // console.log(iterator, 'iterator');
 
         if (
           iterator.last.optional.learned === false &&
@@ -381,8 +367,6 @@ export const updateAfterGame = async ({
           amountLearned--
         }
       }
-
-      console.log('amountLearned', amountLearned)
 
       responseUpdateUserWords
 
@@ -412,7 +396,6 @@ export const updateAfterGame = async ({
         amountLearned,
       })
 
-      console.log(currentStatistic, newUserWords, oldUserWords)
 
       await updateUserStatistics(isAuth.userId, newStatistic, isAuth.token)
     }
