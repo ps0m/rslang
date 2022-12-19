@@ -7,6 +7,7 @@ import { IContentForSprintCard, ICustomStat, IScore } from '../../../types/types
 import AudioPlayer from '../AudioPlayer/AudioPlayer';
 import Button from '../Button/Button';
 import Timer from '../Timer/Timer';
+import { ReactComponent as IconHeart } from "./assets/heart.svg";
 import { ReactComponent as VolumeOff } from "./assets/volume_off.svg";
 import { ReactComponent as VolumeOn } from "./assets/volume_on.svg";
 import styles from './CardOfSprint.module.scss';
@@ -95,9 +96,9 @@ const CardOfSprint: FC<IPropsCardOfSprint> = ({ content, score, setIsFinishGame,
           </Button>
 
           <div className={styles.progress}>
-            <div className={[styles.progress__item, (flagForProgress > 0) ? styles.progress__item_done : ''].join(' ')}></div>
-            <div className={[styles.progress__item, (flagForProgress > 1) ? styles.progress__item_done : ''].join(' ')}></div>
-            <div className={[styles.progress__item, (flagForProgress > 2) ? styles.progress__item_done : ''].join(' ')}></div>
+            <IconHeart className={[styles.progress__item, (flagForProgress > 0) ? styles.progress__item_done : ''].join(' ')} />
+            <IconHeart className={[styles.progress__item, (flagForProgress > 1) ? styles.progress__item_done : ''].join(' ')} />
+            <IconHeart className={[styles.progress__item, (flagForProgress > 2) ? styles.progress__item_done : ''].join(' ')} />
             {score.coefficient > 1
               ? <p className={styles.progress__notate} >
                 {score.coefficient}0 очков за слово
@@ -113,14 +114,14 @@ const CardOfSprint: FC<IPropsCardOfSprint> = ({ content, score, setIsFinishGame,
         </div>
 
         <div className={styles.progress}>
-          <div className={[styles.progress__item, styles.progress__item_big,
-          (flagForProgressSection > 0) ? styles.progress__item_done : ''].join(' ')}></div>
-          <div className={[styles.progress__item, styles.progress__item_big,
-          (flagForProgressSection > 1) ? styles.progress__item_done : ''].join(' ')}></div>
-          <div className={[styles.progress__item, styles.progress__item_big,
-          (flagForProgressSection > 2) ? styles.progress__item_done : ''].join(' ')}></div>
-          <div className={[styles.progress__item, styles.progress__item_big,
-          (flagForProgressSection > 3) ? styles.progress__item_done : ''].join(' ')}></div>
+          <IconHeart className={[styles.progress__item, styles.progress__item_big,
+          (flagForProgressSection > 0) ? styles.progress__item_done : ''].join(' ')} />
+          <IconHeart className={[styles.progress__item, styles.progress__item_big,
+          (flagForProgressSection > 1) ? styles.progress__item_done : ''].join(' ')} />
+          <IconHeart className={[styles.progress__item, styles.progress__item_big,
+          (flagForProgressSection > 2) ? styles.progress__item_done : ''].join(' ')} />
+          <IconHeart className={[styles.progress__item, styles.progress__item_big,
+          (flagForProgressSection > 3) ? styles.progress__item_done : ''].join(' ')} />
         </div>
 
       </div >
@@ -138,7 +139,7 @@ const CardOfSprint: FC<IPropsCardOfSprint> = ({ content, score, setIsFinishGame,
         <Button
           className={[styles.card__buttons, styles.card__buttons_right].join(' ')}
           onClick={() => checkAnswer(true)}
-        >Верно
+        > Верно
         </Button>
       </div>
     </div >

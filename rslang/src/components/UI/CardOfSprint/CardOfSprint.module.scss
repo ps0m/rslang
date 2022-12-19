@@ -101,8 +101,8 @@
 
   &__buttons {
     position: relative;
-    width: 150px;
-    height: 75px;
+    min-width: 200px;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -158,10 +158,9 @@
   padding: 20px;
 
   &__item {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    fill: #fff;
 
     &_big {
       width: 40px;
@@ -169,7 +168,7 @@
     }
 
     &_done {
-      background-color: $trueColor;
+      fill: $falseColor;
     }
   }
 
