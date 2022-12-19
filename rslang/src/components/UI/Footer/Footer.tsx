@@ -9,9 +9,9 @@ const Footer = () => {
       </div>
 
       <div className={styles.footer__team}>
-        <a className={styles.footer__team_link} href='https://github.com/ZmitserFurmanau'>Zmitser Furmanau</a>
-        <a className={styles.footer__team_link} href='https://github.com/ps0m'>Sergey Pobudey</a>
-        <a className={styles.footer__team_link} href='https://github.com/Glav-Tz'>Anton Gorshkov</a>
+        <a className={styles.footer__team_link} href='https://github.com/ZmitserFurmanau' target={'_blank'} rel="noreferrer">Zmitser Furmanau</a>
+        <a className={styles.footer__team_link} href='https://github.com/ps0m' target={'_blank'} rel="noreferrer">Sergey Pobudey</a>
+        <a className={styles.footer__team_link} href='https://github.com/Glav-Tz' target={'_blank'} rel="noreferrer">Anton Gorshkov</a>
       </div>
 
       <div className={styles.footer__year}>2022г.</div>

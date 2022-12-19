@@ -5,7 +5,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $baseColor;
+  background-color: rgba($color: $trueColor, $alpha: 0.8);
   padding: 10px 50px 10px 50px;
 
   .footer__project {
@@ -33,7 +33,7 @@
       font-size: 14px;
       line-height: 24px;
       text-decoration: none;
-      color: #FFFFFF;
+      color: #ffffff;
     }
   }
 
@@ -43,7 +43,7 @@
     font-size: 14px;
     line-height: 24px;
     text-decoration: none;
-    color: #FFFFFF;
+    color: #ffffff;
   }
 }
 
