@@ -2,9 +2,10 @@
 
 .item {
   display: flex;
+  // justify-content: f;
+  align-items: center;
 
   &__img {
-    display: flex;
     width: 60px;
     height: 60px;
   }

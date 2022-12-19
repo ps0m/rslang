@@ -24,9 +24,4 @@ export const contentForPopUp = [
     itemImg: 'statistic',
     itemLink: '/statistic',
   },
-  {
-    itemText: 'Команда',
-    itemImg: 'team',
-    itemLink: '/team',
-  },
 ]
