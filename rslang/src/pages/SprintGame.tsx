@@ -19,8 +19,8 @@ import { IAgregateWords, IContentForSprintCard, ICustomStat, IScore, IWords, Loc
 
 
 const SprintGame = () => {
-  const [group, setGroup] = useState<number | undefined>();
-  const [page, setPage] = useState<number | undefined>();
+  const [group, setGroup] = useState<number | null>(null);
+  const [page, setPage] = useState<number | null>(null);
   const [initialWords, setInitialWords] = useState<IWords[]>([]);
   const [currentWords, setCurrentWords] = useState<IWords[]>([]);
   const [contentForCard, setContentForCard] = useState<IContentForSprintCard | null>(null);
@@ -33,67 +33,87 @@ const SprintGame = () => {
 
   const { isAuth } = useContext(MyContext)
 
-  const locationState = useLocation().state as LocationState | null
+  const locationState = useLocation().state as LocationState
+
+  useEffect(() => {
+    if (group !== null) {
+      if (locationState.from === 'book') {
+        fetchWordsFromBook()
+      } else if (locationState.from === 'menu') {
+        fetchWordsFromMenu();
+      }
+    }
+
+  }, [group, page])
 
   useEffect(() => {
     if (locationState !== null) {
+
       setGroup(locationState.group)
       setPage(locationState.page)
     }
   }, [])
 
   const getUnLearnedWords = async () => {
-    if (isAuth) {
+
+    if (isAuth && group !== null && page !== null) {
 
       const filterLearned = { "$and": [{ "group": group }, { "page": page }, { "userWord.optional.learned": true }] }
-      const LearnedWordsAnswer: IAgregateWords[] = await getAllUserAggregatedWords(isAuth.userId, 20, filterLearned, isAuth.token)
+      const learnedWords: IAgregateWords[] = await getAllUserAggregatedWords(isAuth.userId, 20, filterLearned, isAuth.token)
 
-      return await getWords(group, page);
+      const allWordsForPage = await getWords(group, page);
+
+      const filterWordsForPage = allWordsForPage.filter(word => {
+
+        for (let i = 0; i < learnedWords[0].paginatedResults.length; i++) {
+
+          if (word.word === learnedWords[0].paginatedResults[i].word) {
+
+            return false
+          }
+        }
 
 
+        return true;
+      })
 
+
+      return filterWordsForPage
     }
   }
 
   async function getWordsForGameFromBook() {
-    if (isAuth) {
-      console.log('book');
-
-      const words: IWords[] | undefined = await getUnLearnedWords();
+    if (group !== null && page !== null) {
+      const words: IWords[] | undefined = isAuth
+        ? await getUnLearnedWords()
+        : await getWords(group, page);
 
       if (words) {
         setCurrentWords(words)
         setInitialWords(words)
       }
     }
+
   }
 
   async function getWordsForGameFromMenu() {
-    console.log('menu');
+    if (group !== null) {
 
-    const arrayPromisesWord = [];
+      const arrayPromisesWord = [];
 
-    // Раскоментировать после отладки
-    for (let i = 0; i < PAGES_PER_GROUP; i++) {
-      // for (let i = 0; i < 1; i++) {
-      arrayPromisesWord.push(getWords(group, i))
+      for (let i = 0; i < PAGES_PER_GROUP; i++) {
+        arrayPromisesWord.push(getWords(group, i))
+      }
+
+      const allWordsOfgroup = await Promise.all(arrayPromisesWord)
+
+      setInitialWords(allWordsOfgroup.flat())
+      setCurrentWords(allWordsOfgroup.flat())
     }
 
-    const allWordsOfgroup = await Promise.all(arrayPromisesWord)
-
-    setInitialWords(allWordsOfgroup.flat())
-    setCurrentWords(allWordsOfgroup.flat())
   }
 
-  useEffect(() => {
-    console.log('group', group, page);
 
-    if (group !== undefined && page !== undefined) {
-      fetchWordsFromBook()
-    } else if (group !== undefined && page === undefined) {
-      fetchWordsFromMenu();
-    }
-  }, [group, page])
 
   const updateScore = (newItem: ICustomStat) => {
     newItem.isRight
@@ -178,7 +198,7 @@ const SprintGame = () => {
                     <>Ваш результат: {score.amount} баллов</>
                   </Table>
                 </>
-                : (group !== undefined
+                : (group !== null
                   ? <CardOfSprint
                     content={contentForCard}
                     score={score}

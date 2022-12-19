@@ -52,9 +52,9 @@ export const getMaxSeries = (array: ICustomStat[]) => {
 }
 
 export const getCurrentDate = () => {
-  const f = new Date()
+  const today = new Date()
 
-  return [f.getFullYear(), f.getMonth(), f.getDate()].join('_')
+  return [today.getDate(), today.getMonth() + 1, today.getFullYear()].join('.')
 }
 
 export const initialStatistic: IStatistic = {

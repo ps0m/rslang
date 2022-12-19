@@ -1,8 +1,9 @@
 import { FC, useContext, useState } from "react";
 import { URL_BASE } from "../../../constants/constants";
 import { MyContext } from "../../../context/context";
-import { IDifficulty, IOptionalProgress, IPropertyWord, IWords } from "../../../types/types";
-import { updateUserWord } from "../../API/API";
+import { getCurrentDate, initialStatistic } from "../../../helpers/helpers";
+import { IDifficulty, IFullWordsForBook, IOptionalProgress, IPropertyWord, IStatistic, IWords } from "../../../types/types";
+import { getUserStatistics, updateUserStatistics, updateUserWord } from "../../API/API";
 import AudioPlayer from "../../UI/AudioPlayer/AudioPlayer";
 import Button from "../../UI/Button/Button";
 import { ReactComponent as IconHeart } from "./assets/heart.svg";
@@ -16,9 +17,10 @@ interface ICard {
   difficult: boolean
   progress: IOptionalProgress
   styleColor: string,
+  handlerCurrentState: (updatedWord: IFullWordsForBook) => void
 }
 
-const Card: FC<ICard> = ({ word, learned, difficult, progress, styleColor }) => {
+const Card: FC<ICard> = ({ word, learned, difficult, progress, styleColor, handlerCurrentState }) => {
   const [isLearned, setIsLearned] = useState<boolean>(learned)
   const [isDifficult, setIsDifficult] = useState<boolean>(difficult)
 
@@ -66,11 +68,68 @@ const Card: FC<ICard> = ({ word, learned, difficult, progress, styleColor }) => 
         }
       }
 
+      const differenceLearned = !isLearned && newLearned ? 1
+        : isLearned && !newLearned ? -1 : 0
 
-      await updateUserWord(isAuth.userId, word.id, propertyWord, isAuth.token);
+      updateUserWord(isAuth.userId, word.id, propertyWord, isAuth.token);
+
+      if (differenceLearned !== 0) {
+        const oldStatistics: IStatistic = await getUserStatistics(isAuth.userId, isAuth.token);
+        const currentDate = getCurrentDate();
+        const lastStatDate = oldStatistics.optional.daily.date;
+
+
+        const statOfLastStatDate: IStatistic = {
+          learnedWords: 0,
+          optional: {
+            daily: {
+              sprint: oldStatistics.optional.daily.sprint,
+              audio: oldStatistics.optional.daily.audio,
+              words: {
+                ...oldStatistics.optional.daily.words,
+                learnedWords: oldStatistics.optional.daily.words.learnedWords + differenceLearned
+              },
+              date: lastStatDate,
+            },
+            longTerm: {
+              ...oldStatistics.optional.longTerm,
+              [lastStatDate]: {
+                newLearnedWords:
+                  oldStatistics.optional.longTerm[lastStatDate].newLearnedWords,
+                totalLearnedWords:
+                  oldStatistics.optional.longTerm[lastStatDate].totalLearnedWords +
+                  differenceLearned,
+              },
+            },
+          },
+        }
+
+        // ...initialStatistic,
+        const statOfCurrentDate: IStatistic = {
+          learnedWords: 0,
+          optional: {
+            ...initialStatistic.optional,
+            longTerm: {
+              ...oldStatistics.optional.longTerm,
+              [currentDate]: {
+                newLearnedWords: 0,
+                totalLearnedWords: oldStatistics.optional.longTerm[lastStatDate].totalLearnedWords + differenceLearned
+              }
+            }
+          }
+        }
+
+        const resultStat = lastStatDate === currentDate ? statOfLastStatDate : statOfCurrentDate
+
+        updateUserStatistics(isAuth.userId, resultStat, isAuth.token);
+      }
+
+      handlerCurrentState({ word: word, difficult: newDifficult, learned: newLearned, progress: progress })
 
       setIsDifficult(newDifficult === IDifficulty.hard)
-      setIsLearned(newLearned)
+      setIsLearned(newLearned);
+
+
 
     } catch (e: unknown) {
       if (typeof e === "string") {
@@ -102,7 +161,8 @@ const Card: FC<ICard> = ({ word, learned, difficult, progress, styleColor }) => 
                   title='Изученное слово'
                   onClick={(e) => {
                     e.preventDefault();
-                    updateWord('learned')
+                    updateWord('learned');
+
                   }}
                 >
                   <IconLearned className={
